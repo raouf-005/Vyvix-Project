@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+.inputLogin{
+    border:  2px solid rgba(75, 44, 250, 1);
+    padding-inline: 20px;
+    margin-right: 5px;
+    padding-block: 12px;
+    border-radius: 1rem;
+    min-width: 450px;
+}
+.labelInputLogin{
+    text-align: left;
+}
+.currentForm{
+    border-radius: 1rem;
+    color: white;
+    font-family: "Inter", sans-serif;
+    background-color: rgba(75, 44, 250, 1);
+    font-weight: 600;
+    margin-left: -25px;
+    animation: ease-out 1s;
+}
+
+
+.otherForm{
+   border-radius: 1rem;
+    background-color: rgb(133, 116, 225);
+    margin-left: -25px;
+    font-weight:600;
+    font-family: "Inter", sans-serif;
+    color: rgba(75, 44, 250, 1);
+
+    
+}
+.loginPhoto{
+    max-height:97%;
+ 
+   
+}
