@@ -9,7 +9,7 @@ export default function RegisterForm() {
             <InputLogin 
                 type="text"
                 placeholder="Enter you Username" 
-                name="Username" />
+                name="Username " />
             <InputLogin
                 placeholder="Email"
                 name="Email"
@@ -20,14 +20,11 @@ export default function RegisterForm() {
                 name="Password"
                type="password"
             />
-            <div className="flex justify-between
-            ">
-                <Checkbox size="sm" radius="none" className="gap-1">
-                  Remember me 
-                </Checkbox>
-                <a href="#" className="text-blue-800 ">Forget Password ?</a>
+            <div className="flex justify-end mr-5
+            ">  
+                <Button className=" bg-blue-800 text-white px-11" size="lg" radius="lg" >Register</Button>
             </div>
-                <Button className=" bg-blue-800 text-white max-w-40  justify-self-end   mt-3  ml-[269px] " size="lg" radius="lg" >Register</Button>
-            </div>
+                
+        </div>
     )
 }

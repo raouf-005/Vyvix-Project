@@ -7,35 +7,43 @@
     padding-inline: 20px;
     margin-right: 5px;
     padding-block: 12px;
-    border-radius: 1rem;
+    border-radius:16px;
     min-width: 450px;
 }
 .labelInputLogin{
     text-align: left;
 }
-.currentForm{
-    border-radius: 1rem;
-    color: white;
-    font-family: "Inter", sans-serif;
-    background-color: rgba(75, 44, 250, 1);
-    font-weight: 600;
-    margin-left: -25px;
-    animation: ease-out 1s;
-}
 
-
-.otherForm{
-   border-radius: 1rem;
-    background-color: rgb(133, 116, 225);
-    margin-left: -25px;
-    font-weight:600;
-    font-family: "Inter", sans-serif;
-    color: rgba(75, 44, 250, 1);
-
-    
-}
 .loginPhoto{
-    max-height:97%;
- 
-   
+    max-height:98%;
+	width: auto;
 }
+
+#btnSlider{
+	left: 0;
+	top: 0;
+	position: absolute;
+	padding-inline:77px;
+	height: 100%;
+	background: rgba(75, 44, 250, 1);
+	border-radius:16px;
+	transition: .3s ease-in-out  ;
+}
+
+
+.buttonsHolder{
+    position: relative;
+    border-radius:1rem;
+    background-color: rgb(133, 116, 225);
+	margin: 35px auto;
+
+}
+.toggle-btn {
+    font-weight: 600;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	text-align: center;
+}
+
