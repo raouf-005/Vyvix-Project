@@ -1,20 +1,25 @@
 import React from "react";
 import InputLogin from "./InputLogin";  
 import { Button ,Checkbox} from "@nextui-org/react";
-
+import useFormLogin from "../customHooks/useformlogin";
 
 export default function LoginForm(){
+
+    const formik =useFormLogin()
     return(
     <div className="flex flex-col gap-5  align-middle ">
            
             <InputLogin 
                 type="text"
                 placeholder="Enter you Username or Email" 
-                name="Username or Email" />
+                name="Useremail" 
+                formikfield={formik.getFieldProps('useremail')}
+                />
             <InputLogin
                 placeholder="Enter your Password"
                 name="Password"
                type="password"
+               formikfield={formik.getFieldProps('password')}
             />
             <div className="flex  justify-between mt-2">
                 <Checkbox size="sm" radius="none" className="gap-1 ml-2">
