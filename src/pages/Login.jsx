@@ -11,34 +11,36 @@ export const formvalue =createContext()
 
 export default function Login() {
 
+    const [formselected, setFormSelected] = useState(true)
     const formik = useFormik({
         initialValues: {
             username: '',
+            useremail:"",
             email: '',
             password: '',
         },
         onSubmit: values => {
             console.log(values)
-        
-    },
-    validationSchema: Yup.object({
-        username: Yup.string()
-            .min(3, 'Must be at least 3 characters')
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
-        email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-        password: Yup.string()
-            .min(8, 'Must be at least 8 characters')
-            .required('Required'),
+        },
+        validationSchema: Yup.object({
+            username: Yup.string()
+                .min(5, 'Must be at least 5 characters')
+                .max(15, 'Must be 15 characters or less')
+                .required('Required')
+               ,
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Required'),
+            password: Yup.string()
+                .min(8, 'Must be at least 8 characters')    
+                .required('Required'),
+            useremail: Yup.string()
+                .required('Enter an email or password ')
         }),
     });
 
+   
 
-    const [formselected, setFormSelected] = useState(true)
-
-  
     const handleFormChange = (e) => {
         const btnSlide=  document.getElementById('btnSlider')
         const registerBtn =document.getElementById('register')
@@ -58,8 +60,6 @@ export default function Login() {
             setFormSelected(false)
         }
     }
-
-
 
     return(
         <formvalue.Provider value={formik}>
@@ -90,3 +90,4 @@ export default function Login() {
         </formvalue.Provider>  
     )
 }
+
