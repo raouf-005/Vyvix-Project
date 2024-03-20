@@ -7,27 +7,21 @@ import * as Yup from 'yup';
 
 
 export default function useFormLogin() {
-    
     const formik = useFormik({
         initialValues: {
             useremail: '',
             password: '',
         },
-        onSubmit: values => {
-            console.log(values)
-        
-    },
-    validationSchema: Yup.object({
-        useremail: Yup.string()
-            .min(3, 'Must be at least 3 characters')
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
-        password: Yup.string()
-            .min(8, 'Must be at least 8 characters')
-            .required('Required'),
+        validationSchema: Yup.object({
+            useremail: Yup.string()
+                .required('Required')
+                .min(6, 'Must be 4 characters or more'),    
+            password: Yup.string()
+                .required('Required'),
         }),
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
     });
-
-    return formik
+    return formik;
 }
-

@@ -2,42 +2,16 @@ import React ,{createContext,useState} from "react";
 import "../styles/Login.css"
 import LoginImg from "./../assets/LoginImg.svg"
 import VyvixLogo from "./../assets/VyvixLogo.svg"
-import RegisterForm from "./../components/RegisterForm"
-import LoginForm from "./../components/LoginForm"
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import RegisterForm from "./../logincomponents/RegisterForm"
+import LoginForm from "./../logincomponents/LoginForm"
 
-export const formvalue =createContext()
+
+
 
 export default function Login() {
 
     const [formselected, setFormSelected] = useState(true)
-    const formik = useFormik({
-        initialValues: {
-            username: '',
-            useremail:"",
-            email: '',
-            password: '',
-        },
-        onSubmit: values => {
-            console.log(values)
-        },
-        validationSchema: Yup.object({
-            username: Yup.string()
-                .min(5, 'Must be at least 5 characters')
-                .max(15, 'Must be 15 characters or less')
-                .required('Required')
-               ,
-            email: Yup.string()
-                .email('Invalid email address')
-                .required('Required'),
-            password: Yup.string()
-                .min(8, 'Must be at least 8 characters')    
-                .required('Required'),
-            useremail: Yup.string()
-                .required('Enter an email or password ')
-        }),
-    });
+    
 
    
 
@@ -62,7 +36,7 @@ export default function Login() {
     }
 
     return(
-        <formvalue.Provider value={formik}>
+        
         <div className="flex  max-h-screen    justify-start">
             <div className="flex  max-h-screen  items-center  justify-center ">
             <img src={LoginImg} alt="LoginImg" className="loginPhoto " />
@@ -87,7 +61,7 @@ export default function Login() {
             </div>
            
         </div>
-        </formvalue.Provider>  
+        
     )
 }
 
