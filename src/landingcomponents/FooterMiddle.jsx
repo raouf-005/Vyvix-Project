@@ -1,26 +1,24 @@
+import { Image } from "@nextui-org/react";
 import FooterList from "./FooterList";
-
+import LogoFooter from "./../assets/LogoFooter.svg";
 const footerlist=[
     {
-        title:"company"
-        ,list:['hey','there']
+        title:"Navigation Links"
+        ,list:['Home','Services','How It Works','Get Started','Contact Us']
     },   
     {
-        title:"company"
-        ,list:['hey','there']
+        title:"Resources"
+        ,list:['Blog','Pricing','FAQ']
     },
     {
-        title:"company"
-        ,list:['hey','there']
+        title:"Follow Us"
+        ,list:['LinkedIn','Twitter']
     },
     {
-        title:"company"
-        ,list:['hey','there']
+        title:"Contact"
+        ,list:['info@vyvix.com','(123) 456-7890']
     },
-    {
-        title:"company"
-        ,list:['hey','there']
-    }
+
 ]
 
 
@@ -28,15 +26,14 @@ const footerlist=[
 export default function FooterMiddle (){
 
     return(
-        <div className="grid grid-flow-col grid-cols-footer gap-4  pt-8  px-10 pl-16">
-            <div> 
-            <h3 className=" text-xl font-semibold mb-4   ">
-                VYVIX
-            </h3>
+        <div className="grid grid-flow-col grid-cols-footer gap-4 pt-14 px-10 pl-16">
+            <div className="pl-16"> 
+            <Image src={LogoFooter} alt="Vyvix Logo"   className="pl-6 mb-1"/>
             <p className= "  max-w-44 text-md font-light ">
-                Data visualization, and 
-                expense management 
-                for your life.
+            Personalized guidance 
+            and goal tracking for 
+            every aspect of your life
+             with Vyvix
                 
             </p>
             </div>

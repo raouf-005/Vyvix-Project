@@ -1,0 +1,16 @@
+
+
+.MuiDateRangeCalendar-monthContainer{
+    border-radius: 1.2rem;   
+    background-color: white;
+}
+
+.MuiDateRangeCalendar-monthContainer > div {  
+    color: green;
+}
+
+.MuiDateRangeCalendar-root>button{
+    color: #fff;
+    background-color: green;
+    font-weight: 500;
+}

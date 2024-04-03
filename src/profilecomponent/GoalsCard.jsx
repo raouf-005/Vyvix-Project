@@ -12,12 +12,9 @@ export default function GoalsCard() {
             Keep you user engaged by providing meaningful information.
             </p>
             <List dense={true} >
-              
                 <ItemList/>
                 <ItemList/>
                 <ItemList/>
-                
-             
             </List>
         </div>
     )

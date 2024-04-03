@@ -6,13 +6,14 @@ import Landing from './pages/Landing';
 import PagesContainer from './pages/PagesContainer';
 import DashBoard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import Error from './pages/Error';
 
 
 const router = createBrowserRouter([
   {
   path: '/login',
   element: <Login />,
-  errorElement: <h1>404 Not Found</h1>
+  errorElement: <Error />
   },
   {
     path: '/register',
@@ -32,8 +33,13 @@ const router = createBrowserRouter([
   }
   ,
   {
+    path: '/ranking',
+    element: <PagesContainer page={<DashBoard/>} name='Ranking' />  ,
+  
+  },
+  {
     path: '*',
-    element: <h1>404 Not Found</h1>
+    element: <Error />
   }
 
 
