@@ -1,21 +1,21 @@
 import { Image } from '@nextui-org/react';
-import sms from '../assets/sms.svg';
+import edit from '../assets/edit.svg';
 import {ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
 
 export default function ItemList() {
     return(
-      
+        
         <ListItem
         sx={{ paddingBlock: 1 ,marginTop:2}}
-        className='rounded-2xl bg-white shadow-lg '
+        className='rounded-2xl  shadow-lg dark:bg-ltdm'
         secondaryAction={<IconButton edge="end" sx={{marginRight:1}} aria-label="modify" >
-            <Image src={sms}  />
+            <Image src={edit}  />
         </IconButton>}
         >
         <ListItemAvatar>
-            <Avatar variant='rounded' className='mr-4'
-                sx={{ width: 60, height: 60 }}>
-                <Image src={sms} />
+            <Avatar variant='rounded' className='mr-4 m-1'
+                sx={{ width: 57, height: 57 }}>
+                <Image src={edit} />
             </Avatar>
         </ListItemAvatar>
         <ListItemText

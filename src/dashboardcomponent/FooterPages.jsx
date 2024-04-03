@@ -8,7 +8,7 @@ export default function FooterPages() {
     const navigate =useNavigate();
 
     return(
-        <div className="flex justify-between py-4 px-6  bg-slate-100">
+        <div className="flex justify-between py-4 px-6  dark:bg-transparent bg-slate-100  text-slate-500">
             <p>
             Privacy Policy | Terms of Service | © 2024 VYVIX
             </p>

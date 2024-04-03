@@ -7,6 +7,8 @@ import PagesContainer from './pages/PagesContainer';
 import DashBoard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
+import Ranking from './pages/Ranking';
+
 
 
 const router = createBrowserRouter([
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PagesContainer page={<DashBoard/>} name='Dashboard' />  ,
+    element: <PagesContainer page={<DashBoard/>} name='Dashboard'  />  ,
   }
   ,{
     path: '/profile',
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
   ,
   {
     path: '/ranking',
-    element: <PagesContainer page={<DashBoard/>} name='Ranking' />  ,
+    element: <PagesContainer page={<Ranking/>} name='Ranking' />  ,
   
   },
   {
@@ -47,11 +49,10 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <>
-    
-    <RouterProvider router={router}/>
-
-  </>
+   
+          <RouterProvider router={router}/>
+  
+  
   )
 }
 

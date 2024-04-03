@@ -1,10 +1,27 @@
-import { BreadcrumbItem ,Breadcrumbs,Input,Image,Avatar } from "@nextui-org/react"
-import SearchIcon from '../assets/SearchIcon.svg';
-import NotificationIcon from '../assets/NotificationIcon.svg';
+import { BreadcrumbItem ,Breadcrumbs,Input,Image,Avatar, Button } from "@nextui-org/react"
+
+
 import { useContext } from "react";
 import { PageContext } from "../pages/PagesContainer";
-export default function Header() {  
-const {currentPage, setCurrentPage} = useContext(PageContext);  
+import {MoonIcon ,NotificationIcon,SupportIcon,SearchIcon} from '../assets/HeaderIcons'
+
+
+
+
+
+
+
+
+
+
+export default function Header({setDark}) {  
+const {currentPage, setCurrentPage,darkMode,setDarkMode} = useContext(PageContext); 
+
+
+const toggleDarkMode=()=>{
+    setDarkMode(prevdark=> !prevdark)
+}
+
     return (
         <header className="   py-7 px-6">
             <div className="flex justify-between items-center">
@@ -17,29 +34,39 @@ const {currentPage, setCurrentPage} = useContext(PageContext);
                     <BreadcrumbItem>Pages</BreadcrumbItem>
                     <BreadcrumbItem>{currentPage}</BreadcrumbItem>
                 </Breadcrumbs>
-                <h1 className="text-black text-4xl  font-bold max-w-md">
+                <h1 className="text-black text-4xl  font-bold max-w-md dark:text-white">
                         {currentPage.toLowerCase()==="dashboard" ?'Main Dashboard':currentPage}
                     </h1>
                 </div>
-               <div className=" min-w-[450px] py-2 rounded-full px-3 bg-white flex   justify-between items-center">
+               <div className=" min-w-[430px]  rounded-full p-2  bg-white flex dark:bg-carddm  gap-1 items-center">
                 <Input
                     size="sm"
                     radius="full"
                  
                     placeholder="Search..."
                     classNames={{
-                        inputWrapper: ["bg-gray-200"],
-                        input: ["text-md"]
+                        inputWrapper: ["bg-slate-100","dark:bg-bgdm"],
+                        input: ["text-md"],
+                        
                     }}
-                    className="max-w-80"
+                    className="max-w-[55%] mr-3  "
                 
                     startContent={
-                        <img src={SearchIcon} alt="Search Icon" className="pr-2 pl-3 w-9"/>
+                        <SearchIcon alt="Search Icon"  dark={darkMode}/>
                     }
                 />
                
-                    <Image src={NotificationIcon} alt="Notification Icon" width={28} height={28} className=" active:bg-slate-300 "/>
-                    <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" size="md"  />
+                    
+                    <Button isIconOnly className=" rounded-full bg-transparent">
+                         <NotificationIcon  alt="Notification Icon" dark={darkMode} />
+                    </Button>
+                    <Button isIconOnly className=" rounded-full bg-transparent"  onClick={()=>toggleDarkMode()}>
+                         <MoonIcon alt="Moon Icon"  dark={darkMode}/>
+                    </Button>
+                    <Button isIconOnly className=" rounded-full bg-transparent">
+                         <SupportIcon alt="Support Icon" dark={darkMode} />
+                    </Button>
+                    <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" className="w-12 h-12 ml-4"   />
                 
                  
                </div>

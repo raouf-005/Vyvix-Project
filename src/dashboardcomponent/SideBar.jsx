@@ -1,21 +1,20 @@
 import NavBtn from "./NavBtn"
-import VyvixLogo from "../assets/DashLogo.svg";
 import { Image ,ButtonGroup} from "@nextui-org/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { PageContext } from "../pages/PagesContainer";
 import  {useNavigate} from 'react-router-dom';
-import {HomeImg ,ProfileImg, RankingImg} from '../assets/SideBarIcons';
+import {HomeImg ,ProfileImg, RankingImg,VyvixLogo} from '../assets/SideBarIcons';
+
+
+
+//i will move it to different directory 
 
 
 
 
 
 
-
-
-
-
-export default function SideBar() {
+export default function SideBar({darkMode}) {
     const {currentPage, setCurrentPage} = useContext(PageContext);
     const navigate =useNavigate();
 
@@ -30,23 +29,17 @@ export default function SideBar() {
 
 
     return (
-        <nav className="min-w-60 bg-white min-h-screen">
-            <div className="flex justify-center items-center py-8">
-                <Image src={VyvixLogo} className="" />
+        <nav className="min-w-60 bg-white min-h-screen dark:bg-carddm dark:divide-y-[0.001rem] divide-current">
+            <div className="flex justify-center items-center pb-2 pt-7  ">
+                <VyvixLogo  darkMode={darkMode}/>
             </div>
-            <ButtonGroup className="flex flex-col items-start pl-5 gap-6">
+            <ButtonGroup className="flex flex-col items-start pl-5 gap-6 pt-9">
                 <NavBtn
                     name="Dashboard"
                     Icon={HomeImg}
             
                     currentPage={currentPage}
                     onClick={() => handleClicked("Dashboard")}
-                />
-                <NavBtn
-                    name="Vyvix"
-                    Icon={HomeImg}
-                    currentPage={currentPage}
-                    onClick={() => handleClicked("Vyvix")}
                 />
                 <NavBtn
                     name="Ranking"
