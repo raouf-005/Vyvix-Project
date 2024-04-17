@@ -1,5 +1,6 @@
 import { Image } from '@nextui-org/react';
 import edit from '../assets/edit.svg';
+import blockchain from '../assets/blockchain.svg';
 import {ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
 
 export default function ItemList() {
@@ -14,8 +15,8 @@ export default function ItemList() {
         >
         <ListItemAvatar>
             <Avatar variant='rounded' className='mr-4 m-1'
-                sx={{ width: 57, height: 57 }}>
-                <Image src={edit} />
+                sx={{ width: 57, height: 57 ,bgcolor:'transparent' }}>
+                <Image src={blockchain} />
             </Avatar>
         </ListItemAvatar>
         <ListItemText

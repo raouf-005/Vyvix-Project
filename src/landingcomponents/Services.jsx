@@ -1,21 +1,24 @@
 import React  from "react";
 import ServiceCard from "./ServiceCard";
+import serviceIcon1 from "../assets/serviceIcon1.svg";
+import serviceIcon2 from "../assets/serviceIcon2.svg";
+import serviceIcon3 from "../assets/serviceIcon3.svg";
 
 const arrayservice = [
     {
-        img:"",
-        title:"hey",
-        para:"kkbzkbz",
+        img:serviceIcon1,
+        title:"Personalized Guidance",
+        para:"We offers personalized guidance in fitness, education, finance, and habits for unlocking your full potential.",
     },
     {
-        img:"",
-        title:"hey",
-        para:"kkbzkbz",
+        img:serviceIcon3,
+        title:"Goal Achievement",
+        para:"Empowers goal setting and tracking for the satisfaction of reaching milestones effortlessly.",
     },
     {
-        img:"",
-        title:"hey",
-        para:"kkbzkbz",
+        img:serviceIcon2,
+        title:"Vibrant Community",
+        para:"Supportive community to share achievements, inspire others, and thrive together in a vibrant space.",
     },
  
 ]

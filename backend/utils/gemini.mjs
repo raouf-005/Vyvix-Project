@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 // require('dotenv').config()
 // Access your API key as an environment variable (see "Set up your API key" above)
-let API_KEY = "AIzaSyCUsW8DLtQ2vDGhq9pjFe_AlVdrlR5kVKQ";
-const genAI = new GoogleGenerativeAI(API_KEY);
+
+const genAI = new GoogleGenerativeAI();
 
 async function run(gaol) {
     // For text-only input, use the gemini-pro model

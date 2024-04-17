@@ -19,6 +19,7 @@ export default function useFormLogin() {
             password: Yup.string()
                 .required('Required'),
         }),
+        validateOnBlur: true,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
         },

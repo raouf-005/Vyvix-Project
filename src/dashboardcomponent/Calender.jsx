@@ -34,6 +34,8 @@ const DateRangePickerDay = styled(MuiDateRangePickerDay)(
         }),
         ...(theme && {
             color: theme.palette.text.primary,
+            
+           
         }),
         // Add the following code to change the default border color to green
       
@@ -44,10 +46,11 @@ const DateRangePickerDay = styled(MuiDateRangePickerDay)(
 export default function Calender() {
     return (
             <LocalizationProvider dateAdapter={AdapterDayjs} >
-            <DemoContainer components={['DateRangeCalendar']} >
+            <DemoContainer components={['DateRangeCalendar']}  >
                 <DemoItem>
                     <DateRangeCalendar
                         calendars={1}
+                       
                         //value={value}
                         //onChange={(newValue) => setValue(newValue)}
                         slots={{ day: DateRangePickerDay }}

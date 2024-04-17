@@ -1,7 +1,10 @@
 import {Button} from "@nextui-org/react";
 import ElevateImg from "./../assets/ElevateImg.svg"
+import { useNavigate } from "react-router-dom";
 
-export default function Container3 (){
+export default function ElevateJournee (){
+
+    const navigate = useNavigate();
     return(
 
         <div className="flex flex-row gap-20  justify-evenly bg-gray-100">
@@ -13,7 +16,13 @@ export default function Container3 (){
                             <p className="text-gray-800 opacity-80   max-w-md">
                             Experience a transformative journey marked by personalized guidance, seamless goal achievement, and a thriving community. Elevate your life and reach new heights with our holistic approach.
                             </p>
-                            <Button  size="lg" className="bg-gradient-to-r  mt-3 text-lg  from-rose-500  to-purple-700  max-w-40 rounded-full text-white  font-semibold px-24 py-7 " >
+                            <Button  
+                            onClick={
+                                ()=>{
+                                    navigate('/register');
+                                }
+                            }
+                            size="lg" className="bg-gradient-to-r  mt-3 text-lg  from-rose-500  to-purple-700  max-w-40 rounded-full text-white  font-semibold px-24 py-7 " >
                             GET STARTED
                             </Button>
                     </div>

@@ -8,8 +8,8 @@ export default function LoginForm(){
     const formik = useFormLogin();
  
     return(
-    <div className="flex flex-col gap-5  align-middle ">
-           <>
+    <form className="flex flex-col gap-5  align-middle " onSubmit={formik.handleSubmit}>
+           
             <InputLogin 
                     type="text"
                     placeholder="Enter you Username or Email" 
@@ -32,10 +32,7 @@ export default function LoginForm(){
                 ">  
                     <Button className=" bg-blue-800 text-white px-12 mt-3 " type="submit" size="lg" radius="lg" >Login</Button>
                 </div>
-
-           </>
-          
             
-    </div>
+    </form>
     )
 }

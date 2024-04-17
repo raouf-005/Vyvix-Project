@@ -10,7 +10,7 @@ export default {
     extend: {
       colors:{
         'bgdm': 'rgba(22, 11, 55, 1)'
-        ,'carddm':'#1E1144'
+        ,'carddm':'rgba(30, 17, 68, 1)'
         ,'ltdm':'#2A1B4B'
       }
     },

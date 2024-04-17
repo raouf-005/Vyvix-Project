@@ -1,9 +1,9 @@
 import React from 'react';
 import AboutUs from './aboutcomponent/AboutUs';
 import OurMission from './aboutcomponent/OurMission';
-import Sponsor from './Sponsor';
 import OurVision from './aboutcomponent/OurVision';
 import OurValue from './aboutcomponent/OurValue';
+import LiveInfo from './LiveInfo';
 
 export default function About() {
 
@@ -11,7 +11,7 @@ export default function About() {
             <>
                 <AboutUs/>
                 <OurMission/>
-                <Sponsor/>
+                <LiveInfo/>
                 <OurVision/>
                 <OurValue/>
             

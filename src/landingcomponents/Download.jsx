@@ -1,6 +1,6 @@
 import { GooglePlayButton ,AppStoreButton } from "react-mobile-app-button";
 import Img from './../assets/Container2Img.svg'
-export default function Container2(){
+export default function Download(){
     return(
         <div className="flex flex-row  justify-around "  id="download-section"  >
            <div className=" flex">

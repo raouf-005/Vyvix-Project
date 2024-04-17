@@ -8,7 +8,7 @@ const footerlist=[
     },   
     {
         title:"Resources"
-        ,list:['Blog','Pricing','FAQ']
+        ,list:['Blog','FAQ']
     },
     {
         title:"Follow Us"

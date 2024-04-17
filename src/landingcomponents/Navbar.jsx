@@ -42,7 +42,7 @@ export default function Navbar (){
                 <Button className="pl-11 bg-gray-100/10 text-white h-16" onClick={handleClick("home")}>Home</Button>
                 <Button className="px-12 bg-gray-100/10 text-white   h-16" onClick={handleClick("about")}>About</Button>
                 <Button className=" bg-gray-100/10 text-white  h-16" onClick={handleClick("services")}>Servivces</Button>
-                <Button className="px-12 bg-gray-100/10 text-white  h-16" onClick={handleClick("how-it-works")}>How it Works </Button>
+                <Button className="px-12 bg-gray-100/10 text-white  h-16" onClick={handleClick("howitworks")}>How it Works </Button>
                 <Button className="pr-11 bg-gray-100/10 text-white  h-16" onClick={handleClick("download")}>Download </Button>   
                 
             </ButtonGroup>

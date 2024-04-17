@@ -19,8 +19,16 @@ export default function useFormRegister() {
                 .required('Required')
                 .min(4, 'Must be 4 characters or more')
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit:async  (values) => {
+            const response = axios.post('http://localhost:3001/register',values).catch((err)=>{
+                if (err.response &&err) {
+                    console.log(err);
+                }});
+
+            if (response) {
+                console.log(response.data);
+                formik.resetForm();
+            }
         },
     });
     return formik;

@@ -9,7 +9,6 @@ export default function Error() {
 
     return(
         <div className="flex flex-col">
-
             <ErrorBody/>
             <ErrorFooter/>
             <div>

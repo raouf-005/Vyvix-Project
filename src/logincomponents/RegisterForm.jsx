@@ -11,7 +11,7 @@ export default function RegisterForm() {
   
     return (
        
-        <div className="flex flex-col gap-3 align-middle -mt-4">
+        <from className="flex flex-col gap-3 align-middle -mt-4" onSubmit={formik.handleSubmit}>
       
             <InputLogin 
                 type="text"
@@ -44,7 +44,7 @@ export default function RegisterForm() {
                 <Button className=" bg-blue-800 text-white px-11 -mt-2" size="lg" radius="lg" >Register</Button>
             </div>
         
-        </div>
+        </from>
        
     )
 }

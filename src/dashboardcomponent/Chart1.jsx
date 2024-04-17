@@ -60,23 +60,24 @@ export default function Chart1() {
                     />
             </div>
            <div className="flex flex-col justify-center gap-4">
-                    <Button size='lg' startContent={ <Avatar size="lg" src={Shadow}  className='-ml-3'/>} className='text-start py-9  bg-white pr-14  text-slate-400 font-semibold'>
+    
+                    <Button size='lg' startContent={ <Avatar size="lg" src={Shadow}  className='-ml-3'/>} className='text-start py-9  dark:bg-carddm bg-white pr-14  text-slate-400 font-semibold'>
                     <div className=' flex flex-col'>
                             <span className='text-sm'>
-                            New tasks   
+                            Total tasks   
                             </span>    
-                            <span className='text-black font-bold text-xl -mt-1'>
+                            <span className='text-black font-bold text-xl dark:text-white -mt-1'>
                             154
                             </span>
                     </div>
                         
                     </Button>
-                    <Button size='lg' className='text-start py-9 pr-14 text-slate-400  bg-white font-semibold' startContent={<Avatar size="lg" src={Shadow} className='-ml-3'  />}>
+                    <Button size='lg' className='text-start py-9 pr-14 text-slate-400  bg-white font-semibold dark:bg-carddm' startContent={<Avatar size="lg" src={Shadow} className='-ml-3'  />}>
                             <div className=' flex flex-col'>
                                     <span className='text-sm'>
                                     Total Goals    
                                     </span>    
-                                    <span className='text-black font-bold text-xl -mt-1'>
+                                    <span className='text-black font-bold text-xl dark:text-white -mt-1'>
                                     12
                                     </span>
                             </div>
