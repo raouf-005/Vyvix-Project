@@ -1,4 +1,4 @@
-import { Avatar, Button ,Image, image} from '@nextui-org/react';
+import { Avatar, Button ,Image} from '@nextui-org/react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import Calender from '../assets/Calender.svg';     
 import TrueMark from '../assets/TrueMark.svg';

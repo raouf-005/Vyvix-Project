@@ -37,7 +37,7 @@ export default function JourneySteps (){
             <div className="flex flex-row sm:justify-around  mobile:justify-between   sm:pl-6">
                 <div className="flex flex-col justify-around">
                     {Steps.map((step, index) => (
-                        <JourneyCard {...step} order={index + 1} />
+                        <JourneyCard {...step} order={index+1} key={index} />
                     ))}
                 </div>
                 <div className="sm:flex mobile:hidden">

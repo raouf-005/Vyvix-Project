@@ -13,7 +13,7 @@ export default function ProgressBar({value}) {
             <Progress
             size="md"
             radius="sm"
-          
+            aria-label="progress" 
             classNames={{
               base: "max-w-20",
               track: "drop-shadow-md border border-default dark:bg-white",

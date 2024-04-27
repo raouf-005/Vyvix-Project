@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/react"
-import React from "react";
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner,Image} from "@nextui-org/react";
+import React,{useState,useMemo} from "react";
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner,Image,Pagination} from "@nextui-org/react";
 import {columns} from './tabledata';
 import useRenderCell from "./customhooks/renderCell";
 import useFetchUsers from "./customhooks/useFetchUsers";
@@ -14,14 +14,29 @@ import threepoints from '../assets/threepoints.svg';
 
 export default function TopUser() {
 
-    const [list,isLoading]  =useFetchUsers()
-    const renderCell=useRenderCell();
+    const [list, isLoading] = useFetchUsers();
+    const renderCell = useRenderCell();
+    const [page, setPage] = useState(1);
+    const rowsPerPage = 10;
+
+    const pages = Math.ceil(list.items.length / rowsPerPage);
+
+    const items = useMemo(() => {
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+
+      return list.items.slice(start, end);
+    }, [page, list.items]);
+
+    const handlePageChange = (page) => {
+      setPage(page);
+    };
 
     return(
-        <div className="bg-white flex-1  rounded-3xl p-5 px-6 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px] ">
-             <div className="flex justify-between ">
-                 <h3 className='text-black  font-bold text-2xl dark:text-white '>Top Users</h3>
-                <Button isIconOnly  className='mr-4'>
+        <div className="bg-white flex-1 rounded-3xl p-5 px-6 text-black h-[610px]  flex flex-col gap-3 dark:text-white  dark:bg-carddm min-w-[1100px] ">
+             <div className="flex justify-between  ">
+                 <h3 className='text-black  font-bold text-2xl dark:text-white mb-4 '>Top Users</h3>
+                <Button isIconOnly aria-label=""  className='mr-4'>
                         <Image src={threepoints}/>
                 </Button>
             </div>   
@@ -34,15 +49,29 @@ export default function TopUser() {
                 {
                     th:["border-b", "border-divider","bg-transparent",'border-b-2'],
                     
-                }
-            }
-             
+                }}
+            className="h-full"
+            bottomContent={
+                <div className="flex w-full absolute justify-center -bottom-0 ">
+                  <Pagination
+                    isCompact
+                    showControls
+                    showShadow
+                    color="secondary"
+                    page={page}
+                    total={pages}
+                    onChange={(page) => setPage(page)}
+                    aria-label="" 
+                  />
+                </div>
+              }
              >
+                
                 <TableHeader columns={columns}>
                     {(column) => <TableColumn key={column.key} allowsSorting={column.allowsSorting}>{column.label}</TableColumn>}
                 </TableHeader>
                 <TableBody   
-                items={list.items} 
+                items={items} 
                 isLoading={isLoading}
                 loadingContent={<Spinner label="Loading..." />}
                     >

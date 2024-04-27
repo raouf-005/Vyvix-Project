@@ -11,7 +11,7 @@ export default function GoalsCard() {
             Here you can find more details about your Goals. 
             Keep you user engaged by providing meaningful information.
             </p>
-            <List dense={true} >
+            <List dense={true} aria-label="" >
                 <ItemList/>
                 <ItemList/>
                 <ItemList/>

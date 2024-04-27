@@ -21,7 +21,7 @@ export default function useFormRegister() {
         }),
         onSubmit:async  (values) => {
             try {
-                const response = await axios.post('http://192.168.128.103:3000/api/usersregister', values);
+                const response = await axios.post('http://localhost:3000/api/userregister', values);
                 console.log(response);
                 formik.resetForm();
             } catch (err) {

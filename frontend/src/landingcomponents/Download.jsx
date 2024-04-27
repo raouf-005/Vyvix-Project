@@ -18,18 +18,14 @@ export default function Download(){
                 <button className=" w-36 py-4  bg-gradient-to-r mobile:hidden sm:block   from-red-600 to-red-500 font-semibold bg-clip-text text-transparent">
                     Download Now &#8594;
                 </button>
-                    <div className="flex justify-center gap-4 mt-5  mobile:flex-col sm:flex-row">
+                    <div className="flex justify-center gap-4 mt-5  mobile:flex-col sm:flex-row mobile:pt-8 sm:pt-0">
                         <GooglePlayButton
                             url="https://play.google.com/store/apps/details?id=com.vyvix"  
-                            theme="dark"
-                            height={60}
-                            width={180}
+                            theme="dark"   
                         />
                         <AppStoreButton  
                             url="https://apps.apple.com/us/app/vyvix/id1580070475"
                             theme="dark"
-                            height={60}
-                            width={180}
                         />
                     </div>
             </div>

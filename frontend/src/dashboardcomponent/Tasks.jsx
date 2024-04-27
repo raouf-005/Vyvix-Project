@@ -52,10 +52,11 @@ export default function Tasks() {
 
 
     return (
-        <div className='flex flex-col bg-white w-fit  rounded-3xl  p-4'>
+        <div className='flex flex-col bg-white   rounded-3xl dark:bg-carddm dark:text-white p-4'>
         
             <Checkbox
-                className='py-3 pl-3 mb-1 text-3xl  min-w-28 font-bold cursor-pointer  dark:text-white'
+            aria-label="" 
+                className='py-3 pl-3 mb-1 text-3xl  min-w-28 font-bold cursor-pointer  dark:bg-carddm dark:text-white'
                 classNames={{
                     base:cn(
                         "text-3xl",

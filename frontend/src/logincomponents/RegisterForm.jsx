@@ -18,6 +18,7 @@ export default function RegisterForm() {
                 placeholder="Enter you Username" 
                 name="Username" 
                 formik={formik}
+                aria-label="" 
                 
                 />
               
@@ -26,6 +27,7 @@ export default function RegisterForm() {
                 name="Email"
                 type="email"
                 formik={formik}
+                aria-label="" 
             />
             
             <InputLogin
@@ -33,9 +35,10 @@ export default function RegisterForm() {
                 name="Password"
                 type="password"
                 formik={formik}
+                aria-label="" 
             />
             <div className="flex  justify-between ">
-                <Checkbox size="sm" radius="none" className="gap-1 ml-2 -mt-3">
+                <Checkbox size="sm" radius="none" className="gap-1 ml-2 -mt-3" aria-label="" >
                   I accept the terms and conditions
                 </Checkbox>
             </div>

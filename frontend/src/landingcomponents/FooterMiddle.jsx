@@ -26,9 +26,9 @@ const footerlist=[
 export default function FooterMiddle (){
 
     return (
-        <div className="grid grid-flow-col grid-cols-footer gap-4 pt-14 px-10 pl-16">
-            <div className="pl-16">
-                <Image src={LogoFooter} alt="Vyvix Logo" className="pl-6 mb-1" />
+        <div className="grid grid-flow-col grid-cols-footer gap-4 sm:pt-14 sm:px-10 sm:pl-16">
+            <div className="sm:pl-16 mobile:px-8">
+                <Image src={LogoFooter} alt="Vyvix Logo" className="pl-6 mb-1" aria-label="" />
                 <p className="max-w-44 text-md font-light">
                     Personalized guidance and goal tracking for every aspect of your life with Vyvix
                 </p>

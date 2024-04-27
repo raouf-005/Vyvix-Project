@@ -10,7 +10,7 @@ export default function TitleInput ({type, placeholder ,className}){
          size="lg"
          variant="faded"
          radius="full"
-         
+         aria-label="" 
           placeholder={placeholder} 
           className={`rounded-3xl p-3 w-80 lg:mt-5  ${className}  `}
       

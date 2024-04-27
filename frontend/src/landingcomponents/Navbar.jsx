@@ -32,7 +32,7 @@ export default function Navbar (){
                 <img src={landinglogo} alt="landinglogo" />
             </div>
 
-            <ButtonGroup className="flex justify-center  mobile:hidden sm:flex " size="lg" radius="full">
+            <ButtonGroup className="flex justify-center  mobile:hidden sm:flex " size="lg" radius="full" aria-label="" >
                 <Button className="pl-11 bg-gray-100/10 text-white h-16" onClick={handleClick("home")}>
                     Home
                 </Button>

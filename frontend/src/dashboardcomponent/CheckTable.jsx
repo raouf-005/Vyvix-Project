@@ -44,7 +44,7 @@ export default function App() {
 
   return (
 
-    <div className="bg-white flex-1  rounded-3xl p-5 px-6 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px]">
+    <div className="bg-white flex-1  rounded-3xl py-5 px-3 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px]">
 
           <div className="flex justify-between ">
                 <h3 className='text-black  font-bold text-2xl dark:text-white '>Check Tables</h3>
@@ -59,9 +59,11 @@ export default function App() {
       disabledKeys={["3", "4"]}
       selectedKeys={selectedKeys}
       onSelectionChange={setSelectedKeys}
-      className="max-w-[600px]  border-none"
+      className="max-w-[600px]  border-none "
       classNames={{
             th:["bg-transparent"],
+            wrapper: "dark:text-white bg-transparent text-black p-0 shadow-none",
+            
             }}
       >
       <TableHeader columns={columns}>

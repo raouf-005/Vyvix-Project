@@ -32,6 +32,7 @@ const toggleDarkMode=()=>{
                 <div className="">
                     <Breadcrumbs
                     separator="/"
+                    aria-label="" 
                     itemClasses={{
                     separator: "pr-1"
                     }} >
@@ -46,7 +47,7 @@ const toggleDarkMode=()=>{
                 <Input
                     size="sm"
                     radius="full"
-                 
+                    aria-label="" 
                     placeholder="Search..."
                     classNames={{
                         inputWrapper: ["bg-slate-100","dark:bg-bgdm"],

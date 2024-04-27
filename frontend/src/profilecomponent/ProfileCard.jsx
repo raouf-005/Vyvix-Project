@@ -8,9 +8,9 @@ const profileInfo ={
     bgmage: "https://avatars.githubusercontent.com/u/47231168?v=4",
     avatar: "https://avatars.githubusercontent.com/u/47231168?v=4",
     counter:[
-        {value:3,label:"Posts"},
-        {value:100,label:"Followers"},
-        {value:200,label:"Following"},
+        {value:3,label:"Goals"},
+        {value:100,label:"Points"},
+        {value:200,label:"Rank"},
     ]
 }
 
@@ -28,12 +28,12 @@ export default function ProfileCard(props) {
 
     return (
         <div className=" flex justify-center px-4 ">
-        <div className="flex gap-5 flex-col items-center text-center bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
+        <div className="flex gap-5 flex-col items-center text-center min-h-[340px]  bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
             <div className="flex  flex-col items-center">
-                <Image  src={profileInfo.bgmage} className="  max-h-32  z-0 w-[510px]"/>
-                <Avatar size="lg" src={profileInfo.avatar}  className="  border-[7px]  border-white w-[75px] h-[75px]  -mt-10"/>
+                <Image  src={profileInfo.bgmage} className="  max-h-[133px]  z-0 w-[520px]" aria-label="" />
+                <Avatar size="lg" src={profileInfo.avatar}  className="  border-[7px]  border-white w-[75px] h-[75px]  -mt-10"  />
             </div>
-            <div>
+            <div>   
                 <h3 className="text-black text-xl font-bold dark:text-white">
                     {profileInfo.name} 
                 </h3>
