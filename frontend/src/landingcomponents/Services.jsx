@@ -69,7 +69,7 @@ export default function Services() {
 
     return (
         <>
-            <div className="text-center flex flex-col" id="services-section">
+            <div className="text-center flex flex-col  pt-20" id="services-section">
                 <div className="flex justify-center">
                     <h1 className="sm:mb-10 mobile:mb-3 text-black sm:text-5xl mobile:text-3xl font-bold sm:max-w-lg mobile:max-w-[240px]">
                         Our services made for you?

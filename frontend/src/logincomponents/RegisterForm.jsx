@@ -8,11 +8,11 @@ import useFormRegister from "../customHooks/useformRegister.jsx";
 export default function RegisterForm() {
     
     const formik = useFormRegister();
-  
+    
     return (
        
         <form className="flex flex-col gap-3 align-middle -mt-4" onSubmit={formik.handleSubmit}>
-      
+            
             <InputLogin 
                 type="text"
                 placeholder="Enter you Username" 

@@ -36,14 +36,16 @@ export default function useFormLogin() {
             const formvalue = { username, password };
           
             try{
-                const response = await axios.post('http://localhost:3000/api/userlogin', formvalue,
+                const response = await axios.post('http://localhost:3000/api/userlogin', formvalue,{
+                    withCredentials:true
+                }
              );
-            sessionStorage.setItem("sessionId", response.data.sessionID);
-    
+                const data =await response.data;
+                
              
                 alert(response.data.message)
                 formik.resetForm();
-                setIsAuth({ user: username});
+                setIsAuth({ user: username,session:document.cookie});
                 // i will get rid of the set is aut h 
                 localStorage.setItem("auth", JSON.stringify({ user: username}));
         

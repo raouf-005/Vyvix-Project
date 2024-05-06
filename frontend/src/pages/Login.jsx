@@ -53,7 +53,7 @@ export default function Login() {
                     </div>
                  
             <p className=" text-center text-wrap flex max-w-md mb-6 ">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.  
+            Unlock boundless happiness and achievement with just a single click. What are you waiting for? Seize the opportunity to elevate your life effortlessly   
             </p>
             {
                 formselected ? <RegisterForm />:<LoginForm/>

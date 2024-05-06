@@ -1,6 +1,8 @@
-import React ,{useState}from "react";
+import React ,{useContext, useState,useEffect}from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue,Button,Image} from "@nextui-org/react";
 import threepoints from '../assets/threepoints.svg';
+import { GoalsContext} from "../pages/PagesContainer";
+import {Spinner} from "@nextui-org/react";
 
 const rows = [
   {
@@ -16,7 +18,7 @@ const rows = [
     date:new Date().toISOString(),
   },
   {
-    key: "5",
+    _id: "5",
     goal: "Goal 5",
     progress: 100,
     date:new Date().toISOString(),
@@ -26,22 +28,29 @@ const rows = [
 
 const columns = [
   {
-    key: "goal",
+    _id: "goal",
     label: "Goal",
   },
   {
-    key: "progress",
+    _id: "progress",
     label: "Progress",
   },
   {
-    key: "date",
+    _id: "date",
     label: "Date",
   },
 ];
 
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
+  const {goals ,setGoals} =useContext(GoalsContext|| [])
+ 
 
+  useEffect(() => {
+    if (goals && goals.length > 0) {
+      setGoals(goals);
+    }
+  }, [goals]);
   return (
 
     <div className="bg-white flex-1  rounded-3xl py-5 px-3 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px]">
@@ -52,31 +61,38 @@ export default function App() {
                       <Image src={threepoints}/>
               </Button>
           </div> 
-    <Table 
-      color='danger'
-      aria-label="Controlled table example with dynamic content"
-      selectionMode="multiple"
-      disabledKeys={["3", "4"]}
-      selectedKeys={selectedKeys}
-      onSelectionChange={setSelectedKeys}
-      className="max-w-[600px]  border-none "
-      classNames={{
-            th:["bg-transparent"],
+          <Table
+          color="success"
+          selectionMode="multiple"
+          disabledKeys={["3", "4"]}
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+          className="max-w-[600px]  border-none "
+          classNames={{
+            th: ["bg-transparent"],
             wrapper: "dark:text-white bg-transparent text-black p-0 shadow-none",
-            
-            }}
-      >
-      <TableHeader columns={columns}>
-        {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-      </TableHeader>
-      <TableBody items={rows}>
-        {(item) => (
-          <TableRow key={item.key}>
-            {(columnKey) => <TableCell >{getKeyValue(item, columnKey)}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+          }}
+          
+          >
+          <TableHeader columns={columns}>
+            {(column) => <TableColumn key={column._id}>{column.label}</TableColumn>}
+          </TableHeader>
+        {goals ? (
+          <TableBody
+           items={goals}
+           isLoading={!goals}>
+            {(item) => (
+              <TableRow key={item._id}>
+                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+              </TableRow>
+            )}
+          </TableBody>
+      
+    ) : (
+         <TableBody emptyContent={"No Goals to display."}/>
+
+      )}
+      </Table>
         </div>
   );
 }

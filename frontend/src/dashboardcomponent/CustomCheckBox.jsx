@@ -4,6 +4,9 @@ import CheckMark from '../assets/CheckMark.jsx';
 
 
 export default function CustomCheckbox({ children, ...props }) {
+   
+
+   let {id,status,date,task} = props;
     return (    
         <Checkbox 
         aria-label="" 
@@ -18,10 +21,15 @@ export default function CustomCheckbox({ children, ...props }) {
         
             
           }}
+  
           icon= {<CheckMark />}
           radius="md"
           color="danger"
           {...props}
+            id={id}
+            isSelected={status}
+          //  lineThrough={status}
+            
         >
 
 

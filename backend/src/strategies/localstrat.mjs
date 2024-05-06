@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy } from "passport-local";
 import { user } from "../mongoose/schema/user.mjs";
-
+// 
 
 passport.serializeUser((user, done) => {
     console.log(`inside serialized user`);

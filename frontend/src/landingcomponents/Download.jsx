@@ -2,12 +2,12 @@ import { GooglePlayButton ,AppStoreButton } from "react-mobile-app-button";
 import Img from './../assets/Container2Img.svg'
 export default function Download(){
     return(
-        <div className="flex flex-row relative  sm:justify-around mobile:mb-10  sm:-mt-32 mobile:mt-0  sm:mb-0"  id="download-section"  >
+        <div className="flex flex-row relative  sm:justify-around mobile:mb-10  sm:-mt-32 mobile:mt-0   sm:mb-0"   >
            <div className=" flex mobile:absolute sm:relative mobile:-bottom-[155px] -z-10 mobile:-right-10 ">
                 <img src={Img} alt="" className="" />
             </div> 
 
-            <div className="flex  flex-col sm:mt-36  mobile:h-[380px] mobile:justify-center mobile:gap-16 sm:gap-0 sm:h-auto z-10 px-2">
+            <div className="flex  flex-col sm:mt-36  mobile:h-[380px] mobile:justify-center mobile:gap-16 sm:gap-0 sm:h-auto z-10 px-2"  id="download-section">
                 <h1 className="sm:text-5xl mobile:text-3xl text-black font-bold sm:max-w-sm mobile:max-w-[320px] sm:mb-4 px-2  ">Our Services Made for you?</h1>
                 <p className="text-gray-800 leading-7 max-w-lg   text-sm sm:block mobile:hidden  ">
                     Download now and embark on a journey to personalized success and happiness
