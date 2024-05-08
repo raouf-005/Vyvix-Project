@@ -4,7 +4,6 @@ import useAuth from "./useAuth";
 const RequireAuth = () => {
     //const {isAuth} = useAuth();
     const isAuth = JSON.parse(localStorage.getItem("auth"));
-    
     const location = useLocation();
     return isAuth?.user ? <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />;
 }

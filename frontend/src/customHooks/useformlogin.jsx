@@ -40,12 +40,15 @@ export default function useFormLogin() {
                     withCredentials:true
                 }
              );
-                const data =await response.data;
+                const msg =await response.data;
                 
              
-                alert(response.data.message)
+                alert(msg.message)
                 formik.resetForm();
-                setIsAuth({ user: username,session:document.cookie});
+                if(!msg){
+                    return;
+                }
+                setIsAuth({ user: username});
                 // i will get rid of the set is aut h 
                 localStorage.setItem("auth", JSON.stringify({ user: username}));
         
@@ -53,11 +56,8 @@ export default function useFormLogin() {
                 
                
             }catch(err){
-                if (err.response && err.response.data) {
-                    console.log(err.response.data);
-                }else {
-                    console.log(err);
-                }
+              
+                alert("Invalid login")
             }
         },
     });
