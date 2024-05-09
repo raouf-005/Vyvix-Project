@@ -23,8 +23,8 @@ router.use(cookieParser());
 
 router.use(session({
     secret: "tk14",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         maxAge: 60000 * 60 * 24,
         sameSite: true,
