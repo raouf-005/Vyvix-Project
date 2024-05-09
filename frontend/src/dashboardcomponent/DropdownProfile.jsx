@@ -15,9 +15,7 @@ export default function DropdownProfile() {
        
       
         try {
-            const response = await axios.post(
-                "http://localhost:3000/api/userlogout",
-                {},
+            const response = await axios.post("http://localhost:3000/api/userlogout",{},
                 {
                     withCredentials: true,
                 }

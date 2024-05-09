@@ -9,21 +9,26 @@ import {user} from "../mongoose/schema/user.mjs";
 
 const router = Router();
 
-router.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        // If the user is not authenticated, send a 401 Unauthorized response
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+}
+
 
 router.use(cookieParser());
 
 router.use(session({
     secret: "tk14",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
         maxAge: 60000 * 60 * 24,
         sameSite: true,
-        secure: false
+        secure: false//put true if you are using https
     }
 }));
 
@@ -52,11 +57,33 @@ router.post("/api/userlogin", passport.authenticate("local"), (request, response
 });
 
 router.post("/api/userlogout", (request, response) => {
-    if (!request.user) return response.sendStatus(401);
+    console.log(request.user);
+    if (!request.user) {
+        return response.sendStatus(401);
+    }
     request.logout((err) => {
-        if (err) return response.sendStatus(400);
-        response.sendStatus(200);
+        if (err) {
+            console.log(err);
+            return response.sendStatus(500);
+        }
+        return response.sendStatus(200);
     });
 });
 
+router.patch("/api/user/itiscompany", ensureAuthenticated, async (request, response) => {
+    const { body } = request;
+    const userId = request.user._id;
+    const companyuser = await user.findOne({ _id: userId });
+    companyuser.company.itis = true;
+    companyuser.company.companyname = body;
+    await companyuser.save();
+});
+router.patch("/api/user/itisemploye", ensureAuthenticated, async (request, response) => {
+    const { body } = request;
+    const userId = request.user._id;
+    const employeuser = await user.findOne({ _id: userId });
+    employeuser.employe.itis = true;
+    employeuser.employe.employefullname = body.employename;
+    await employeuser.save();
+});
 export default router;

@@ -1,8 +1,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 export default function useFormRegister() {
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -23,7 +25,10 @@ export default function useFormRegister() {
             try {
                 const response = await axios.post('http://localhost:3000/api/userregister', values);
                 console.log(response);
+                alert('User registered successfully');
+                navigate('/login')
                 formik.resetForm();
+
             } catch (err) {
                 if (err.response && err.response.data) {
                     console.log(err.response.data);

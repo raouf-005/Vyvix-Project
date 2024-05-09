@@ -15,4 +15,5 @@ export default function Counter({title ,counter,unit}) {
         </div>
 
     )
+
 }

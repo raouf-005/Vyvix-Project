@@ -18,8 +18,8 @@ export default function Pie (){
 
     const items = [
         {id: 'id_A', value: 10, label: 'Success' ,color:'purple' },
-        { id: 'id_B', value: 15, label: 'Failure',color:'blue' },
-        { id: 'id_C', value: 20, label: 'Active' ,color:'gray'},
+        { id: 'id_B', value: 15, label: 'Failure',color:'red' },
+        { id: 'id_C', value: 20, label: 'Active' ,color:'blue'},
       ];
       
     const handleClick = (itemIdentifier, item) => {
@@ -71,13 +71,15 @@ export default function Pie (){
                 </Dropdown>
 
             </div>
-            <div className=' flex flex-col justify-center  items-center'>
+            <div className=' flex flex-col justify-center items-center'>
                     <PieChart
                     aria-label="" 
+          
                     series={[
                         {
                         data: items,
                         highlightScope: { faded: 'global', highlighted: 'item' },
+                        faded:{innerRadius: 30, additionalRadius: -30, color: 'gray'},
                         cx: 136,
                         cy:105,
                         },
@@ -85,7 +87,7 @@ export default function Pie (){
                     onClick={()=>handleClick()}
                     width={280}
                     height={210}
-
+                   
                 
                     slotProps={{
                         legend: { hidden: true },

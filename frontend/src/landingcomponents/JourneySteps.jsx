@@ -29,7 +29,7 @@ export default function JourneySteps (){
                     onClick={() => {
                         navigate('/register');
                     }}
-                    className="bg-white rounded-full font-bold text-lg px-8 h-20 text-indigo-600 sm:inline-block mobile:hidden"
+                    className="bg-white rounded-full font-bold text-lg px-8 h-20 text-indigo-600 sm:inline-block mobile:hidden hover:bg-indigo-600 hover:text-white active:bg-indigo-700 active:text-white"
                 >
                     Get Started Now
                 </button>

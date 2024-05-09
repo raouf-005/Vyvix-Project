@@ -53,6 +53,7 @@ export default function useFormLogin() {
                 localStorage.setItem("auth", JSON.stringify({ user: username}));
         
                navigate(from, { replace: true });
+               
                 
                
             }catch(err){

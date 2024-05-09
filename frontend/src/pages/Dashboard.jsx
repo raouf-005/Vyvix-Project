@@ -1,10 +1,15 @@
 
+import React from 'react'
 import Chart2 from "../dashboardcomponent/Chart2"
 import Pie from "../dashboardcomponent/Pie"
 import Tasks from "../dashboardcomponent/Tasks"
 import CheckTable from "../dashboardcomponent/CheckTable"
 import '../styles/dashboard.css'
+
+
 export default function DashBoard() {
+
+
     return (
         <div className="w-full ">
             <div>

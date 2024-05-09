@@ -47,7 +47,7 @@ const list = [
 
 export default function Tasks() {
     const { goals ,setGoals} = useContext(GoalsContext);
-//mzybe i will add only a condition if goals render tasks 
+//maybe i will add only a condition if goals render tasks 
     const [tasks, setTasks] = useState(goals && goals.length > 0 ? goals[0].tasks : []);
     const [selected, setSelected] = useState([]);
   

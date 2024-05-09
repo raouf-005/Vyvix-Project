@@ -76,7 +76,7 @@ export default function Services() {
                     </h1>
                 </div>
 
-                <div className="sm:flex flex-row justify-center mobile:hidden  gap-4">
+                <div className="sm:flex flex-row justify-center mobile:hidden  mobile:gap-4 sm:gap-8">
                     {arrayservice.map((service, index) => {
                         return <ServiceCard key={index} {...service} />;
                     })}
@@ -87,13 +87,13 @@ export default function Services() {
                         drag="x"
                         dragConstraints={{
                             left: 35,
-                            right: 5,
+                            right: 15,
                         }}
                         style={{
                             x: dragX,
                         }}
                         animate={{
-                            translateX: `-${cardIndex * 48}%`,
+                            translateX: `-${cardIndex * 50}%`,
                         }}
                         transition={SPRING_OPTIONS}
                         onDragEnd={onDragEnd}

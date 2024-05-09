@@ -38,7 +38,7 @@ const list = [
 export default function OurValue (){
     return(
         <div className="flex items-center flex-col text-center ">
-        <Button className=" bg-purple-100 py-8 px-8 font-bold text-black mb-6"
+        <Button className=" bg-purple-100 py-8 px-8 font-bold  pointer-events-none text-black mb-6"
             size="lg" radius="full">
             Our Values
         </Button>

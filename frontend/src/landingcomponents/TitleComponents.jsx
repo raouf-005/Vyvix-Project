@@ -3,6 +3,7 @@ import TitleInput from "./TitleInput";
 import { Image } from '@nextui-org/react';
 import Dashboard from './../assets/Dashboard.svg';
 
+
 export default function TitleComponents (){
     return(
 

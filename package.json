@@ -2,7 +2,6 @@
     "scripts": {
         "start": "cd ./backend && npm run start:dev",
         "client": "cd ./frontend && npm run dev",
-        "both":"concurrently \"npm run start\" \"npm run client\""
+        "both": "concurrently \"npm run start\" \"npm run client\""
     }
 }
-

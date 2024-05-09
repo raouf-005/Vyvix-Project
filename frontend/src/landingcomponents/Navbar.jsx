@@ -51,7 +51,7 @@ export default function Navbar (){
             </ButtonGroup>
             <div className="items-center flex">
                 <Link
-                    className="bg-white text-gradient-to-r from-pink-600 to-purple-900 px-6  font-semibold py-2 rounded-3xl"
+                    className="bg-white text-gradient-to-r from-pink-600 to-purple-900 px-6 active:opacity-40  font-semibold py-2 rounded-3xl"
                     to="/login"
                 >
                     Sign in
