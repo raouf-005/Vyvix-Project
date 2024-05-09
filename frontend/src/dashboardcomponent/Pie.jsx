@@ -95,7 +95,7 @@ export default function Pie (){
                     />
                 <div className='mt-3 '>
                     <div className=' flex rounded-3xl max-w-64 divide-x-2 h-[75px]  w-[350px]   items-center dark:bg-bgdm  dark:shadow-sm shadow-lg  dark:shadow-slate-100 '>
-                        <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-l-3xl h-[93%]  bg-transparent flex-col'>
+                        <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-l-3xl h-[93%]   pointer-events-none bg-transparent flex-col'>
                             <span className=' dark:text-slate-200 text-slate-500 text-sm '>
                             {items[0].label}
                             </span> 
@@ -103,7 +103,7 @@ export default function Pie (){
                             {items[0].value}
                             </span>
                         </Button>
-                        <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-r-3xl   h-[93%]  bg-transparent flex-col'>
+                        <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-r-3xl   pointer-events-none  h-[93%]  bg-transparent flex-col'>
                             <span className=' dark:text-slate-200 text-slate-500  text-sm '>
                             {items[1].label}
                             </span> 

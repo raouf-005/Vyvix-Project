@@ -59,30 +59,6 @@ class Chart2 extends React.Component {
                 show:false
             }
         },
-        annotations: {
-            points: [{
-                x:'Apr',
-                y: 9,
-                marker: {
-                  size: 5   ,
-                  fillColor: '#fff',
-                  strokeColor: 'red',
-                  radius: 6,
-                  cssClass: 'apexcharts-custom-class'
-                },
-                label: {
-                  borderColor: '#FF4560',
-                  offsetY: 0,
-                  style: {
-                    color: '#fff',
-                    background: '#FF4560',
-                    fontSize: '16px',
-                    fontWight: '1rem'
-                  },
-            
-                  text: 'Goals',
-                }
-              }]},
           fill: {
             type: 'gradient',
             gradient: {

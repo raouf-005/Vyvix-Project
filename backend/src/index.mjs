@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./router/index.mjs";
 import cors from "cors";
+
 const app = express();
 app.use(express.json());
 
