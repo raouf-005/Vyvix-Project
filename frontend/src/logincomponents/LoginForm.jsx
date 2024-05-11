@@ -2,11 +2,12 @@ import React from "react";
 import InputLogin from "./InputLogin";  
 import { Button ,Checkbox} from "@nextui-org/react";
 import useFormLogin from "../customHooks/useformlogin";
+import { useState } from "react";
 
 export default function LoginForm(){
 
     const formik = useFormLogin();
-   
+    const [isLoading, setIsLoading] = useState(false);
  
     return(
     <form className="flex flex-col gap-5  align-middle " onSubmit={formik.handleSubmit}>
@@ -31,7 +32,7 @@ export default function LoginForm(){
                 </div>
                 <div className="flex justify-end mr-5
                 ">  
-                    <Button className=" bg-blue-800 text-white px-12 mt-3 " type="submit" size="lg" radius="lg" >Login</Button>
+                    <Button className=" bg-blue-800 text-white px-12 mt-3 " type="submit" size="lg" radius="lg" isLoading={isLoading} onClick={()=>{setIsLoading(true)}}>Login</Button>
                 </div>
             
     </form>
