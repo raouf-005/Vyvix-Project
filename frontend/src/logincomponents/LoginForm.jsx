@@ -32,7 +32,9 @@ export default function LoginForm(){
                 </div>
                 <div className="flex justify-end mr-5
                 ">  
-                    <Button className=" bg-blue-800 text-white px-12 mt-3 " type="submit" size="lg" radius="lg" isLoading={isLoading} onClick={()=>{setIsLoading(true)}}>Login</Button>
+                    <Button className=" bg-blue-800 text-white px-12 mt-3 " type="submit" size="lg" radius="lg" isLoading={isLoading} onClick={()=>{setIsLoading(true)
+                        formik.handleSubmit()
+                    }}>Login</Button>
                 </div>
             
     </form>
