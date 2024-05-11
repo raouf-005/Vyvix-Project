@@ -8,19 +8,19 @@ const rows = [
   {
     key: "1",
     goal: "Goal 1",
-    progress: 30,
+    points: 30,
     date: new Date().toISOString(),
   },
   {
     key: "2",
     goal: "Goal 2",
-    progress: 50,
+    points: 50,
     date:new Date().toISOString(),
   },
   {
     _id: "5",
     goal: "Goal 5",
-    progress: 100,
+    points: 100,
     date:new Date().toISOString(),
   }
 
@@ -32,25 +32,46 @@ const columns = [
     label: "Goal",
   },
   {
-    _id: "progress",
-    label: "Progress",
+    _id: "points",
+    label: "Points",
   },
   {
-    _id: "date",
-    label: "Date",
+    _id: "progress",
+    label: "Progress",
   },
 ];
 
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
   const {goals ,setGoals} =useContext(GoalsContext|| [])
+  const [arrived, setArrived] = useState(false);
  
+ 
+  useEffect(() => {
+    if (goals && goals.length > 0) {
+
+      const updatedGoals = goals.map((goal) => {
+        const totalPoints = goal.tasks.reduce((sum, task) => sum + task.point, 0);
+        return {
+          ...goal,
+          points: totalPoints,
+        };
+      });
+      setGoals(updatedGoals);
+      console.log(updatedGoals) 
+
+    }
+    
+  }, [arrived]);
 
   useEffect(() => {
     if (goals && goals.length > 0) {
-      setGoals(goals);
+
+      setArrived(true);
     }
   }, [goals]);
+
+ 
   return (
 
     <div className="bg-white flex-1  rounded-3xl py-5 px-3 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px]">
@@ -75,7 +96,7 @@ export default function App() {
           
           >
           <TableHeader columns={columns}>
-            {(column) => <TableColumn key={column._id}>{column.label}</TableColumn>}
+            {(column) => <TableColumn  key={column._id}>{column.label}</TableColumn>}
           </TableHeader>
         {goals ? (
           <TableBody

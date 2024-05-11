@@ -43,11 +43,11 @@ export default function Pie (){
                 </h2>
                 
                   
-                <Dropdown placement='bottom-end' aria-label="" >
+                <Dropdown placement='bottom-end' aria-label="Select Option" >
                     <DropdownTrigger>
                         <Button  className=' bg-transparent -ml-6'>
                         {labelsMap[selectedOptionValue]}
-                         <Image src={arrowdown}/>
+                         <Image src={arrowdown}  aria-label='Arrow Down' />
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu

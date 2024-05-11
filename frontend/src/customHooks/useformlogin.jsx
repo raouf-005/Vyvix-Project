@@ -1,7 +1,7 @@
 // Code: Custom hook for login form
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import axios from './Axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../authcomponent/useAuth';
 
@@ -31,23 +31,29 @@ export default function useFormLogin() {
 
             try {
                 const response = await axios.post(
-                    'http://localhost:3000/api/userlogin',
+                    '/api/userlogin',
                     formvalue,
                     {
                         withCredentials: true,
                     }
                 );
-                const msg = await response.data;
-
-                alert(msg.message);
-                formik.resetForm();
-                if (!msg) {
-                    return;
-                }
-                localStorage.setItem('auth', JSON.stringify({ user: username }));
+                const data = await response.data;
+                console.log(response)
+                console.log(data);
+                    if (response.status === 200) {
+                        alert(data.msg);
+                        formik.resetForm();
+                        if (!data.msg) {
+                            return;
+                        }
+                        localStorage.setItem('auth', JSON.stringify({ user: username ,credentials:data.requestuser }));
+                    }
+             
 
                 navigate(from, { replace: true });
+                return;
             } catch (err) {
+                console.log(err);
                 alert('Invalid login');
             }
         },

@@ -6,5 +6,4 @@ const allowedOrigins = [
     'https://vyvix.vercel.app',
 
 ]
-
 export default allowedOrigins;

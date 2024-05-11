@@ -11,7 +11,7 @@ export default function DashBoard() {
 
 
     return (
-        <div className="w-full ">
+        <div className="w-full">
             <div>
                 <Chart2/>
             </div>

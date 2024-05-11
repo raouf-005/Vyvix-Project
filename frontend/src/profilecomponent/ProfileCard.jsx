@@ -1,5 +1,6 @@
-import { Avatar ,Image } from "@nextui-org/react";
-
+import { Avatar ,Image,Button } from "@nextui-org/react";
+import {HeartIcon} from "../assets/HeartIcon"
+import { useState } from "react";
 
 
 const profileInfo ={
@@ -17,31 +18,47 @@ const profileInfo ={
 const Counter = (props) => {
     return (
         <div>
-            <p className="text-black font-bold text-xl dark:text-white">{props.value}</p>
-            <p className="text-slate-400 text-sm">{props.label}</p>
+            <p className="text-black font-bold text-2xl dark:text-white">{props.value}</p>
+            <p className="text-slate-400 text-md">{props.label}</p>
         </div>
     )
 }
 
 
 export default function ProfileCard(props) {
+    const [liked, setLiked] = useState(false);
 
     return (
-        <div className=" flex justify-center px-4 ">
-        <div className="flex gap-5 flex-col items-center text-center min-h-[340px]  bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
+        <div className=" flex justify-center px-4  "
+           
+        >
+        <div className="flex gap-5 flex-col items-center text-center min-h-[340px]  relative  bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
             <div className="flex  flex-col items-center">
-                <Image  src={profileInfo.bgmage} className="  max-h-[133px]  z-0 w-[520px]" aria-label="" />
-                <Avatar size="lg" src={profileInfo.avatar}  className="  border-[7px]  border-white w-[75px] h-[75px]  -mt-10"  />
+                <Image  src={profileInfo.bgmage} className="  max-h-[133px]  z-0 w-[968px]" aria-label="" />
+                <Avatar size="lg" src={JSON.parse(localStorage.getItem("auth")).profileImg||profileInfo.avatar}  className="  border-[5px]  border-white w-[95px] h-[95px]  -mt-12"  />
+                <Button
+                className={`text-default-900/80 dark:text-white  ${liked ? "bg-gradient-to-r from-danger to-primary text-white " :"bg-slate-200"}  dark:bg-carddm   absolute right-6 top-5`}
+                radius="lg"
+                variant="light"
+                size="lg"
+                onPress={() => setLiked((v) => !v)}
+              >
+               {liked? "Added to favorite":"Add to favorite"}
+                <HeartIcon
+                  className={liked ? "[&>path]:stroke-transparent" : ""}
+                  fill={liked ? "red" : "none"}
+                />
+              </Button>
             </div>
             <div>   
-                <h3 className="text-black text-xl font-bold dark:text-white">
+                <h3 className="text-black text-2xl font-bold dark:text-white">
                     {profileInfo.name} 
                 </h3>
                 <p className='text-slate-400 text-sm '>
                     {profileInfo.role}
                 </p>
             </div>
-            <div className="flex flex-row justify-evenly w-4/6">
+            <div className="flex flex-row justify-center gap-16 w-4/6">
                 {profileInfo.counter.map((item,index) => {
                     return <Counter key={index} value={item.value} label={item.label} />
                 })}

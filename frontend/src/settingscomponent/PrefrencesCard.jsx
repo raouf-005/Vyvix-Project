@@ -1,6 +1,5 @@
 
 import { Listbox ,ListboxItem,Switch, Button,Image} from "@nextui-org/react"
-import threepoints from '../assets/threepoints.svg';
 
 
 const list = [
@@ -12,14 +11,11 @@ const list = [
     "Hiring"
 ]
 
-export default function Settings() {
+export default function PreferencesCard() {
     return(
-        <div className="flex flex-col gap-1 rounded-xl   min-w-96 shadow-sm bg-white dark:bg-carddm  p-5 ">
+        <div className="flex flex-col gap-1 rounded-xl   max-w-80 shadow-sm bg-white dark:bg-carddm  p-0 ">
             <div className="flex justify-between ">
-                 <h3 className='text-black  font-bold text-2xl dark:text-white'>Settings</h3>
-                <Button isIconOnly  className='mr-4'>
-                        <Image src={threepoints} />
-                </Button>
+                 <h3 className='text-black  font-medium text-xl dark:text-white'>Notification</h3>
             </div>
             <Listbox aria-label=""  >  
                 {

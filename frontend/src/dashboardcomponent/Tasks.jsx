@@ -40,7 +40,21 @@ const list = [
     },
 ];
 
+function formatDate(date) {
+    // Get the day, month, and year
+    const  year = date.getFullYear();
+    const  month = date.getMonth() + 1; // Add 1 to convert zero-based month to human-readable month
+    const  day =date.getDate();
 
+    // Format month and day to have leading zeros if necessary
+    const  formattedMonth = month < 10 ? "0" + month : month;
+    const  formattedDay = day < 10 ? "0" + day : day;
+
+    // Construct the date string in the desired format
+    const dateString = year + "-" + formattedMonth + "-" + formattedDay;
+
+    return dateString
+}
 
 
 
@@ -61,9 +75,17 @@ export default function Tasks() {
     };
 // to ensure that it renders when the goal is recieved because at first it's undefiened
     useEffect(() => {
+
+        let currentDate = new Date();
+        let formattedDate = formatDate(currentDate);
       if (goals && goals.length > 0) {
-        setTasks(goals[0].tasks);
-      }
+
+    const todayTasks = goals.reduce((acc, goal) => {
+        const todayTasks = goal.tasks.filter(task => task.date === formattedDate);// give an exemple of it 
+        return [...acc, ...todayTasks];
+    }, []);
+    setTasks(todayTasks);
+        }   
     }, [goals]);
 
     useEffect(() => {
@@ -83,7 +105,7 @@ export default function Tasks() {
 
 
     return (
-        <div className='flex flex-col bg-white   rounded-3xl dark:bg-carddm dark:text-white p-4'>
+        <div className='flex flex-col bg-white relative   rounded-3xl dark:bg-carddm dark:text-white p-4'>
             <Checkbox
                 aria-label=''
                 className='py-3 pl-3 mb-1 text-3xl  min-w-28 font-bold cursor-pointer  dark:bg-carddm dark:text-white'
@@ -114,8 +136,10 @@ export default function Tasks() {
                         {item.task}
                     </CustomCheckbox>
                     ):null
-                ))}
+                ))
+                }
             </CheckboxGroup>
+            {tasks.length === 0 && <p className='text-center absolute text-black dark:text-white  text-xl  left-[81px] top-28'>No tasks for today</p>}
         </div>
     );
 }

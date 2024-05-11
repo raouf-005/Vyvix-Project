@@ -16,7 +16,6 @@ export default function NavBtn({name, Icon,currentPage, onClick}) {
                 {name}
             </span>
             <div className={` ${selected? 'absolute':'hidden'}  transition  ease-in-out delay-75 w-1  rounded-3xl h-[90%] bg-gradient-to-b from-danger to-current right-0`}> 
-
             </div>
         </button>
     )

@@ -33,7 +33,7 @@ export default function TopUser() {
     };
 
     return(
-        <div className="bg-white flex-1 rounded-3xl p-5 px-6 text-black h-[610px]  flex flex-col gap-3 dark:text-white  dark:bg-carddm min-w-[1100px] ">
+        <div className="bg-white flex-1 rounded-3xl p-5 px-6 text-black h-[710px]  flex flex-col gap-3 dark:text-white  dark:bg-carddm min-w-[1100px] ">
              <div className="flex justify-between  ">
                  <h3 className='text-black  font-bold text-2xl dark:text-white mb-4 '>Top Users</h3>
                 <Button isIconOnly aria-label=""  className='mr-4'>
@@ -67,7 +67,7 @@ export default function TopUser() {
               }
              >
                 
-                <TableHeader columns={columns}>
+                <TableHeader columns={columns} >
                     {(column) => <TableColumn key={column.key} allowsSorting={column.allowsSorting}>{column.label}</TableColumn>}
                 </TableHeader>
                 <TableBody   

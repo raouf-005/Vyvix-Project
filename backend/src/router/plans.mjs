@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { plan } from "../mongoose/schema/plan.mjs";
+import { user } from "../mongoose/schema/user.mjs";
 import run from "../utils/gemini.mjs";
 
 // Middleware to check if the user is authenticated
@@ -24,7 +25,6 @@ router.post("/api/plan", ensureAuthenticated, async (request, response) => {
         try {
             tasks = await run(body.goal, body.duration);
             tasksobject = JSON.parse(tasks);
-            console.log(` this are the tasks${tasks}`);
             break;
         } catch (error) {
             if (error instanceof SyntaxError && error.message.includes("JSON")) {
@@ -35,22 +35,15 @@ router.post("/api/plan", ensureAuthenticated, async (request, response) => {
             }
         }
     }
-    console.log(` this are the tasks${tasks}`);
     try {
         const newplan = new plan();
-        // for (let i = 0; i < tasks.length; i++) {
-        //     console.log("inside the loop");
-        //     const task = {
-        //         task: tasks[i],
-        //         status: false,
-        //         date: new Date()
-        //     };
-        //     newplan.tasks.push(task);
-        // }
-        newplan.tasks = tasksobject.tasks;
+        newplan.tasks = tasksobject;
         newplan.user = userId;
         newplan.goal = body.goal;
         const saveplan = await newplan.save();
+        const updateduser = await user.findById(userId); // Assuming you have a User model
+        updateduser.plans.push(saveplan._id);
+        await updateduser.save();
         return response.status(201).send(saveplan);
     } catch (err) {
         console.log(err);
@@ -74,24 +67,43 @@ router.delete("/api/plan/:id", ensureAuthenticated, async (request, response) =>
     const plans = await plan.findOneAndDelete({ _id: id, user: userId });
     return response.status(200).send(plans);
 });
+// rename plan
+router.patch("/api/plan/:id/rename", ensureAuthenticated, async (request, response) => {
+    const { id } = request.params;
+    const userId = request.user._id;
+    const { goal } = request.body;
+    const plans = await plan.findOne({ _id: id, user: userId });
+    plans.goal = goal;
+    await plans.save();
+    return response.status(200).send(plans);
+});
 // redo the plan
 router.patch("/api/plan/redo/:id", ensureAuthenticated, async (request, response) => {
     const { id } = request.params;
     const userId = request.user._id;
-    let newtasks = [];
     const plans = await plan.findOne({ _id: id, user: userId });
-    let tasks = await run(plans.goal)
-    for (let i = 0; i < tasks.length; i++) {
-        const task = {
-            task: tasks[i],
-            status: false,
-            date: new Date()
-        };
-        newtasks.push(task);
+    while (true) {
+        try {
+            let tasks = await run(body.goal, body.duration);
+            let tasksobject = JSON.parse(tasks);
+            break;
+        } catch (error) {
+            if (error instanceof SyntaxError && error.message.includes("JSON")) {
+                console.error(error);
+                console.log("An error occurred. Retrying...");
+            } else {
+                throw error; // re-throw the error if it's not a JSON parsing error
+            }
+        }
     }
-    plans.tasks = newtasks;
-    await plans.save();
-    return response.status(200).send(plans);
+    try {
+        plans.tasks = tasksobject;
+        await plans.save();
+        return response.status(200).send(plans);
+    } catch (err) {
+        console.log(err);
+        return response.sendStatus(400);
+    }
 })
 // task done
 router.patch("/api/plan/:id/taskdone/:taskid/", ensureAuthenticated, async (request, response) => {
@@ -99,11 +111,10 @@ router.patch("/api/plan/:id/taskdone/:taskid/", ensureAuthenticated, async (requ
     const userId = request.user._id;
     const { status } = request.body;
     const plans = await plan.findOne({ _id: id, user: userId });
-    const user = await user.findOne({ _id: userId })
+    const newuser = await user.findOne({ _id: userId })
     plans.tasks.id(taskid).status = true;
-    user.progresse += 1;
     await plans.save();
-    await user.save();
+    await newuser.save();
     return response.status(200).send(plans);
 });
 // task undone

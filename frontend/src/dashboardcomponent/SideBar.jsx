@@ -3,7 +3,7 @@ import { Image ,ButtonGroup} from "@nextui-org/react";
 import { useContext, useEffect } from "react";
 import { PageContext } from "../pages/PagesContainer";
 import  {useNavigate} from 'react-router-dom';
-import {HomeImg ,ProfileImg, RankingImg,VyvixLogo} from '../assets/SideBarIcons';
+import {HomeImg ,ProfileImg, RankingImg,VyvixLogo,SettingsImg ,HeartSideIcon} from '../assets/SideBarIcons';
 
 
 
@@ -17,7 +17,7 @@ import {HomeImg ,ProfileImg, RankingImg,VyvixLogo} from '../assets/SideBarIcons'
 export default function SideBar({darkMode}) {
     const {currentPage, setCurrentPage} = useContext(PageContext);
     const navigate =useNavigate();
-
+    const allowedRoles = ["USER","entreprise"];
 
     const handleClicked = (page) => { 
         setCurrentPage(page);     
@@ -34,13 +34,24 @@ export default function SideBar({darkMode}) {
                 <VyvixLogo  darkMode={darkMode}/>
             </div>
             <ButtonGroup className="flex flex-col items-start pl-5 gap-6 pt-9">
-                <NavBtn
+            {
+                allowedRoles[1] === "USER" ?
+               ( <NavBtn
                     name="Dashboard"
                     Icon={HomeImg}
             
                     currentPage={currentPage}
                     onClick={() => handleClicked("Dashboard")}
-                />
+                />):(
+                        ( <NavBtn
+                            name="Favorites"
+                            Icon={HeartSideIcon}
+                        
+                            currentPage={currentPage}
+                            onClick={() => handleClicked("Favorites")}
+                        />)
+                )
+            }
                 <NavBtn
                     name="Ranking"
                     Icon={RankingImg}
@@ -54,6 +65,15 @@ export default function SideBar({darkMode}) {
                 
                     currentPage={currentPage}
                     onClick={() => handleClicked("Profile")}
+                />
+          
+                
+                <NavBtn
+                    name="Settings"
+                    Icon={SettingsImg}
+                
+                    currentPage={currentPage}
+                    onClick={() => handleClicked("Settings")}
                 />
             </ButtonGroup>
         </nav>

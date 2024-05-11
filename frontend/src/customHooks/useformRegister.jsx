@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import axios from './Axios'
 import { useNavigate } from 'react-router-dom'; 
 
 export default function useFormRegister() {
@@ -23,7 +23,7 @@ export default function useFormRegister() {
         }),
         onSubmit:async  (values) => {
             try {
-                const response = await axios.post('http://localhost:3000/api/userregister', values);
+                const response = await axios.post('/api/userregister', values);
                 console.log(response);
                 alert('User registered successfully');
                 navigate('/login')

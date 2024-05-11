@@ -1,21 +1,27 @@
-import React from "react";
+import React ,{useState}from "react";
+
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,DropdownSection, Avatar,User } from "@nextui-org/react";
 import { useContext } from "react";
 import { PageContext } from "../pages/PagesContainer";
-import axios from "axios";
+import axios from "../customHooks/Axios";
 import { useNavigate } from "react-router-dom";
+
 
 
 
 export default function DropdownProfile() {
   const Navigate =useNavigate(  )
     const {currentPage,setCurrentPage,darkMode,setDarkMode} = useContext(PageContext);
+
+
+
+
+
+
     const Logout = async () => {
         localStorage.removeItem("auth");
-       
-      
         try {
-            const response = await axios.post("http://localhost:3000/api/userlogout",{},
+            const response = await axios.post("/api/userlogout",{},
                 {
                     withCredentials: true,
                 }
@@ -33,8 +39,10 @@ export default function DropdownProfile() {
     
 
     return (
+        <>
         <Dropdown
         radius="sm"
+        aria-label="User options" 
         classNames={{
           base: "before:bg-default-200 ", // change arrow background
           content: "p-0  ", // change dropdown content
@@ -43,7 +51,10 @@ export default function DropdownProfile() {
       >
         <DropdownTrigger>
         <Avatar
-            src="https://i.pravatar.cc/150?u=a04258114e29026302d"
+             showFallback 
+             src={JSON.parse(localStorage.getItem("auth")).profileImg}
+            
+            aria-label=" Profile Picture"
             className="w-12 h-12 ml-4"/>
         </DropdownTrigger>
         <DropdownMenu
@@ -81,12 +92,14 @@ export default function DropdownProfile() {
                 }}
                 avatarProps={{
                   size: "md",
-                  src: "https://i.pravatar.cc/150?u=a04258114e29026302d",
+                  src: localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")).profileImg : "",
                 }}
               />
             </DropdownItem>
          
-            <DropdownItem key="settings">Settings</DropdownItem>
+            <DropdownItem key="settings"
+            
+            >Settings</DropdownItem>
           
           </DropdownSection>  
   
@@ -101,5 +114,7 @@ export default function DropdownProfile() {
           </DropdownSection> 
         </DropdownMenu>
       </Dropdown>
+      
+      </>
     )
 }

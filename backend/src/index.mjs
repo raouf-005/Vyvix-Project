@@ -2,10 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./router/index.mjs";
 import cors from "cors";
-
 const app = express();
 app.use(express.json());
-
 const corsOptions = {
     origin: true,
     optionsSuccessStatus: 200,
@@ -21,26 +19,13 @@ function originChecker(req, res, next) {
     }
     next();
 }
-
-//router.use(cors({
-//    origin: allowedOrigins,
-//    credentials: true
-//}));
-
-
-
-
 app.use(originChecker);
 app.use(cors(corsOptions));
-
 app.use(router);
-
-mongoose.connect("mongodb://0.0.0.0:27017/vyvix",)
+mongoose.connect("mongodb://0.0.0.0:27017/vyvix"||`mongodb+srv://taki:${process.env.databasepassword}@cluster0.munfbt1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
     .then(() => console.log("connected to database"))
-    .catch((err) => console.log(`EROR:${err}`))
-
+    .catch((err) => console.log(`EROR:${err}`));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-

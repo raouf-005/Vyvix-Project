@@ -1,5 +1,6 @@
 import {columns, users} from '../tabledata';
 import {useAsyncList} from "@react-stately/data";
+import axios from 'axios';
 
 import React ,{useState} from 'react';
 
@@ -8,12 +9,13 @@ import React ,{useState} from 'react';
 export default function useFetchUsers(){
   const [isLoading, setIsLoading] = useState(true);
      //i will add async get list 
-    let list =useAsyncList({
+    const list =useAsyncList({
         async load({signal}) {
-        //    let res = await fetch('https://swapi.py4e.com/api/people/?search', {
-        //      signal,
-        //    });
-        //    let json = await res.json();
+           const res = await axios.get('api/usersRank',{
+            withCredentials: true,
+           });
+           console.log(res);
+           const  json = await res.json();
             setIsLoading(false);
             return {
               items: users,
