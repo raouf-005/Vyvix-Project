@@ -8,7 +8,7 @@ import DashBoard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 import Ranking from "./pages/Ranking";
-
+import UsersProfile from "./pages/UsersProfile";
 import RequireAuth from "./authcomponent/RequireAuth";
 import Layout from "./authcomponent/Layout";
 import Favorites from "./pages/Favorites";
@@ -46,6 +46,7 @@ export default function App() {
           element={<PagesContainer page={<DashBoard />} name="Dashboard" />}
           errorElement={<Error />}
         />
+        
       </Route>
 
       <Route element={<RequireAuth allowedRoles={["company"]} />}>
@@ -54,9 +55,11 @@ export default function App() {
           element={<PagesContainer page={<Favorites />} name="Favorites" />}
           errorElement={<Error />}
         />
-        <Route 
-          path="/profile/:id"
-          element={<PagesContainer page={<Profile />} name="Profile" />}
+           <Route
+          path="/ranking/:id"
+          element={
+            <PagesContainer page={<UsersProfile />} name="UsersProfile" />
+          }
           errorElement={<Error />}
         />
       </Route>
@@ -78,6 +81,7 @@ export default function App() {
           element={<PagesContainer page={<Profile />} name="Profile" />}
           errorElement={<Error />}
         />
+ 
       </Route>
 
       <Route path="*" element={<Error />} />

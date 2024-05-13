@@ -44,7 +44,7 @@ export default function EditInput({
   id,
   name,
 }) {
-  const formikfield = formik ? formik.getFieldProps(label.toLowerCase()) : null;
+  const formikfield = formik ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, '')) : null;
 
 useEffect(() => {
     if (formikfield&&value) {

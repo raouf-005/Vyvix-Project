@@ -20,12 +20,12 @@ export default function GeneralInfoCard(props) {
     
 
     const data = {
-      education: props?.education || user?.credentials?.education || "Bsc. Computer Science",
-      languages: props?.languages || user?.credentials?.languages || "English",
-      speciality: props?.speciality || user?.credentials?.speciality || "23",
-      workHistory: props?.workHistory || user?.credentials?.workHistory || "Lagos",
-      organization: props?.organization || user?.credentials?.organization || "Singing",
-      dateofbirth: props?.dateofbirth || user?.credentials?.dateofbirth || "Coding"  
+      education: props.education || user?.credentials?.education || "Bsc. Computer Science",
+      languages: props.languages || user?.credentials?.languages || "English",
+      speciality: props.speciality || user?.credentials?.speciality || "23",
+      workHistory: props.workHistory || user?.credentials?.workHistory || "Lagos",
+      organization: props.organization || user?.credentials?.organization || "Singing",
+      dateofbirth: props.dateofbirth || user?.credentials?.dateofbirth || "Coding"  
     }
 
 

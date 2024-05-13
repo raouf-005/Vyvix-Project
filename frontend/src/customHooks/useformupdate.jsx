@@ -34,7 +34,7 @@ export default function useformupdate() {
         // For example, you can make an API call using axios
         const { username, email, phonenumber, image, languages, organisation,  education,dateofbirth } = values;
         const tempvalue ={username,email,image,phonenumber}
-        console.log(tempvalue);
+        console.log('tempvalue',tempvalue);
         const response = await axios.patch("/api/user", {phonenumber:phonenumber}, {
           withCredentials: true,
         });

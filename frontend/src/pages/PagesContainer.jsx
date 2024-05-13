@@ -7,6 +7,7 @@ export const PageContext = createContext();
 export const GoalsContext = createContext([]);
 
 export default function PagesContainer({ page, name }) {
+
   const [currentPage, setCurrentPage] = useState(name);
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("darkMode") === "true"
@@ -33,8 +34,9 @@ export default function PagesContainer({ page, name }) {
     };
 
     getGoals();
-  }, []);
-
+  }, [currentPage=== "Dashboard"||currentPage=== "Profile"]);
+// i will add when to fetch goals
+// if it didn't work i wull add it to the useEffect of the dashboard
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
       <div className="flex  flex-row bg-slate-100  dark:bg-indigo-950 ">

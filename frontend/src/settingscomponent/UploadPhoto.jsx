@@ -67,7 +67,8 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
       setImageUrl(response.data.secure_url);
       setDisplay(response.data.secure_url);
       window.location.reload();
-      localStorage.setItem("auth",atob( JSON.stringify({ ...JSON.parse(localStorage.getItem("auth")), credentials: { ...JSON.parse(localStorage.getItem("auth")).credentials, image: response.data.secure_url}}))); 
+      const auth = atob(localStorage.getItem("auth"));
+      localStorage.setItem("auth",btoa(JSON.stringify({ ...JSON.parse(auth), credentials: { ...JSON.parse(auth).credentials, image: response.data.secure_url}}))); 
       setisSubmited(true);
       return response.data.secure_url;
     } catch (error) {

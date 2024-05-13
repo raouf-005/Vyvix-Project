@@ -6,15 +6,15 @@ import Cookies from "js-cookie";
 const RequireAuth = ({ allowedRoles }) => {
     //const {isAuth} = useAuth();
 
-    const isAuth = JSON.parse(atob(localStorage.getItem("auth")));
-    const location = useLocation();
+    const isAuth =localStorage.getItem("auth")? JSON.parse(atob(localStorage.getItem("auth"))):null;
+    const location = useLocation();     
     const iscompany = allowedRoles.includes("company");
 
+    console.log("true",isAuth)
 
-
-    return isAuth?.credentials?.company === iscompany || allowedRoles.length === 2 ? (
+    return (isAuth?.credentials?.company === iscompany || allowedRoles.length === 2 ) && localStorage.getItem("auth") ? (
         <Outlet />
-    ) : isAuth?.user ? (
+    ) : isAuth?.credentials?.username ? (
         <Navigate to="/unauthorized" state={{ from: location }} replace />
     ) : (
         <Navigate to="/login" state={{ from: location }} replace />

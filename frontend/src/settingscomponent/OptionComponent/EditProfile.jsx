@@ -15,7 +15,8 @@ const data = {
 export default function EditProfile() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const formik = useformupdate();
- // console.log("eeeeee",JSON.parse(atob(localStorage.getItem("auth"))))
+ const user = JSON.parse(atob(localStorage.getItem("auth")));
+ console.log("user",user)
   return (
     <form
       className="flex flex-row  mt-8 relative  bg-transparent"
@@ -25,7 +26,7 @@ export default function EditProfile() {
         <Avatar
           showFallback
           className="w-36 h-36 mt-2  cursor-pointer "
-          src={JSON.parse(atob(localStorage.getItem("auth"))).credentials.image || ""}
+          src={user.credentials.image || ""}
           onClick={onOpen}
         />
         <img
@@ -43,14 +44,14 @@ export default function EditProfile() {
         />
         <EditInput
           label="Username"
-          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.username}
+          value={user.credentials.username}
           formik={formik}
           id="username"
           name="username"
         />
         <EditInput
           label="Email"
-          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.email}
+          value={user.credentials.email}
           type="email"
           formik={formik}
           id="email"
@@ -85,7 +86,7 @@ export default function EditProfile() {
         />
         <EditInput
           label="Languages"
-          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.Languages}
+          value={user.credentials.Languages}
           type="option"
           formik={formik}
           id="languages"
@@ -107,8 +108,8 @@ export default function EditProfile() {
         />
         <EditInput
           label="Phone Number"
-          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.phonenumber || "Entre you phone number"}
-          //formik={formik}
+          value={user.credentials.phonenumber}
+          formik={formik}
           id="phoneNumber"
           name="phoneNumber"
         />

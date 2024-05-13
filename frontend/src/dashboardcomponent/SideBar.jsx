@@ -23,8 +23,10 @@ export default function SideBar({darkMode}) {
         setCurrentPage(page);     
     }
     useEffect(() => {
+        if (currentPage !== "UsersProfile") {
+            navigate(`/${currentPage.toLowerCase()}`);    
+        } 
         
-        navigate(`/${currentPage.toLowerCase()}`);
     },[currentPage])
 
 

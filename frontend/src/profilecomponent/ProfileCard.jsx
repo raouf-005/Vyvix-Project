@@ -26,12 +26,13 @@ const Counter = (props) => {
 
 
 export default function ProfileCard(props) {
-    const user =props.user
-
+    const user =props.user||""; 
+    
+    console.log("12333333333",JSON.parse(atob(localStorage.getItem("auth"))).credentials);
     const counter=[
-        {value:user?.goals,label:"Goals"},
-        {value:user?.points,label:"Points"},
-        {value:user?.rank,label:"Rank"},
+        {value:user.totaltasks||JSON.parse(atob(localStorage.getItem("auth"))).credentials.totaltasks||0,label:"Goals"},//change it to goals
+        {value:user.points||JSON.parse(atob(localStorage.getItem("auth"))).credentials.points||0,label:"Points"},
+        {value:user.rank||JSON.parse(atob(localStorage.getItem("auth"))).credentials.rank||0,label:"Rank"},
     ]
     const [liked, setLiked] = useState(false);
 
@@ -59,16 +60,16 @@ export default function ProfileCard(props) {
             </div>
             <div>   
                 <h3 className="text-black text-2xl font-bold dark:text-white">
-                    {user?.username||profileInfo.name} 
+                    {user.username||JSON.parse(atob(localStorage.getItem("auth"))).credentials.username||profileInfo.name} 
                 </h3>
                 <p className='text-slate-400 text-sm '>
-                    {user?.speciality||profileInfo.role}
+                    {user.speciality||JSON.parse(atob(localStorage.getItem("auth"))).credentials.speciality||profileInfo.role}
                 </p>
             </div>
             <div className="flex flex-row justify-center gap-16 w-4/6">
                 {
                                 
-                profileInfo.counter.map((item,index) => {
+                counter.map((item,index) => {
                     return <Counter key={index} value={item.value} label={item.label} />
                 })}
             </div>

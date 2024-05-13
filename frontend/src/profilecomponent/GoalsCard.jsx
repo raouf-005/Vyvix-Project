@@ -28,7 +28,7 @@ export default function GoalsCard() {
                         <ItemList name={goal.goal} id={goal._id} key={goal._id} index={index}  goallist={goallist} setGoalList={setGoalList}/>
                     )):(
                         <ListItem>
-                             <ListItemText
+                             <ListItemText sx={{textAlign:'center',marginTop:'40px' ,fontSize:'20px'}}
                     primary="No goal"
                   />
                         </ListItem>

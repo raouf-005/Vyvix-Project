@@ -84,8 +84,8 @@ export default function DropdownProfile() {
               <User
               // i will add the actual user name and name
               //Temporary until i get the full name for the backend 
-                name={`${JSON.parse(atob(localStorage.getItem("auth"))).user}`}
-                description={`@${JSON.parse(atob(localStorage.getItem("auth"))).user}`}
+                name={`${JSON.parse(atob(localStorage.getItem("auth"))).credentials.username}`}
+                description={`@${JSON.parse(atob(localStorage.getItem("auth"))).credentials.username}`}
                 classNames={{
                   name: "text-default-600",
                   description: "text-default-500",
