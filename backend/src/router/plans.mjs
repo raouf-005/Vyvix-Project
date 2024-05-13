@@ -5,7 +5,7 @@ import run from "../utils/gemini.mjs";
 
 // Middleware to check if the user is authenticated
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.user) {
         return next();
     } else {
         // If the user is not authenticated, send a 401 Unauthorized response
@@ -133,6 +133,9 @@ router.delete("/api/plan/:id/taskdelete/:taskid/", ensureAuthenticated, async (r
     const userId = request.user._id;
     const { status } = request.body;
     const plans = await plan.findOneAndDelete({ _id: id, user: userId });
+    const newuser = await user.findOne({ _id: userId })
+    newuser.Failure += 1;
+    await newuser.save();
     return response.status(200).send("itsdeleted");
 });
 // edit task

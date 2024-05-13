@@ -1,16 +1,17 @@
-import { Router, request, response } from "express";
+import { Router, request, response, text } from "express";
 import { user } from "../mongoose/schema/user.mjs";
 import passport from "../strategies/localstrat.mjs";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import cookieParser from "cookie-parser";
 import { hashPassword } from "../utils/helper.mjs";
-
-
-
+import dotenv from 'dotenv';
+dotenv.config();
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
+        console.log(req.session)
         // If the user is not authenticated, send a 401 Unauthorized response
         res.status(401).json({ message: 'Unauthorized' });
     }
@@ -42,10 +43,11 @@ router.use(session({
     secret: "tk14",
     resave: false,
     saveUninitialized: false,
+    //store: MongoStore.create({ mongoUrl: process.env.database }),
     cookie: {
         maxAge: 60000 * 60 * 24,
-        sameSite: false,
-        secure: false//put true if you are using https
+        secure: false,
+        sameSite: true,
     }
 }));
 router.use(passport.initialize());
@@ -66,7 +68,8 @@ router.post("/api/userregister", async (request, response) => {
 router.post("/api/userlogin", passport.authenticate("local"), async (request, response) => {
     if (!request.user) return response.send({ message: "You are not logged in" })
     const nuser = await user.findById(request.user._id).select('-password');
-    response.send({msg:'You are logged in' , requestuser: nuser });
+    console.log(request.session);
+    response.send({ msg: "you are loged in", requestuser: nuser, });
 });
 
 router.post("/api/userlogout", (request, response) => {

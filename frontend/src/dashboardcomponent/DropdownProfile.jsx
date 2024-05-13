@@ -51,8 +51,8 @@ export default function DropdownProfile() {
       >
         <DropdownTrigger>
         <Avatar
-             showFallback 
-             src={JSON.parse(localStorage.getItem("auth")).profileImg}
+             showFallback   
+             src={localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : ""}
             
             aria-label=" Profile Picture"
             className="w-12 h-12 ml-4"/>
@@ -84,21 +84,26 @@ export default function DropdownProfile() {
               <User
               // i will add the actual user name and name
               //Temporary until i get the full name for the backend 
-                name={`${JSON.parse(localStorage.getItem("auth")).user}`}
-                description={`@${JSON.parse(localStorage.getItem("auth")).user}`}
+                name={`${JSON.parse(atob(localStorage.getItem("auth"))).user}`}
+                description={`@${JSON.parse(atob(localStorage.getItem("auth"))).user}`}
                 classNames={{
                   name: "text-default-600",
                   description: "text-default-500",
                 }}
                 avatarProps={{
                   size: "md",
-                  src: localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")).profileImg : "",
+                  src: localStorage.getItem("auth") ? JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "",
                 }}
               />
             </DropdownItem>
          
             <DropdownItem key="settings"
-            
+            onClick={
+                () => {
+                  setCurrentPage("Settings")
+                  useNavigate("/settings")
+                } 
+            }
             >Settings</DropdownItem>
           
           </DropdownSection>  

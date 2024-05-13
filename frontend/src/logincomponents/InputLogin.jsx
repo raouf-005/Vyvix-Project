@@ -42,9 +42,9 @@ export default function InputLogin ({type ,placeholder,name,formik }){
                 }
             </div>
             
-            <div>
+            <div className="max-w-[550px]">
                 {formik.touched[formikfield.name.toLowerCase()] && formik.errors[formikfield.name.toLowerCase()] ? (
-                    <div className="text-red-500 text-xs mt-1 ">{formik.errors[formikfield.name.toLowerCase()]}</div>
+                    <p className="text-red-500 text-xs mt-1 max-w-[450px] ">{formik.errors[formikfield.name.toLowerCase()]}</p>
                 ) : null}
             </div>
         </div>

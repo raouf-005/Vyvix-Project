@@ -104,7 +104,7 @@ const users = [
     },
   ];
   
-  const columns = [
+  const columnsCompany = [
     {
       key: "name",
       label: "Profile",
@@ -132,5 +132,24 @@ const users = [
     }
   ];
   
+const columns=[
+    {
+      key: "name",
+      label: "Profile",
+      allowsSorting: true,
+    },
+    {
+      key: "points",
+      label: "Points",
+        allowsSorting: true,
+    },
+    {
+      key: "status",
+      label: "Progress",
+        allowsSorting: true,
+    },
 
-export {columns,users}
+ 
+]
+
+export {columns,users,columnsCompany}

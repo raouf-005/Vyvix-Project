@@ -17,7 +17,7 @@ import {HomeImg ,ProfileImg, RankingImg,VyvixLogo,SettingsImg ,HeartSideIcon} fr
 export default function SideBar({darkMode}) {
     const {currentPage, setCurrentPage} = useContext(PageContext);
     const navigate =useNavigate();
-    const allowedRoles = ["USER","entreprise"];
+    const company =localStorage.getItem("auth")? JSON.parse(atob(localStorage.getItem("auth"))).credentials.company : false;
 
     const handleClicked = (page) => { 
         setCurrentPage(page);     
@@ -35,7 +35,7 @@ export default function SideBar({darkMode}) {
             </div>
             <ButtonGroup className="flex flex-col items-start pl-5 gap-6 pt-9">
             {
-                allowedRoles[1] === "USER" ?
+                company === false ?
                ( <NavBtn
                     name="Dashboard"
                     Icon={HomeImg}

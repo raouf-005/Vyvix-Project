@@ -78,7 +78,7 @@ export default function Login({Page}) {
             <div className="flex  max-h-screen  items-center  justify-center ">
             <img src={LoginImg} alt="LoginImg" className="loginPhoto " />
             </div>   
-            <div className="  flex  flex-col mt-4 flex-1 justify-center items-center  ">  
+            <div className="  flex  flex-col -mt-3 flex-1 justify-center items-center  ">  
                 <img src={VyvixLogo} alt="VyvixLogo" className="mb-2  w-12  " />
                     <h4>
                         Welcome to Vyvix!
@@ -89,7 +89,7 @@ export default function Login({Page}) {
                             <button className="p-5 px-12  pr-14 toggle-btn" id="login" >Login</button>
                     </div>
                  
-            <p className=" text-center text-wrap flex max-w-md mb-6 ">
+            <p className=" text-center text-wrap flex max-w-md mb-1 ">
             Unlock boundless happiness and achievement with just a single click. What are you waiting for?   
             </p>
             {

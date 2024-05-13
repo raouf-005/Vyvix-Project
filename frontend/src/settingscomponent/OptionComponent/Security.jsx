@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
-
+import EditInput from "../EditInput";
 
 
 
@@ -60,9 +60,9 @@ export default function Security() {
               <label className="text-black dark:text-white" htmlFor="OldPass">
                 Current password
               </label>
-              <Input
+              <EditInput
                 type="password"
-                placeholder="Enter old password"
+                value="Enter old password"
                 classNames={classNames}
                 variant="bordered"
                 id="OldPass"
@@ -73,11 +73,10 @@ export default function Security() {
               <label htmlFor="NewPass" className="text-black dark:text-white">
                 New password
               </label>
-              <Input
+              <EditInput
                 type="password"
-                placeholder="Enter new password"
+                value="Enter new password"
                 classNames={classNames}
-                variant="bordered"
                 id="NewPass"
                 name="NewPass"
               />

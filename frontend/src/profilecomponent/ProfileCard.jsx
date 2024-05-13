@@ -26,6 +26,13 @@ const Counter = (props) => {
 
 
 export default function ProfileCard(props) {
+    const user =props.user
+
+    const counter=[
+        {value:user?.goals,label:"Goals"},
+        {value:user?.points,label:"Points"},
+        {value:user?.rank,label:"Rank"},
+    ]
     const [liked, setLiked] = useState(false);
 
     return (
@@ -35,7 +42,7 @@ export default function ProfileCard(props) {
         <div className="flex gap-5 flex-col items-center text-center min-h-[340px]  relative  bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
             <div className="flex  flex-col items-center">
                 <Image  src={profileInfo.bgmage} className="  max-h-[133px]  z-0 w-[968px]" aria-label="" />
-                <Avatar size="lg" src={JSON.parse(localStorage.getItem("auth")).profileImg||profileInfo.avatar}  className="  border-[5px]  border-white w-[95px] h-[95px]  -mt-12"  />
+                <Avatar showFallback size="lg" src={user?.image||JSON.parse(atob(localStorage.getItem("auth"))).credentials.image}  className="  border-[5px]  border-white w-[95px] h-[95px]  -mt-12"  />
                 <Button
                 className={`text-default-900/80 dark:text-white  ${liked ? "bg-gradient-to-r from-danger to-primary text-white " :"bg-slate-200"}  dark:bg-carddm   absolute right-6 top-5`}
                 radius="lg"
@@ -52,14 +59,16 @@ export default function ProfileCard(props) {
             </div>
             <div>   
                 <h3 className="text-black text-2xl font-bold dark:text-white">
-                    {profileInfo.name} 
+                    {user?.username||profileInfo.name} 
                 </h3>
                 <p className='text-slate-400 text-sm '>
-                    {profileInfo.role}
+                    {user?.speciality||profileInfo.role}
                 </p>
             </div>
             <div className="flex flex-row justify-center gap-16 w-4/6">
-                {profileInfo.counter.map((item,index) => {
+                {
+                                
+                profileInfo.counter.map((item,index) => {
                     return <Counter key={index} value={item.value} label={item.label} />
                 })}
             </div>

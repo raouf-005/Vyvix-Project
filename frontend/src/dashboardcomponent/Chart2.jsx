@@ -9,7 +9,6 @@ class Chart2 extends React.Component {
       super(props);
 
       this.state = {
-      
         series: [{
           name: 'Goals',
           data: [4, 3, 10, 9, 29,13,14,13]

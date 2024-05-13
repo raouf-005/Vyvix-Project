@@ -20,12 +20,11 @@ export default function useformupdate() {
     },
     validationSchema: Yup.object({
       username: Yup.string(),
-      email: Yup.string().email("Invalid email"),
+      email: Yup.string(),
       phonenumber: Yup.string(),
       image: Yup.string(),
       language: Yup.string(),
       organisation: Yup.string(),
-      password: Yup.string(),
       education: Yup.string(),
     date:Yup.date()
     }),
@@ -33,7 +32,10 @@ export default function useformupdate() {
       try {
         // Add your form submission logic here
         // For example, you can make an API call using axios
-        const response = await axios.patch("/api/user", values, {
+        const { username, email, phonenumber, image, languages, organisation,  education,dateofbirth } = values;
+        const tempvalue ={username,email,image,phonenumber}
+        console.log(tempvalue);
+        const response = await axios.patch("/api/user", {phonenumber:phonenumber}, {
           withCredentials: true,
         });
 
@@ -44,8 +46,9 @@ export default function useformupdate() {
         }
         localStorage.setItem(
           "auth",
-          JSON.stringify({ user: values.username, credentials: response.data })
+          btoa(JSON.stringify({ user: values.username, credentials: response.data }))
         );
+        formik.resetForm();
         // Handle the successful submission
       } catch (error) {
         // Handle the error

@@ -19,7 +19,7 @@ function originChecker(req, res, next) {
     }
     next();
 }
-app.use(originChecker);
+//app.use(originChecker);
 app.use(cors(corsOptions));
 app.use(router);
 mongoose.connect("mongodb://0.0.0.0:27017/vyvix"||`mongodb+srv://taki:${process.env.databasepassword}@cluster0.munfbt1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)

@@ -47,11 +47,12 @@ function formatDate(date) {
     const  day =date.getDate();
 
     // Format month and day to have leading zeros if necessary
-    const  formattedMonth = month < 10 ? "0" + month : month;
+    //const  formattedMonth = month < 10 ? "0" + month : month;
+    const formattedMonth = month;
     const  formattedDay = day < 10 ? "0" + day : day;
-
+    
     // Construct the date string in the desired format
-    const dateString = year + "-" + formattedMonth + "-" + formattedDay;
+    const dateString = year + "/" + formattedMonth + "/" + formattedDay;
 
     return dateString
 }
@@ -75,13 +76,15 @@ export default function Tasks() {
     };
 // to ensure that it renders when the goal is recieved because at first it's undefiened
     useEffect(() => {
-
+        
         let currentDate = new Date();
+        
         let formattedDate = formatDate(currentDate);
+       // console.log("current date",formattedDate); 
       if (goals && goals.length > 0) {
 
     const todayTasks = goals.reduce((acc, goal) => {
-        const todayTasks = goal.tasks.filter(task => task.date === formattedDate);// give an exemple of it 
+        const todayTasks = goal.tasks.filter(task =>task.date === formattedDate);// give an exemple of it 
         return [...acc, ...todayTasks];
     }, []);
     setTasks(todayTasks);
@@ -103,7 +106,7 @@ export default function Tasks() {
       
     }, [selected]);
 
-
+//linking with the backend
     return (
         <div className='flex flex-col bg-white relative   rounded-3xl dark:bg-carddm dark:text-white p-4'>
             <Checkbox

@@ -15,23 +15,17 @@ const data = {
 export default function EditProfile() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const formik = useformupdate();
-  useEffect(() => {
-    formik.setValues({
-      username: "Raoufard",
-      email: " ",
-      phonenumber: " ",
-      image: " ",
-      languages: " ",
-      organisation: " ",
-      password: " ",
-    })},[]);
-  
+ // console.log("eeeeee",JSON.parse(atob(localStorage.getItem("auth"))))
   return (
-    <form className="flex flex-row  mt-8 relative  bg-transparent" onSubmit={formik.handleSubmit}>
+    <form
+      className="flex flex-row  mt-8 relative  bg-transparent"
+      onSubmit={formik.handleSubmit}
+    >
       <div className="min-w-64 relative  flex justify-center">
         <Avatar
+          showFallback
           className="w-36 h-36 mt-2  cursor-pointer "
-          src={localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")).profileImg : ""}
+          src={JSON.parse(atob(localStorage.getItem("auth"))).credentials.image || ""}
           onClick={onOpen}
         />
         <img
@@ -41,48 +35,99 @@ export default function EditProfile() {
         />
       </div>
       <div className="grid grid-cols-2   gap-y-6 gap-x-8 flex-1 mr-4">
-        <EditInput label="Full Name" value="Abderraouf Derardja" />
-        <EditInput label="Username" value="Raoufard"
-         formik={formik}
-         />
-        <EditInput label="Email" value="Test@gmail.com" type="email" 
-        formik={formik}
-         />
         <EditInput
+          label="Full Name"
+          value="Abderraouf Derardja"
+          id="fullName"
+          name="fullName"
+        />
+        <EditInput
+          label="Username"
+          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.username}
+          formik={formik}
+          id="username"
+          name="username"
+        />
+        <EditInput
+          label="Email"
+          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.email}
+          type="email"
+          formik={formik}
+          id="email"
+          name="email"
+        />
+        {/*      <EditInput
           label="Password"
           value="Abderraouf Derardja"
           type="password"
           //formik={formik}
+        /> */}
+        <EditInput
+          label="DateofBirth"
+          value={""}
+          type="date"
+          formik={formik}
+          id="dateOfBirth"
+          name="dateOfBirth"
         />
-        <EditInput label="DateofBirth" value="27/04/2004" type="date" />
         <EditInput
           label="Education"
           value="Higher School of Computer Science & Technology"
           formik={formik}
+          id="education"
+          name="education"
         />
         <EditInput
           label="Speciality"
           value="Artificial Intelligence , Computer Vision "
-   
+          id="speciality"
+          name="speciality"
         />
         <EditInput
           label="Languages"
-          value="Abderraouf Derardja"
+          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.Languages}
           type="option"
-         // formik={formik}
+          formik={formik}
+          id="languages"
+          name="languages"
         />
-        <EditInput label="Work History" value="Abderraouf Derardja" />
-        <EditInput label="Organisation" value="Abderraouf Derardja"
-        formik={formik}
+        <EditInput
+          label="Work History"
+          value="Entrepreunuer"
+          id="workHistory"
+          name="workHistory"
         />
+
+        <EditInput
+          label="Organisation"
+          value="Estin"
+          //formik={formik}
+          id="organisation"
+          name="organisation"
+        />
+        <EditInput
+          label="Phone Number"
+          value={JSON.parse(atob(localStorage.getItem("auth"))).credentials.phonenumber || "Entre you phone number"}
+          //formik={formik}
+          id="phoneNumber"
+          name="phoneNumber"
+        />
+
         <div className=" flex justify-end  col-span-2">
-          <Button type="submit" 
-          className="bg-gradient-to-r  mt-3 text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 ">
+          <Button
+            type="submit"
+            className="bg-gradient-to-r  mt-3 text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 "
+          >
             Save
           </Button>
         </div>
       </div>
-      <UploadPhoto isOpen={isOpen} onOpenChange={onOpenChange} data={data}  />
+      <UploadPhoto
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        data={data}
+        formik={formik}
+      />
     </form>
   );
 }

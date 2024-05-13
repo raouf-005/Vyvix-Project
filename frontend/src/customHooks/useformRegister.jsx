@@ -10,16 +10,23 @@ export default function useFormRegister() {
             username: '',
             email: '',
             password: '',
+            company: false,
         },
         validationSchema: Yup.object({
             email: Yup.string()
                 .email('Invalid email address')
                 .required('Required'),
             password: Yup.string()
-                .required('Required'),
+                .required('Required')
+                .matches(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    `Password must contain at least 8 characters, one uppercase letter,
+                     one lowercase letter, one number, and one special character`
+                ),
             username: Yup.string()
                 .required('Required')
-                .min(4, 'Must be 4 characters or more')
+                .min(4, 'Must be 4 characters or more'),
+            company: false,
         }),
         onSubmit:async  (values) => {
             try {

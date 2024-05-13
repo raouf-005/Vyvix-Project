@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axioss from "../customHooks/Axios";
 import axios from "axios";
 import {
   Modal,
@@ -14,15 +15,21 @@ import {
 import { FileUploader } from "react-drag-drop-files";
 import { Avatar } from "@nextui-org/react";
 import { useRef } from "react";
+import useformupdate from "../customHooks/useformupdate";
 //add refrech for the profile
 
 const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
+
+  const formik = useformupdate();
+
+  const formikfield = formik ? formik.getFieldProps("image") : null;
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("darkMode") === "true" ? true : false
   );
   const [image, setImage] = useState(null); // image url , will be a normal string
   const [display, setDisplay] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [issubmited,setisSubmited]=useState(false);
 
   
   
@@ -56,44 +63,50 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
         }
       );
       
-      localStorage.setItem("auth", JSON.stringify({ ...JSON.parse(localStorage.getItem("auth")), profileImg: response.data.secure_url }));
       console.log("Uploaded");
       setImageUrl(response.data.secure_url);
-      setDisplay(response.data.secure_url)
-      window.location.reload()
-      
+      setDisplay(response.data.secure_url);
+      window.location.reload();
+      localStorage.setItem("auth",atob( JSON.stringify({ ...JSON.parse(localStorage.getItem("auth")), credentials: { ...JSON.parse(localStorage.getItem("auth")).credentials, image: response.data.secure_url}}))); 
+      setisSubmited(true);
+      return response.data.secure_url;
     } catch (error) {
       console.error("Upload Error:", error);
     }
-    return response.data.secure_url;
+    
+  
+    
+    
   };
 
 
-
-  const handleSubmit = async () => {
-    if (display) {
-      console.log("submitting...");
-      const FinalImg=await handleImageUpload();
-      if (FinalImg === null) {
-        console.log("image url is null");
-        return;
-      }
-      try {
-        data.pfp = FinalImg;
-        console.log(FinalImg);
-        const datas={image:FinalImg}
-        const response = await axios.patch('/api/user/', datas, {
-          withCredentials: true
-        });
-        console.log(response);
-        if (response.status === 200) {
-          console.log("updated successfully");
+  useEffect(() => {
+    if (formikfield) {
+       // formikfield.value=localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")).credentials.image : "";
+       
+    }
+    const handleUpload = async () => {
+      if (formikfield)  {    
+        try {
+          const res = await axioss.patch("/api/user", { image: imageUrl }, {
+            withCredentials: true,
+          });
+          console.log("Image updated successfully");
+          console.log(res); 
+        } catch (error) {
+          console.error("Image update error:", error);
         }
-      } catch (err) {
-        console.error("Error sending data:", err);
       }
     }
-  };
+    if (issubmited) {
+      handleUpload();
+      setisSubmited(false);
+      setDisplay(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "");
+      setImageUrl(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "")
+    }
+    }, [issubmited]);
+
+
 
   return (
     <Modal
@@ -139,7 +152,7 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
                 Close
               </Button>
               <Button color="primary" size="lg" onPress={onClose}
-              onClick={()=>handleSubmit()}
+              onClick={()=>handleImageUpload()}
               >
                 Submit
               </Button>

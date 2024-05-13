@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function Settings() {
   const [currentOption, setCurrentOption] = useState("Profile");
   return (
-    <div className=" rounded-xl  flex flex-col gap-3 bg-white px-8 p-6 mx-8 dark:bg-carddm">
+    <div className=" rounded-xl  flex flex-col gap-3 bg-white px-8 p-6 mx-8 dark:bg-carddm mb-10">
       <HeadBar
         currentOption={currentOption}
         setCurrentOption={setCurrentOption}

@@ -9,7 +9,6 @@ export default function useFormLogin() {
     const { setIsAuth } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/dashboard';
 
     const formik = useFormik({
         initialValues: {
@@ -46,10 +45,10 @@ export default function useFormLogin() {
                         if (!data.msg) {
                             return;
                         }
-                        localStorage.setItem('auth', JSON.stringify({ user: username ,credentials:data.requestuser }));
+                        localStorage.setItem('auth', btoa(JSON.stringify({ user: username ,credentials:data.requestuser })));
                     }
              
-
+                const from = location.state?.from?.pathname || !data.requestuser.company ? '/dashboard' : '/favorites';
                 navigate(from, { replace: true });
                 return;
             } catch (err) {

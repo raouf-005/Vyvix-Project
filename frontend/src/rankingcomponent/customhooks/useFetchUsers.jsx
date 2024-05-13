@@ -1,10 +1,11 @@
-import {columns, users} from '../tabledata';
+//import {columns, users} from '../tabledata';
 import {useAsyncList} from "@react-stately/data";
-import axios from 'axios';
+import axios from '../../customHooks/Axios';
 
 import React ,{useState} from 'react';
+import { image } from "@nextui-org/react";
 
-
+//console.log(users);
 
 export default function useFetchUsers(){
   const [isLoading, setIsLoading] = useState(true);
@@ -14,11 +15,28 @@ export default function useFetchUsers(){
            const res = await axios.get('api/usersRank',{
             withCredentials: true,
            });
-           console.log(res);
-           const  json = await res.json();
+           console.log(res.data?.users);
+
+
+           const  data = await res.data?.users;
+
+           const usersrank = data.map((user) => {
+             return {
+                key: user._id,
+               name: user.username,
+               points: user.points,
+               status: user.progresse,
+               email: user.email||"no email",
+               phone: user.phonenumber||"no phone",
+               image: user.image||"",
+               //https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png
+             };
+            }); 
+
+            console.log("userrank",usersrank);
             setIsLoading(false);
             return {
-              items: users,
+              items: usersrank,
             };
           },
           async sort({items, sortDescriptor}) {

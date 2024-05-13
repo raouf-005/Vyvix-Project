@@ -5,7 +5,6 @@ import { Select, SelectItem, Switch, Textarea } from "@nextui-org/react";
 import { SunIcon } from "../../assets/SunIcon";
 import { MoonIcon } from "../../assets/MoonIcon";
 import { PageContext } from "../../pages/PagesContainer";
-import EditInput from "../EditInput";
 
 const classNames={
     
@@ -45,7 +44,9 @@ const languages = [
     ];
 
 export default function Preferences() {
-  const { darkMode, setDarkMode } = useContext(PageContext);
+
+    const { darkMode, setDarkMode } = useContext(PageContext);
+  
   const [value, setValue] = React.useState(new Set([]));
 
 

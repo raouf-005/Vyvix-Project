@@ -13,6 +13,7 @@ import RequireAuth from "./authcomponent/RequireAuth";
 import Layout from "./authcomponent/Layout";
 import Favorites from "./pages/Favorites";
 import Settings from "./pages/Settings";
+import Unauthorized from "./pages/Unauthorized";
 
 export default function App() {
   //const  [isAuth, setIsAuth] = useState(false);
@@ -31,49 +32,53 @@ export default function App() {
         errorElement={<Error />}
       />
       <Route path="/" element={<Landing />} errorElement={<Error />} />
-    
+      <Route
+        path="/unauthorized"
+        element={<Unauthorized />}
+        errorElement={<Error />}
+      />
 
       {/*private routes are routes that are only accessible to logged in users.*/}
 
-
-
-
-      <Route element={<RequireAuth allowedRole="USER" />}>
-        <Route
-          path="/settings"
-          element={<PagesContainer page={<Settings />} name="Settings" />}
-          errorElement={<Error />}
-        />
+      <Route element={<RequireAuth allowedRoles={["user"]} />}>
         <Route
           path="/dashboard"
           element={<PagesContainer page={<DashBoard />} name="Dashboard" />}
           errorElement={<Error />}
         />
-
       </Route>
 
-      <Route element={<RequireAuth allowedRole="entreprise" />}>
-      <Route
-        path="/favorites"
-        element={<PagesContainer page={<Favorites />} name="Favorites" />}
-        errorElement={<Error />}
-      />
+      <Route element={<RequireAuth allowedRoles={["company"]} />}>
+        <Route
+          path="/favorites"
+          element={<PagesContainer page={<Favorites />} name="Favorites" />}
+          errorElement={<Error />}
+        />
+        <Route 
+          path="/profile/:id"
+          element={<PagesContainer page={<Profile />} name="Profile" />}
+          errorElement={<Error />}
+        />
+      </Route>
+
+      <Route element={<RequireAuth allowedRoles={["user", "company"]} />}>
         <Route
           path="/settings"
           element={<PagesContainer page={<Settings />} name="Settings" />}
           errorElement={<Error />}
         />
-          <Route
-          path="/profile"
-          element={<PagesContainer page={<Profile />} name="Profile" />}
-          errorElement={<Error />}
-        />
+
         <Route
           path="/ranking"
           element={<PagesContainer page={<Ranking />} name="Ranking" />}
           errorElement={<Error />}
         />
-        </Route>
+        <Route
+          path="/profile"
+          element={<PagesContainer page={<Profile />} name="Profile" />}
+          errorElement={<Error />}
+        />
+      </Route>
 
       <Route path="*" element={<Error />} />
     </Routes>

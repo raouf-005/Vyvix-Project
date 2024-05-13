@@ -8,7 +8,7 @@ export default function RegisterForm() {
     
     const formik = useFormRegister();
     const [EmailPassValue ,setEmailPassValue]=useState(localStorage.getItem('email'))
-    const [policyCheked,setpolicyChecked]=useState(false)
+    console.log(formik.values);
     useEffect(()=>{
         if(EmailPassValue){
             formik.setFieldValue('email',EmailPassValue)
@@ -18,7 +18,7 @@ export default function RegisterForm() {
     
     
     return (
-        <form className="flex flex-col gap-2 align-middle -mt-4" onSubmit={formik.handleSubmit}>
+        <form className="flex flex-col gap-2 align-middle " onSubmit={formik.handleSubmit}>
             <InputLogin 
                 type="text"
                 placeholder="Enter your Username" 
@@ -40,13 +40,14 @@ export default function RegisterForm() {
                 formik={formik}
                 aria-label="" 
             />
-            <div className="flex justify-between">
-                <Checkbox size="sm" isSelected={policyCheked} onValueChange={setpolicyChecked} radius="none" className="gap-1 ml-2 -mt-3" aria-label="">
-                    I accept the terms and conditions
+            <div className="flex justify-between mt-1 ml-2">
+                <Checkbox size="md" radius="sm"   className="" aria-label="" {...formik.getFieldProps('company')}>
+                    Company 
                 </Checkbox>
             </div>
-            <div className="flex justify-end mr-5">  
-                <Button className="bg-blue-800 text-white px-11 -mt-2" size="lg" radius="lg" type="submit" isDisabled={!policyCheked || !formik.values.email || !formik.values.username || !formik.values.password  }>Register</Button>
+
+            <div className="flex justify-end mt-1 mr-5">  
+                <Button className="bg-blue-800 text-white px-11 -mt-2" size="lg" radius="lg" type="submit" isDisabled={ !formik.values.email || !formik.values.username || !formik.values.password  }>Register</Button>
             </div>
         </form>
     )
