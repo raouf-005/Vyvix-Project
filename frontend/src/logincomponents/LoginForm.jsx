@@ -51,7 +51,7 @@ export default function LoginForm() {
             formik.handleSubmit();
           }}
         >
-          Login
+          Sign In
         </Button>
       </div>
     </form>

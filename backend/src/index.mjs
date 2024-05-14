@@ -4,6 +4,7 @@ import router from "./router/index.mjs";
 import cors from "cors";
 const app = express();
 app.use(express.json());
+
 const corsOptions = {
     origin: true,
     optionsSuccessStatus: 200,

@@ -21,13 +21,15 @@
 
 #btnSlider{
 	left: 0;
-	top: 0;
+	top: -0.7px;
 	position: absolute;
-	padding-inline:77px;
-	height: 100%;
+	padding-inline:76px;
+	
 	background: rgba(75, 44, 250, 1);
 	border-radius:16px;
-	transition: .3s ease-in-out  ;
+	transition: .3s ease-in-out;
+	padding-block: 33px;
+	
 }
 
 

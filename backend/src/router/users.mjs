@@ -87,15 +87,16 @@ router.patch("/api/user", ensureAuthenticated, async (request, response) => {
     const updateuser = await user.findOneAndUpdate({ _id: userId }, body, { new: true });
     return response.send(updateuser);
 });
-/*router.patch("/api/user/itiscompany", ensureAuthenticated, async (request, response) => {
+
+router.patch("/api/user/itiscompany", ensureAuthenticated, async (request, response) => {
     const { body } = request;
     const userId = request.user._id;
     const cname = body.companyname;
     const companyuser = await user.findOne({ _id: userId });
     companyuser.company = true;
     const saveuser = await companyuser.save();
-    return response.send("you are a company")
-});*/
+    return response.send("you are a company");
+});
 router.patch("/api/user/itisemploye", ensureAuthenticated, async (request, response) => {
     const { body } = request;
     const userId = request.user._id;
@@ -108,11 +109,46 @@ router.patch("/api/user/itisemploye", ensureAuthenticated, async (request, respo
 });
 router.get("/api/usersRank", ensureAuthenticated, async (request, response) => {
     if (request.user.company) {
-        const users = await user.find({}).sort({ points: -1 }).select("-password").exec();
+        console.log("company");
+        const users = await user.find({ company: { $ne: true } }).sort({ points: -1 }).select("-password").exec();
         return response.send({ users });
     } else {
-        const users = await user.find({}).sort({ points: -1 }).select("-password").select("-phonenumber").select("-email").exec();
+        const users = await user.find({ company: { $ne: true } }).sort({ points: -1 }).select("-password").select("-phonenumber").select("-email").exec();
         return response.send({ users });
     }
 });
+router.get("/api/user/:id", ensureAuthenticated, async (request, response) => {
+    const userId = request.params.id;
+    const newuser = await user.findById(userId).select("-password").exec();
+    return response.send(newuser);
+});
+router.patch("/api/user/changepassword", ensureAuthenticated, async (request, response) => {
+    const { body } = request;
+    const userId = request.user._id;
+    const newuser = await user.findById(userId);
+    newuser.password = hashPassword(body.password);
+    const saveuser = await newuser.save();
+    return response.send("password changed");
+});
+router.delete("/api/user", ensureAuthenticated, async (request, response) => {
+    const userId = request.user._id;
+    const deleteuser = await user.findOneAndDelete({ _id: userId });
+});
+router.patch("/api/user/fav/:id", ensureAuthenticated, ensureCompany, async (request, response) => {
+    const userId = request.user._id;
+    const { id } = request.params;
+    const newuser = await user.findById(userId).select("-password");
+    newuser.companyfav.push(id);
+    const saveuser = await newuser.save();
+    return response.send(saveuser);
+});
+router.patch("/api/user/unfav/:id", ensureAuthenticated, ensureCompany, async (request, response) => {
+    const userId = request.user._id;
+    const { id } = request.params;
+    const newuser = await user.findById(userId).select("-password");
+    newuser.companyfav.pull(id);
+    const saveuser = await newuser.save();
+    return response.send(saveuser);
+});
+
 export default router

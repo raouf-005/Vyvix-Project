@@ -9,8 +9,8 @@ export default function LiveInfo(){
 
     const [counters, setCounters] = useState([
     {
-        counter: 100,
-        unit: "k",
+        counter: 1231,
+        unit: "",
         title: "Goal Achieved"
     },
     {
@@ -19,7 +19,7 @@ export default function LiveInfo(){
         title: "Progress Advance"
     },
     {   
-        counter: 100,
+        counter: 56,
         unit: "k+",
         title: "Users"
 
