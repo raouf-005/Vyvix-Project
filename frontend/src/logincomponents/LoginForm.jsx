@@ -8,6 +8,15 @@ export default function LoginForm() {
   const formik = useFormLogin();
   const [isLoading, setIsLoading] = useState(false);
 
+
+  const handleClick = () => {
+    setIsLoading(true);
+    formik.handleSubmit();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+    
+  }
   return (
     <form
       className="flex flex-col gap-5  align-middle "
@@ -44,11 +53,7 @@ export default function LoginForm() {
           radius="lg"
           isLoading={isLoading}
           onClick={() => {
-            setIsLoading(true);
-            setTimeout(() => {
-              setIsLoading(false);
-            }, 3000);
-            formik.handleSubmit();
+            handleClick();
           }}
         >
           Sign In

@@ -16,7 +16,20 @@ export default function EditProfile() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const formik = useformupdate();
  const user = JSON.parse(atob(localStorage.getItem("auth")));
- console.log("user",user)
+/*   useEffect(() => {
+    formik.setValues({
+      fullName: user.credentials.fullName,
+      username: user.credentials.username,
+      email: user.credentials.email,
+      dateOfBirth: user.credentials.dateOfBirth,
+      education: user.credentials.education,
+      speciality: user.credentials.speciality,
+      languages: user.credentials.languages,
+      workHistory: user.credentials.workHistory,
+      organisation: user.credentials.organisation,
+      phoneNumber: user.credentials.phoneNumber,
+    });
+  }, []); */ 
   return (
     <form
       className="flex flex-row  mt-8 relative  bg-transparent"
@@ -41,6 +54,7 @@ export default function EditProfile() {
           value="Abderraouf Derardja"
           id="fullName"
           name="fullName"
+        //  formik={formik}
         />
         <EditInput
           label="Username"
@@ -65,7 +79,7 @@ export default function EditProfile() {
         /> */}
         <EditInput
           label="DateofBirth"
-          value={""}
+          value={user.credentials.dateOfBirth}
           type="date"
           formik={formik}
           id="dateOfBirth"
@@ -74,7 +88,7 @@ export default function EditProfile() {
         <EditInput
           label="Education"
           value="Higher School of Computer Science & Technology"
-          formik={formik}
+         // formik={formik}
           id="education"
           name="education"
         />
@@ -83,10 +97,10 @@ export default function EditProfile() {
           value="Artificial Intelligence , Computer Vision "
           id="speciality"
           name="speciality"
-        />
+        />  
         <EditInput
           label="Languages"
-          value={user.credentials.Languages}
+          value={user.credentials.languages}
           type="option"
           formik={formik}
           id="languages"
@@ -94,15 +108,16 @@ export default function EditProfile() {
         />
         <EditInput
           label="Work History"
-          value="Entrepreunuer"
+          value={user.credentials.WorkHistory}
           id="workHistory"
+          formik={formik}
           name="workHistory"
         />
 
         <EditInput
           label="Organisation"
-          value="Estin"
-          //formik={formik}
+          value={user.credentials.organisation}
+          formik={formik}
           id="organisation"
           name="organisation"
         />

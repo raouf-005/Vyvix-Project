@@ -5,7 +5,7 @@ import axios from '../../customHooks/Axios';
 import React ,{useState} from 'react';
 import { image } from "@nextui-org/react";
 
-//console.log(users);
+
 
 export default function useFetchUsers(){
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function useFetchUsers(){
            const res = await axios.get('api/usersRank',{
             withCredentials: true,
            });
-           console.log(res.data?.users);
+           
 
 
            const  data = await res.data?.users;
@@ -33,7 +33,7 @@ export default function useFetchUsers(){
              };
             }); 
 
-            console.log("userrank",usersrank);
+            
             setIsLoading(false);
             return {
               items: usersrank,

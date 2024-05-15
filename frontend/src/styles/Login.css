@@ -8,7 +8,7 @@
     margin-right: 5px;
     padding-block: 12px;
     border-radius:16px;
-    min-width: 450px;
+    
 }
 .labelInputLogin{
     text-align: left;
@@ -21,7 +21,7 @@
 
 #btnSlider{
 	left: 0;
-	top: -0.7px;
+	top: -0.9px;
 	position: absolute;
 	padding-inline:76px;
 	

@@ -15,7 +15,7 @@ export default function DashBoard() {
             <div>
                 <Chart2/>
             </div>
-            <div className="grid grid-cols-[28%,41%,27%]  justify-left gap-4  p-8 pl-4">
+            <div className="grid grid-cols-[30%,40%,30%]  justify-center gap-3 p-8  px-3 mx-2">
             <Tasks/>
             <CheckTable/>
             <Pie/>

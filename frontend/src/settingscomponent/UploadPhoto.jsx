@@ -18,6 +18,7 @@ import { useRef } from "react";
 import useformupdate from "../customHooks/useformupdate";
 //add refrech for the profile
 
+
 const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
 
   const formik = useformupdate();
@@ -66,10 +67,14 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
       console.log("Uploaded");
       setImageUrl(response.data.secure_url);
       setDisplay(response.data.secure_url);
-      window.location.reload();
       const auth = atob(localStorage.getItem("auth"));
+
       localStorage.setItem("auth",btoa(JSON.stringify({ ...JSON.parse(auth), credentials: { ...JSON.parse(auth).credentials, image: response.data.secure_url}}))); 
+      //window.location.reload();
       setisSubmited(true);
+      setDisplay(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "");
+      setImageUrl(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "")
+
       return response.data.secure_url;
     } catch (error) {
       console.error("Upload Error:", error);
@@ -81,24 +86,20 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
   };
 
 
-  useEffect(() => {
-    if (formikfield) {
-       // formikfield.value=localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")).credentials.image : "";
-       
-    }
+   useEffect(() => {
     const handleUpload = async () => {
-      if (formikfield)  {    
-        try {
-          const res = await axioss.patch("/api/user", { image: imageUrl }, {
-            withCredentials: true,
-          });
-          console.log("Image updated successfully");
-          console.log(res); 
-        } catch (error) {
-          console.error("Image update error:", error);
-        }
-      }
+  if (formikfield)  {    
+    try {
+      const res = await axioss.patch("/api/user", { image: JSON.parse(atob(localStorage.getItem("auth"))).credentials.image }, {
+        withCredentials: true,
+      });
+      console.log("Image updated successfully");
+      console.log(res); 
+    } catch (error) {
+      console.error("Image update error:", error);
     }
+  }
+}
     if (issubmited) {
       handleUpload();
       setisSubmited(false);
@@ -108,6 +109,13 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
     }, [issubmited]);
 
 
+    useEffect(() => {
+      formik.setValues({
+        image: localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "",
+
+      });
+     
+    }, [issubmited]);
 
   return (
     <Modal
@@ -140,7 +148,7 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
                 multiple={false}
               />
                 <Avatar
-                  src={display || data.pfp}
+                  src={display ||  JSON.parse(atob(localStorage.getItem("auth"))).credentials.image }
                   alt="pfp"
                   className="w-28 h-28"
                   aria-label="Profile Picture"

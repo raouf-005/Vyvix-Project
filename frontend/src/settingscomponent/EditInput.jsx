@@ -47,7 +47,7 @@ export default function EditInput({
   const formikfield = formik ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, '')) : null;
 
 useEffect(() => {
-    if (formikfield&&value) {
+    if (formikfield&&value && label !== "Languages") {
         formikfield.value=value;
     }
     }, [value]);
@@ -57,15 +57,13 @@ const [isVisible, setIsVisible] = useState(true);
 const [values, setValues] = React.useState(new Set([]));
 
 const handleSelectionChange = (e) => {
-    
+    console.log(values)
   setValues(new Set(e.target.value.split(",")));
+  formikfield.value = Array.from(values);
+  
 };
 // iw ill modify this to be more dynamic the above function to get rid of the useEffect
-useEffect(() => {
-    if (formikfield&&values) {
-        formikfield.value=values;
-    }
-    }, [values]);
+
 
 
 
@@ -146,8 +144,7 @@ useEffect(() => {
                 ],
               },
             }}
-            onChange={handleSelectionChange}
-                        
+            onChange={handleSelectionChange}        
          
           >
             {languages.map((language) => (
@@ -158,7 +155,7 @@ useEffect(() => {
           </Select>
         );
       default:
-        console.log(value);
+       
         return (
           <Input
             placeholder={value}

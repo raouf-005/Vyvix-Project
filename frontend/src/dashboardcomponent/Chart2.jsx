@@ -4,13 +4,14 @@ import Calender from '../assets/Calender.svg';
 import TrueMark from '../assets/TrueMark.svg';
 import Shadow from '../assets/Shadow.svg';
 import { Avatar, Button ,Image} from '@nextui-org/react';
+import TotalGoalsImg from '../assets/TotalGoalsImg.svg';
 class Chart2 extends React.Component {
     constructor(props) {
       super(props);
 
       this.state = {
         series: [{
-          name: 'Goals',
+          name: 'Tasks',
           data: [4, 3, 10, 9, 29,13,14,13]
         }],
         options: {
@@ -91,7 +92,7 @@ class Chart2 extends React.Component {
       </Button>
       <div>
       <h1 className='text-black font-bold text-3xl dark:text-white'>
-          7 Goals
+      {JSON.parse(atob(localStorage.getItem('auth'))).credentials.totaltasks||0} Tasks
       </h1>
       <p className='text-slate-400 text-sm '>
           Total progress 
@@ -121,18 +122,18 @@ class Chart2 extends React.Component {
                   Total tasks   
                   </span>    
                   <span className='text-black font-bold text-xl dark:text-white -mt-1'>
-                  154
+                  {JSON.parse(atob(localStorage.getItem('auth'))).credentials.totaltasks||0}
                   </span>
           </div>
               
           </Button>
-          <Button size='lg' className='text-start py-9 pr-14 text-slate-400  bg-white font-semibold dark:bg-carddm' startContent={<Avatar size="lg" src={Shadow} className='-ml-3'  />}>
+          <Button size='lg' className='text-start py-9 pr-14 text-slate-400  bg-white font-semibold dark:bg-carddm' startContent={<Avatar size="lg" src={TotalGoalsImg} className='-ml-3'  />}>
                   <div className=' flex flex-col'>
                           <span className='text-sm'>
                           Total Goals    
                           </span>    
                           <span className='text-black font-bold text-xl dark:text-white -mt-1'>
-                          12
+                          {JSON.parse(atob(localStorage.getItem('auth'))).credentials.plans.length||0}
                           </span>
                   </div>
           </Button>

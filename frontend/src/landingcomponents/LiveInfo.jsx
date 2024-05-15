@@ -9,8 +9,8 @@ export default function LiveInfo(){
 
     const [counters, setCounters] = useState([
     {
-        counter: 1231,
-        unit: "",
+        counter: 12,
+        unit: "k",
         title: "Goal Achieved"
     },
     {
@@ -49,7 +49,7 @@ export default function LiveInfo(){
     }
 
     return(
-        <ul className="flex flex-row sm:justify-evenly mobile:justify-around sm:px-14 mobile:px-1">
+        <ul className="flex flex-row sm:justify-around mobile:justify-center mobile:gap-5 sm:gap-0 sm:px-14 mobile:px-1    ">
             {counters.map((counter,index) => (
                 <li key={index}>
                     <Counter {...counter} />

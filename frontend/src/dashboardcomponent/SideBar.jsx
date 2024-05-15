@@ -1,12 +1,11 @@
 import NavBtn from "./NavBtn"
-import { Image ,ButtonGroup} from "@nextui-org/react";
+import { Image ,ButtonGroup,Button} from "@nextui-org/react";
 import { useContext, useEffect } from "react";
 import { PageContext } from "../pages/PagesContainer";
 import  {useNavigate} from 'react-router-dom';
 import {HomeImg ,ProfileImg, RankingImg,VyvixLogo,SettingsImg ,HeartSideIcon} from '../assets/SideBarIcons';
-
-
-
+import LogoutImg from '../assets/Logout.svg';
+import axios from '../customHooks/Axios';
 //i will move it to different directory 
 
 
@@ -29,9 +28,28 @@ export default function SideBar({darkMode}) {
         
     },[currentPage])
 
+    const Logout = async () => {
+        localStorage.removeItem("auth");
+        try {
+            const response = await axios.post("/api/userlogout",{},
+                {
+                    withCredentials: true,
+                }
+            );
+            if (response.status === 200) {
+               alert("User Logged Out");
+                navigate("/login")
+                setCurrentPage("Login")
+            }
+        
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
+    
 
     return (
-        <nav className="min-w-60 bg-white min-h-screen dark:bg-carddm dark:divide-y-[0.001rem] divide-current">
+        <nav className="min-w-60 bg-white relative min-h-screen dark:bg-carddm dark:divide-y-[0.001rem] divide-current">
             <div className="flex justify-center items-center pb-2 pt-7  ">
                 <VyvixLogo  darkMode={darkMode}/>
             </div>
@@ -78,6 +96,15 @@ export default function SideBar({darkMode}) {
                     onClick={() => handleClicked("Settings")}
                 />
             </ButtonGroup>
+
+            <Button size="lg" className=" bg-gradient-to-br from-indigo-500 to-blue-500 dark:from-rose-500 dark:to-red-500/70 absolute bottom-24 border-none text-white shadow-md left-[19.1%]"
+                onClick={() => {
+                    Logout()
+                }}
+            >
+                <Image src={LogoutImg} alt="Heart Icon" />
+                Log Out
+            </Button>
         </nav>
     );
 }

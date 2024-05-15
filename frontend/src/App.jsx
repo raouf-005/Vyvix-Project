@@ -10,7 +10,6 @@ import Error from "./pages/Error";
 import Ranking from "./pages/Ranking";
 import UsersProfile from "./pages/UsersProfile";
 import RequireAuth from "./authcomponent/RequireAuth";
-import Layout from "./authcomponent/Layout";
 import Favorites from "./pages/Favorites";
 import Settings from "./pages/Settings";
 import Unauthorized from "./pages/Unauthorized";

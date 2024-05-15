@@ -11,7 +11,7 @@ return(
             <h1 className="text-black  sm:text-5xl mobile:text-3xl    leading-[60px] font-bold max-w-md mb-4 ">
             About Us
             </h1>
-            <p  className="sm:max-w-lg mobile:max-w-sm  text-gray-700 mb-12 sm:text-lg mobile:text-tiny">
+            <p  className="sm:max-w-lg mobile:max-w-sm  text-gray-700 sm:mb-12 mobile:mb-4 sm:text-lg mobile:text-tiny">
             Experience a transformative journey marked by personalized guidance,
              seamless goal achievement, and a thriving community.
               Elevate your life and reach new heights with our holistic approach.

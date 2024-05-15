@@ -49,7 +49,9 @@ function calculatetotalPoints(tasks) {
         if (tasks[i].status === true) {
             points += tasks[i].point;
         }
+        // mongoose.connection.close();
     }
+
     return points;
 };
 function calculateprogress(tasks) {
@@ -58,8 +60,10 @@ function calculateprogress(tasks) {
         if (tasks[i].status === true) {
             progress += 1;
         }
+        // mongoose.connection.close();
     }
-    return progress / tasks.length;
+
+    return Math.round((progress / tasks.length) * 100);
 };
 planSchema.pre("save", async function (next) {
     this.pointsearned = calculatetotalPoints(this.tasks);

@@ -121,12 +121,12 @@ export default function Tasks() {
                 }}
                 isSelected={selected.length === tasks.length && tasks.length > 0}
             >
-                Tasks
+               Today Tasks
             </Checkbox>
 
             <CheckboxGroup
                 classNames={{
-                    base: 'min-w-[300px]',
+                  
                 }}
                 value={selected}
                 onValueChange={setSelected}

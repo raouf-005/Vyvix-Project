@@ -4,42 +4,39 @@ import threepoints from '../assets/threepoints.svg';
 import { GoalsContext} from "../pages/PagesContainer";
 import {Spinner} from "@nextui-org/react";
 
-const rows = [
-  {
-    key: "1",
-    goal: "Goal 1",
-    points: 30,
-    date: new Date().toISOString(),
-  },
-  {
-    key: "2",
-    goal: "Goal 2",
-    points: 50,
-    date:new Date().toISOString(),
-  },
-  {
-    _id: "5",
-    goal: "Goal 5",
-    points: 100,
-    date:new Date().toISOString(),
-  }
 
-];
 
 const columns = [
   {
     _id: "goal",
-    label: "Goal",
+    label: "GOAL",
   },
   {
     _id: "points",
-    label: "Points",
+    label: "GOAL POINTS",
   },
   {
     _id: "progress",
-    label: "Progress",
+    label: "PROGRESS",
   },
 ];
+
+
+
+const CalculateGoalpoints = (goal) => {
+
+  return goal.tasks.reduce((sum, task) => sum + task.point, 0);
+};
+
+
+const updatedGoals = (goals) => {
+  return goals.map((goal) => {
+    return {
+      ...goal,
+      points: CalculateGoalpoints(goal),
+    };
+  });
+};
 
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
@@ -47,34 +44,21 @@ export default function App() {
   const [arrived, setArrived] = useState(false);
  
  
-  useEffect(() => {
+ 
+
+
+useEffect(() => {
     if (goals && goals.length > 0) {
-
-      const updatedGoals = goals.map((goal) => {
-        const totalPoints = goal.tasks.reduce((sum, task) => sum + task.point, 0);
-        return {
-          ...goal,
-          points: totalPoints,
-        };
-      });
-      setGoals(updatedGoals);
-      console.log(updatedGoals) 
-
-    }
-    
-  }, [arrived]);
-
-  useEffect(() => {
-    if (goals && goals.length > 0) {
-
       setArrived(true);
     }
   }, [goals]);
 
+
+
  
   return (
 
-    <div className="bg-white flex-1  rounded-3xl py-5 px-3 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-w-[800px]">
+    <div className="bg-white flex-1  rounded-3xl py-5 px-3 text-black  flex flex-col gap-3 dark:text-white  dark:bg-carddm max-h-[400px]">
 
           <div className="flex justify-between ">
                 <h3 className='text-black  font-bold text-2xl dark:text-white '>Check Tables</h3>
@@ -83,15 +67,20 @@ export default function App() {
               </Button>
           </div> 
           <Table
+          isHeaderSticky  
           color="success"
           selectionMode="multiple"
           disabledKeys={["3", "4"]}
           selectedKeys={selectedKeys}
           onSelectionChange={setSelectedKeys}
           className="max-w-[600px]  border-none "
+          shadow="none"
           classNames={{
-            th: ["bg-transparent"],
+            th: ['dark:bg-carddm bg-white dark:text-white ',"z-10 "],
             wrapper: "dark:text-white bg-transparent text-black p-0 shadow-none",
+            table: "max-h-[500px]",
+            base: "max-h-[500px]  overflow-y-scroll  scrollbar-hide ",
+            
           }}
           
           >
@@ -100,11 +89,12 @@ export default function App() {
           </TableHeader>
         {goals ? (
           <TableBody
-           items={goals}
-           isLoading={!goals}>
+           items={updatedGoals(goals)}
+           isLoading={!arrived}
+           loadingContent={<Spinner label="Loading..." />}           >
             {(item) => (
-              <TableRow key={item._id}>
-                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+              <TableRow key={item._id} >
+                {(columnKey) => <TableCell >{getKeyValue(item, columnKey)}</TableCell>}
               </TableRow>
             )}
           </TableBody>

@@ -3,13 +3,30 @@ import { Checkbox, Button } from "@nextui-org/react";
 import InputLogin from "./InputLogin";
 import useFormRegister from "../customHooks/useformRegister.jsx";
 
+
+
+
+
 export default function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const formik = useFormRegister();
   const [EmailPassValue, setEmailPassValue] = useState(
     localStorage.getItem("email")
   );
-  console.log(formik.values);
+
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    formik.handleSubmit();
+  }
+
+
+
+
+
   useEffect(() => {
     if (EmailPassValue) {
       formik.setFieldValue("email", EmailPassValue);
@@ -66,13 +83,11 @@ export default function RegisterForm() {
             !formik.values.username ||
             !formik.values.password
           }
+          isLoading={isLoading}
 
           onClick={
-            ()=>{
-                setIsLoading(true);
-                setTimeout(() => {
-                  setIsLoading(false);
-                }, 3000);
+            () => {
+              handleClick();
             }
           }
         >

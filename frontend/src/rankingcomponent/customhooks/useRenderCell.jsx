@@ -4,8 +4,7 @@ import { Avatar } from "@nextui-org/react";
 export default function useRenderCell() {
   const renderCell = useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
-    console.log("user", user);
-    console.log("cellValue", cellValue);
+  
     switch (columnKey) {
       case "status":
         return <ProgressBar value={cellValue} />;

@@ -22,6 +22,7 @@ export default function TitleInput ({type, placeholder ,className}){
 
 
     return (
+      <>
       <Input
         type={type}
         size="lg"
@@ -30,20 +31,20 @@ export default function TitleInput ({type, placeholder ,className}){
         aria-label=""
         ref={inputRef}
         placeholder={placeholder}
-        className={`rounded-3xl p-3 w-80 lg:mt-5 text-black ${className}`}
+        className={`rounded-3xl p-3 w-80 sm:mt-5 mobile:hidden sm:flex text-black ${className}`}
         onKeyUp={(e) => {
           if (e.key === "Enter") {
             handleRegister();
           }
         }}
         endContent={
-          <div className="items-center">
+          <div className="items-center ">
             <Button
               radius="full"
               onClick={() => handleRegister()}
-              className="text-white bg-gradient-to-r mobile:text-tiny sm:text-md from-red-500 mobile:-ml-[29px] to-pink-600"
+              className="text-white bg-gradient-to-r mobile:text-tiny sm:text-md from-red-500 mobile:-ml-[29px] to-pink-600 "
             >
-              Sign in
+              Sign Up
             </Button>
           </div>
         }
@@ -54,5 +55,16 @@ export default function TitleInput ({type, placeholder ,className}){
           />
         }
       />
+      <div className=" mobile:flex sm:hidden bg-white justify-center align-middle px-3 mt-3 py-2 rounded-full">
+      <Button
+              radius="full"
+              onClick={() => handleRegister()}
+              className="text-white bg-gradient-to-r mobile:text-tiny mobile:flex sm:hidden sm:text-md from-red-500 to-pink-600 "
+            >
+              Sign Up
+            </Button>
+      </div>
+    
+      </>
     );
 }

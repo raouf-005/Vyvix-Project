@@ -28,9 +28,8 @@ const Counter = (props) => {
 export default function ProfileCard(props) {
     const user =props.user||""; 
     
-    console.log("12333333333",JSON.parse(atob(localStorage.getItem("auth"))).credentials);
     const counter=[
-        {value:user.totaltasks||JSON.parse(atob(localStorage.getItem("auth"))).credentials.totaltasks||0,label:"Goals"},//change it to goals
+        {value:user.goals||JSON.parse(atob(localStorage.getItem("auth"))).credentials.plans.length||0,label:"Goals"},//change it to goals
         {value:user.points||JSON.parse(atob(localStorage.getItem("auth"))).credentials.points||0,label:"Points"},
         {value:user.rank||JSON.parse(atob(localStorage.getItem("auth"))).credentials.rank||0,label:"Rank"},
     ]

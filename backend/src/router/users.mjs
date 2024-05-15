@@ -24,16 +24,6 @@ function ensureCompany(req, res, next) {
         res.status(401).json({ message: 'Unauthorized' });
     }
 }
-async function calculateUserRank(userId) {
-    // Retrieve all users and sort them by points in descending order
-    const users = await user.find({}).sort({ points: -1 }).exec();
-
-    // Find the index of the user in the sorted list
-    const userIndex = users.findIndex(u => u._id.toString() === userId);
-
-    // Return the user's rank (index in the sorted list + 1)
-    return userIndex + 1;
-}
 const router = Router();
 
 
@@ -42,12 +32,12 @@ router.use(cookieParser())
 router.use(session({
     secret: "tk14",
     resave: false,
-    saveUninitialized: false,
-    //store: MongoStore.create({ mongoUrl: process.env.database }),
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.database }),
     cookie: {
         maxAge: 60000 * 60 * 24,
-        secure: false,
-        sameSite: true,
+        secure: process.env.NODE_ENV === 'production', // Secure in production
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' // None in production, lax otherwise
     }
 }));
 router.use(passport.initialize());
@@ -69,7 +59,7 @@ router.post("/api/userlogin", passport.authenticate("local"), async (request, re
     if (!request.user) return response.send({ message: "You are not logged in" })
     const nuser = await user.findById(request.user._id).select('-password');
     console.log(request.session);
-    response.send({ msg: "you are loged in", requestuser: nuser, });
+    response.send({ msg: "you are logged in", requestuser: nuser, });
 });
 
 router.post("/api/userlogout", (request, response) => {
@@ -77,17 +67,16 @@ router.post("/api/userlogout", (request, response) => {
     request.logout((err) => {
         if (err) return response.sendStatus(400);
         response.clearCookie('connect.sid'); // Delete the session cookie
-        response.send(200);
+        response.sendStatus(200);
     });
 });
 // update user
 router.patch("/api/user", ensureAuthenticated, async (request, response) => {
     const { body } = request;
     const userId = request.user._id;
-    const updateuser = await user.findOneAndUpdate({ _id: userId }, body, { new: true });
+    const updateuser = await user.findOneAndUpdate({ _id: userId }, body, { new: true }).select("-password").exec();
     return response.send(updateuser);
 });
-
 router.patch("/api/user/itiscompany", ensureAuthenticated, async (request, response) => {
     const { body } = request;
     const userId = request.user._id;
@@ -150,5 +139,10 @@ router.patch("/api/user/unfav/:id", ensureAuthenticated, ensureCompany, async (r
     const saveuser = await newuser.save();
     return response.send(saveuser);
 });
-
+router.get("/api/usercompany/favorites", ensureAuthenticated, ensureCompany, async (request, response) => {
+    const userId = request.user._id;
+    const newuser = await user.findById(userId).select("-password");
+    const favs = await user.find({ _id: { $in: newuser.companyfav } }).select("-password").exec();
+    return response.send(favs);
+});
 export default router

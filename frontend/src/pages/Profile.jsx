@@ -11,7 +11,10 @@ export default function Profile() {
   const { id } = useParams();
   let user = null;
 useEffect(() => {
+  if(id){
     user =fetchProfile();
+  }
+    
   }, []);
   const fetchProfile = async () => {
     try {
@@ -26,6 +29,8 @@ useEffect(() => {
     }
   
   };
+
+  //i will add fetch personnel user and get rid of local storage
 
   return (
     <div className="w-full gap-6 flex flex-col">

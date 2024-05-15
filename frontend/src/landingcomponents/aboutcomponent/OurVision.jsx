@@ -23,6 +23,7 @@ By                  By harnessing the power of technology and community,
                <Image 
                 radius='lg'
                 src={OurVisionImage}
+                className='mobile:mt-4 sm:mt-0 sm:mr-0 mobile:mx-5 mobile:max-w-[90%] sm:w-full'
                />
 
 

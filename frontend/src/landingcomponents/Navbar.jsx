@@ -27,7 +27,7 @@ export default function Navbar (){
 
 
     return (
-        <nav className="flex p-4  lg:gap-48 lg:flex-row sm:gap-3 sm:flex-col  mobile:justify-between items-center lg:justify-center">
+        <nav className="flex p-4  lg:gap-48 lg:flex-row sm:gap-3 sm:flex-col  mobile:justify-center items-center lg:justify-center">
             <div className="">
                 <img src={landinglogo} alt="landinglogo" />
             </div>
@@ -49,7 +49,7 @@ export default function Navbar (){
                     Download
                 </Button>
             </ButtonGroup>
-            <div className="items-center flex">
+            <div className="items-center flex mobile:hidden sm:flex">
                 <Link
                     className="bg-white text-gradient-to-r from-pink-600 to-purple-900 px-6 active:opacity-40 text-center  font-semibold py-2 rounded-3xl"
                     to="/login"

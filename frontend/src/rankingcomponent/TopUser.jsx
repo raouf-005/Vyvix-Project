@@ -19,8 +19,6 @@ import useRenderCellCompany from "./customhooks/useRenderCellCompany";
 
 export default function TopUser() {
   const auth = JSON.parse(atob(localStorage.getItem("auth")));
-  console.log("nogg", auth);
-  console.log("nogg", auth?.credentials?.company);
   const [list, isLoading] = useFetchUsers();
   const renderCell = auth?.credentials?.company===true ? useRenderCellCompany():useRenderCell();
   const [page, setPage] = useState(1);

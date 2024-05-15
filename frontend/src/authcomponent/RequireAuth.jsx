@@ -10,7 +10,6 @@ const RequireAuth = ({ allowedRoles }) => {
     const location = useLocation();     
     const iscompany = allowedRoles.includes("company");
 
-    console.log("true",isAuth)
 
     return (isAuth?.credentials?.company === iscompany || allowedRoles.length === 2 ) && localStorage.getItem("auth") ? (
         <Outlet />

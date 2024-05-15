@@ -3,7 +3,9 @@ import threepoints from "../assets/threepoints.svg";
 import CheckMark from "../assets/CheckMark.jsx";
 
 export default function CustomCheckbox({ children, ...props }) {
-  let { id, status, date, task } = props;
+  let { id, status, date, task ,value } = props;
+
+  console.log("task", value);
   return (
     <Checkbox
       aria-label=""

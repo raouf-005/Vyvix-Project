@@ -16,10 +16,10 @@ export default function InputLogin ({type ,placeholder,name,formik }){
 
     
     return(
-        <div className="flex flex-col ml-1 ">
+        <div className="flex flex-col max-w-screen ">
             <label htmlFor={name} className="labelInputLogin mb-2   ">{name==='Useremail'?'Username :':name+' :'}</label>
             <div className=" relative">
-                <input type={type==='password'? isVisible? 'password':'text':type} id={name} name={name} placeholder={placeholder} className="inputLogin relative" {...formikfield} />
+                <input type={type==='password'? isVisible? 'password':'text':type} id={name} name={name} placeholder={placeholder} className="inputLogin mobile:min-w-[360px] sm:min-w-[450px] relative" {...formikfield} />
                 {
                     type === 'password' ?(
                         <Button 

@@ -11,18 +11,18 @@ import Fourth from '../assets/4th.svg';
 export default function Sponsor() {
     return(
 
-        <ul className="flex flex-row justify-evenly px-14">
-            <li>
-                <img src={First} alt="sponsor" />
+        <ul className="flex flex-row justify-around  items-center sm:px-20  mt-4 sm:mx-0 mobile:mx-7 ">
+            <li >
+                <img src={First} alt="sponsor1" className='sm:w-[89%]  mobile:size-4/5'/>
             </li>
             <li>
-                <img src={Second} alt="sponsor" />
+                <img src={Second} alt="sponsor2" className='sm:w-[89%]  mobile:size-4/5' />
             </li>
             <li>
-                <img src={Third} alt="sponsor" />
+                <img src={Third} alt="sponsor3" className='sm:w-[89%]  mobile:size-4/5'/>
             </li>
             <li>
-                <img src={Fourth} alt="sponsor" />
+                <img src={Fourth} alt="sponsor4" className='sm:w-[89%]  mobile:size-4/5' />
             </li>
         </ul>
     )

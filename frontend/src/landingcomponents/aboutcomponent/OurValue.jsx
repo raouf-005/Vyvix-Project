@@ -38,14 +38,14 @@ const list = [
 export default function OurValue (){
     return(
         <div className="flex items-center flex-col text-center ">
-        <Button className=" bg-purple-100 py-8 px-8 font-bold  pointer-events-none text-black mb-6"
+        <Button className=" bg-purple-100 py-8 px-8 font-bold  pointer-events-none text-black  mobile:mt-4 sm:mt-0 mb-6"
             size="lg" radius="full">
             Our Values
         </Button>
-        <h1 className="text-black  sm:text-5xl mobile:text-3xl   leading-[60px] font-bold max-w-lg">
+        <h1 className="text-black  sm:text-5xl mobile:hidden sm:flex   leading-[60px] font-bold max-w-lg">
         The story and values behind our Team
         </h1>
-            <div className="grid  grid-cols-2 grid-rows-2 gap-3  mt-14">
+            <div className="grid  grid-cols-2 grid-rows-2 gap-3  sm:mt-14">
                 {list.map((item, index) => (
                     <ValueCard key={index} title={item.title} description={item.description} icon={item.icon} />
                 ))}

@@ -1,6 +1,6 @@
 export default function OurMission() {
     return(
-        <div className="flex sm:flex-row mobile:flex-col mobile:px-3 justify-evenly">
+        <div className="flex sm:flex-row mobile:flex-col mobile:px-3 justify-evenly mobile:text-center sm:text-left ">
             <h1 className="text-black  sm:text-5xl mobile:text-3xl     leading-[60px] font-bold">
                 Our Mission
             </h1>
