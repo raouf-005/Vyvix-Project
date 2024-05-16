@@ -19,19 +19,18 @@ export default function CustomCheckbox({ children, ...props }) {
             withCredentials: true,
           }
         );
-        const data = await response.json();
-        console.log("data", data);
+        const data = await response.data;
       } catch (error) {
         console.log("error", error);
       }
     };
-
+if(goal_id && value){
     if (status === true) {
       fetchTaskDone('');
     } else {
       fetchTaskDone('un');
         }
-      
+      }    
     
   }, [status]);
 

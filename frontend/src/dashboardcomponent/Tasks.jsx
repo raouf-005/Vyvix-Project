@@ -63,7 +63,7 @@ function formatDate(date) {
 export default function Tasks() {
     const { goals ,setGoals} = useContext(GoalsContext);
 //maybe i will add only a condition if goals render tasks 
-    const [tasks, setTasks] = useState(goals && goals.length > 0 ? goals[0].tasks : []);
+    const [tasks, setTasks] = useState([]);
     const [selected, setSelected] = useState([]);
   
     const selectAll = (e, list) => {
@@ -87,7 +87,11 @@ export default function Tasks() {
         return [...acc, ...todayTasks.map(task => ({ ...task, goal_id: goal._id }))];
     }, []);
     setTasks(todayTasks);
-        }   
+    todayTasks.length > 0 ? setSelected(todayTasks.filter((task) => task.status===true).map((task) => task._id)) : setSelected([]);
+        }  
+        
+
+
     }, [goals]);
 
      useEffect(() => {
@@ -131,16 +135,16 @@ export default function Tasks() {
                 
                 className='overflow-y-scroll h-80 scrollbar-hide'
             >
-                {tasks.map((item) => (
+                {tasks&& tasks.length>0?tasks.map((item) => (
                     item.task ?(//to handle the case where the task is empty caused by the api 
                     <CustomCheckbox key={item._id} value={item._id} {...item}>
                         {item.task}
                     </CustomCheckbox>
                     ):null
-                ))
+                )):<p className='text-center mt-12 text-black dark:text-white  text-xl '>No tasks for today</p>
                 }
             </CheckboxGroup>
-            {tasks.length === 0 && <p className='text-center absolute text-black dark:text-white  text-xl  left-[81px] top-28'>No tasks for today</p>}
+        
         </div>
     );
 }

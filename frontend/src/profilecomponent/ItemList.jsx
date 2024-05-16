@@ -22,7 +22,6 @@ export default function ItemList(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const deleteGoal = async (id) => {
-    console.log(`/api/plan/${id}`);
     try {
       const response = await axios.delete(`/api/plan/${id}`, {
         withCredentials: true,
@@ -37,25 +36,19 @@ export default function ItemList(props) {
   };
 
   const changeNameGoal = async (id, name) => {
-    console.log(`/api/plan/${id}`);
-
-    const newGoals = props.goallist.map((goal) => {
-      if (goal._id === id) {
-        return { ...goal, goal: name };
-      }
-      return goal;
-    });
-    props.setGoalList(newGoals);
-
-    /*  try {
-      const response = await axios.patch(`/api/plan/${id}`, {
-        withCredentials: true,
-      });
+    console.log(`/api/plan/${id}/rename`);
+    try {
+      const response = await axios.patch(
+        `/api/plan/${id}/rename`,
+        {goal: nameLogic},
+        {
+          withCredentials: true,
+        }
+      );
       console.log(response);
     } catch (error) {
-      console.error(error);
+      console.error("rename", error);
     }
- */
   };
 
   return (
@@ -63,7 +56,12 @@ export default function ItemList(props) {
       sx={{ paddingBlock: 1, marginTop: 2 }}
       className="rounded-2xl  dark:shadow-lg shadow-md dark:bg-ltdm  ease-soft-spring"
       secondaryAction={
-        <Popover offset={-5} placement="top" isOpen={isOpen}  onOpenChange={(open) => setIsOpen(open)}>
+        <Popover
+          offset={-5}
+          placement="top"
+          isOpen={isOpen}
+          onOpenChange={(open) => setIsOpen(open)}
+        >
           <PopoverTrigger>
             <Button
               isIconOnly
@@ -98,8 +96,8 @@ export default function ItemList(props) {
                   darkMode ? "text-white " : "text-slate-300 "
                 } text-tiny`}
                 onClick={() => {
-                  setIsOpen(false)
-                  setIsInput(true)
+                  setIsOpen(false);
+                  setIsInput(true);
                 }}
               >
                 <Image src={Done} className="w-7 " />
@@ -124,10 +122,13 @@ export default function ItemList(props) {
           isInput ? (
             <input
               type="text"
-              className={`text-lg ${isInput? 'shadow-sm shadow-slate-100 border-purple-800  border-1':''} pl-3 -ml-3 rounded-lg bg-gradient-to-r from-danger to-primary bg-clip-text text-transparent font-semibold`}
+              className={`text-lg ${
+                isInput
+                  ? "shadow-sm shadow-slate-100 border-purple-800  border-1"
+                  : ""
+              } pl-3 -ml-3 rounded-lg bg-gradient-to-r from-danger to-primary bg-clip-text text-transparent font-semibold`}
               defaultValue={nameLogic}
               onChange={(e) => setNamelogic(e.target.value)}
-
               onBlur={() => {
                 setIsInput(false);
                 changeNameGoal(props.id, nameLogic);
@@ -135,7 +136,7 @@ export default function ItemList(props) {
             />
           ) : (
             <h2 className="text-lg  bg-gradient-to-r from-danger to-primary bg-clip-text text-transparent font-semibold">
-              {nameLogic|| "Single line "}
+              {nameLogic || "Single line "}
             </h2>
           )
         }

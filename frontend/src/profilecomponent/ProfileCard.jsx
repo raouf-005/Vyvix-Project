@@ -39,7 +39,7 @@ export default function ProfileCard(props) {
     useEffect(()=>{
         const fetchSetFav = async (isFav) => {     
             try {
-            const response = await axios.patch(`/api/user/${isFav}fav/${user._id}`, {}, {
+            const response = await axios.patch(`/api/user/${isFav}fav/${user._id}`, {
                 withCredentials: true
             });
             console.log(response)
@@ -47,13 +47,16 @@ export default function ProfileCard(props) {
             console.log(error)
             }
         }
-        if (liked){
-            fetchSetFav('');
-        }else{
-            fetchSetFav('un')
+        if(user?.username){
+            if (liked){
+                fetchSetFav('');
+            }else{
+                fetchSetFav('un')
+            }
         }
+       
         
-    },[liked,user?.username])
+    },[liked])
 
     return (
         <div className=" flex justify-center px-4  "

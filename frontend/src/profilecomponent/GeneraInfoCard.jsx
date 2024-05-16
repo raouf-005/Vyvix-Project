@@ -1,8 +1,25 @@
 const LitlleCard = ({title, value}) => {
+
+    let formattedValue = value;
+
+    switch (title) {
+        case "Languages":
+            formattedValue = value.join(", ");
+            break;
+        case "Dateofbirth":
+            formattedValue = value.split("T")[0];
+            break;
+        default:
+            formattedValue = value;
+            break;
+    }
+
+
+
     return (
-        <div className=" rounded-xl p-3 pl-5 shadow-lg shadow-gray-200 dark:bg-ltdm   dark:shadow-sm dark:shadow-slate-100/40">
+        <div className=" rounded-xl p-3 pl-5 shadow-lg  shadow-gray-200 dark:bg-ltdm   dark:shadow-sm dark:shadow-slate-100/40">
             <h4 className=" text-sm ">{title}</h4>
-            <p className="text-black dark:text-white">{value}</p>
+            <p className="text-black dark:text-white max-h-11">{formattedValue}</p>
         </div>
     )
 }
@@ -16,9 +33,10 @@ const LitlleCard = ({title, value}) => {
 
 export default function GeneralInfoCard(props) {
 
-    const user =atob(localStorage.getItem('auth'));
+    const user =JSON.parse(atob(localStorage.getItem('auth')));
     const user2 =props.user||''
-    console.log('props',props)
+  //  console.log('props',props)
+  console.log('user',user)
 
     const data = {
       education: user2.education || user?.credentials?.education || "Empty",
