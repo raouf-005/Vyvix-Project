@@ -24,7 +24,7 @@ export default function GoalsCard() {
             Keep you user engaged by providing meaningful information.
             </p>
             
-           {goallist &&goallist.lenght >0? <List dense={true} aria-label="" sx={{overflow:'auto', maxHeight:'350px',marginBottom:'10px'}} >
+           {goals && goals.length >0? <List dense={true} aria-label="" sx={{overflow:'auto', maxHeight:'350px',marginBottom:'10px'}} >
                 {
                     goallist.map((goal,index) => (
                         <ItemList name={goal.goal} id={goal._id} key={goal._id} index={index}  goallist={goallist} setGoalList={setGoalList}/>
