@@ -20,8 +20,8 @@ function originChecker(req, res, next) {
 app.use(originChecker);
 app.use(cors(corsOptions));
 app.use(router);
-app.set("trust proxy", 1);
-mongoose.connect(process.env.database)
+//app.set("trust proxy", 1);
+mongoose.connect("mongodb://0.0.0.0:27017/vyvix")
     .then(() => console.log("connected to database"))
     .catch((err) => console.log(`EROR:${err}`));
 mongoose.connection.setMaxListeners(20); // Increase limit to 20
