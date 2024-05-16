@@ -4,6 +4,9 @@ import router from "./router/index.mjs";
 import cors from "cors";
 const app = express();
 app.use(express.json());
+
+
+
 const corsOptions = {
     origin: true,
     optionsSuccessStatus: 200,
@@ -21,7 +24,7 @@ app.use(originChecker);
 app.use(cors(corsOptions));
 app.use(router);
 app.set("trust proxy", 1);
-mongoose.connect("mongodb://0.0.0.0:27017/vyvix")
+mongoose.connect(process.env.database)
     .then(() => console.log("connected to database"))
     .catch((err) => console.log(`EROR:${err}`));
 mongoose.connection.setMaxListeners(20); // Increase limit to 20
