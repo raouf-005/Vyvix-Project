@@ -9,37 +9,30 @@ export default function CustomCheckbox({ children, ...props }) {
   let { goal_id, status, date, task, value } = props;
 
   useEffect(() => {
-    if (status === true) {
-      const fetchTaskDone = async () => {
-        try {
-          const response = await axios.patch(
-            `/api/plan/${goal_id}/taskdone/${value}`,
-            {
-              withCredentials: true,
-            }
-          );
-          const data = await response.json();
-          console.log("data", data);
-        } catch (error) {
-          console.log("error", error);
-        }
-      };
 
-      fetchTaskDone();
+
+    const fetchTaskDone = async (isDone) => {
+      try {
+        const response = await axios.patch(
+          `/api/plan/${goal_id}/task${isDone}done/${value}`,{},
+          {
+            withCredentials: true,
+          }
+        );
+        const data = await response.json();
+        console.log("data", data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    if (status === true) {
+      fetchTaskDone('');
     } else {
-      const fetchTaskUnDone = async () => {
-        try {
-          const response = await axios.patch(
-            `/api/plan/${goal_id}/taskundone/${value}` /* i will ch  ange to one function  */
-          );
-          const data = await response.json();
-          console.log("data", data);
-        } catch (error) {
-          console.log("error", error);
+      fetchTaskDone('un');
         }
-      };
-      fetchTaskUnDone();
-    }
+      
+    
   }, [status]);
 
   return (

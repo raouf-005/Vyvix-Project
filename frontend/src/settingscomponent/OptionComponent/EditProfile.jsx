@@ -51,10 +51,10 @@ export default function EditProfile() {
       <div className="grid grid-cols-2   gap-y-6 gap-x-8 flex-1 mr-4">
         <EditInput
           label="Full Name"
-          value="Abderraouf Derardja"
+          value={user.credentials.fullname}
           id="fullName"
           name="fullName"
-        //  formik={formik}
+         formik={formik}
         />
         <EditInput
           label="Username"
@@ -78,8 +78,8 @@ export default function EditProfile() {
           //formik={formik}
         /> */}
         <EditInput
-          label="Date  of Birth"
-          value={user.credentials.dateOfBirth||""}
+          label="Date of Birth"
+          value={user.credentials.dateofbirth||""}
           type="date"
           formik={formik}
           id="dateOfBirth"
@@ -101,7 +101,7 @@ export default function EditProfile() {
         />  
         <EditInput
           label="Languages"
-          value={user.credentials.Languages}
+          value={user.credentials.languages||"Select your languages"}
           type="option"
           formik={formik}
           id="languages"
@@ -109,8 +109,9 @@ export default function EditProfile() {
         />
         <EditInput
           label="Work History"
-          value={user.credentials.WorkHistory}
+          value={user.credentials.workhistory||"Entre your work history"}
           id="workHistory"
+          type="text"
           formik={formik}
           name="workHistory"
         />

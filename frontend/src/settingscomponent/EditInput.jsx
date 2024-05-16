@@ -25,11 +25,10 @@ const classNames = {
 };
 
 const languages = [
-  { label: "French", value: "French" },
+  { label: "french", value: "French" },
   { label: "English", value: "English" },
   { label: "Arabic", value: "Arabic" },
   { label: "Kabyle", value: "Kabyle" },
-  { label: "Espanish", value: "Espanish" },
   { label: "Italien", value: "Italien" },
   { label: "German", value: "German" },
   { label: "Spanish", value: "Spanish" },
@@ -44,34 +43,33 @@ export default function EditInput({
   id,
   name,
 }) {
-  const formikfield = formik ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, '')) : null;
+  const formikfield = formik
+    ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, ""))
+    : null;
 
-useEffect(() => {
-    if (formikfield&&value && label !== "Languages") {
-        formikfield.value=value;
+  useEffect(() => {
+    if (formikfield && value && label !== "Languages") {
+      formikfield.value = value;
     }
-    }, [value]);
+  }, [value]);
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [values, setValues] = React.useState(
+    new Set(label === "Languages" ? value : [])
+  );
 
-const [isVisible, setIsVisible] = useState(true);
-const [values, setValues] = React.useState(new Set([])||new Set(value));
-
-const handleSelectionChange = (e) => {
-  
-  setValues(new Set(e.target.value.split(",")));
-
-};
-// iw ill modify this to be more dynamic the above function to get rid of the useEffect
-useEffect(() => {
+  const handleSelectionChange = (e) => {
+    setValues(new Set(e.target.value.split(",")));
+  };
+  // iw ill modify this to be more dynamic the above function to get rid of the useEffect
+  useEffect(() => {
     if (label === "Languages") {
-
-      formik.setFieldValue(label.toLowerCase().replace(/\s/g, ''), Array.from(values));
+      formik.setFieldValue(
+        label.toLowerCase().replace(/\s/g, ""),
+        Array.from(values)
+      );
     }
-    }, [values]);
-
-
-
-
+  }, [values]);
 
   const renderInput = () => {
     switch (type) {
@@ -79,7 +77,7 @@ useEffect(() => {
         return (
           <div className="relative">
             <Input
-            aria-label="Password"
+              aria-label="Password"
               placeholder={value}
               id={id || label}
               classNames={classNames}
@@ -107,7 +105,7 @@ useEffect(() => {
       case "date":
         return (
           <Input
-            placeholder={value}
+            value={value}
             id={id || label}
             name={name || label}
             type="date"
@@ -116,7 +114,6 @@ useEffect(() => {
             variant="bordered"
             aria-label="Date of birth"
             {...formikfield}
-           
           />
         );
       case "option":
@@ -124,7 +121,7 @@ useEffect(() => {
           <Select
             id={id || label}
             name={name || label}
-            placeholder={value||"Select languages"}
+            placeholder={value || "Select languages"}
             aria-label="Select languages"
             classNames={classNames}
             variant="bordered"
@@ -148,8 +145,7 @@ useEffect(() => {
                 ],
               },
             }}
-            onChange={handleSelectionChange}        
-         
+            onChange={handleSelectionChange}
           >
             {languages.map((language) => (
               <SelectItem key={language.value} value={language.value}>
@@ -159,7 +155,6 @@ useEffect(() => {
           </Select>
         );
       default:
-       
         return (
           <Input
             placeholder={value}
@@ -171,7 +166,6 @@ useEffect(() => {
             classNames={classNames}
             {...formikfield}
             aria-label="Genral Input"
-            
           />
         );
     }

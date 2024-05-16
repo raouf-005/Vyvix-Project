@@ -6,7 +6,10 @@ import MongoStore from "connect-mongo";
 import cookieParser from "cookie-parser";
 import { hashPassword } from "../utils/helper.mjs";
 import dotenv from "dotenv";
+
+
 dotenv.config();
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();

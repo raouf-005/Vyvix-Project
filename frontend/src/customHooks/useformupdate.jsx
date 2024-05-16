@@ -18,11 +18,12 @@ export default function useformupdate() {
       education: "",
       dateofbirth: "", // Set the initial value as a date object
       speciality:"",
+      fullname:''
     },
     validationSchema: Yup.object({
       username: Yup.string(),
       email: Yup.string(),
-      phonenumber: Yup.string(),
+      phonenumber:Yup.number(),
       image: Yup.string(),
       organisation: Yup.string(),
       education: Yup.string(),
@@ -46,7 +47,7 @@ export default function useformupdate() {
         if (!updatedValues.password) delete updatedValues.password;
         if (!updatedValues.languages) delete updatedValues.languages;// if it caused a problem i will change it
       
-        
+        console.log("updated",updatedValues)
         const response = await axios.patch(
           "/api/user",
           updatedValues ,
@@ -57,14 +58,13 @@ export default function useformupdate() {
 
         if (response.status === 200) {
           alert("User created successfully");
-          console.log(response);
+          console.log(response.data);
         }
 
         localStorage.setItem(
           "auth",
           btoa(
             JSON.stringify({
-              user: values.username,
               credentials: response.data,
             })
           )

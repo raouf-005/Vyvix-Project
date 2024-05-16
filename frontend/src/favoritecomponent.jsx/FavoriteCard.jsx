@@ -36,7 +36,7 @@ export default function FavoriteCard() {
 
         const fetchProfile = async () => {
           try {
-            const response = await axios.get(`/user/${id}`,{
+            const response = await axios.get(`/api/user/${id}`,{
               withCredentials:true
             });
             const data = response.data;
