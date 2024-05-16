@@ -12,7 +12,9 @@ export default function GoalsCard() {
 
     useEffect(() => {
         setGoalList(goals);
+        console.log("goals",goals);
     }, [goals])
+    console.log("gaosl",goallist);
     
     return (
         <div className=" bg-white relative rounded-3xl p-5 px-6 text-slate-400 text-sm dark:bg-carddm shadow-sm ">
@@ -22,7 +24,7 @@ export default function GoalsCard() {
             Keep you user engaged by providing meaningful information.
             </p>
             
-           {goallist.lenght  >0 && goallist? <List dense={true} aria-label="" sx={{overflow:'auto', maxHeight:'350px',marginBottom:'10px'}} >
+           {goallist &&goallist.lenght >0? <List dense={true} aria-label="" sx={{overflow:'auto', maxHeight:'350px',marginBottom:'10px'}} >
                 {
                     goallist.map((goal,index) => (
                         <ItemList name={goal.goal} id={goal._id} key={goal._id} index={index}  goallist={goallist} setGoalList={setGoalList}/>

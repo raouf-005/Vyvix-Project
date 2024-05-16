@@ -100,7 +100,9 @@ useEffect(() => {
           </TableBody>
       
     ) : (
-         <TableBody emptyContent={"No Goals to display."}/>
+         <TableBody emptyContent={"No Goals to display."}>
+          {[]}
+         </TableBody>
 
       )}
       </Table>
