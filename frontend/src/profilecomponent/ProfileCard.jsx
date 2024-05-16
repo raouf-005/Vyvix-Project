@@ -1,7 +1,7 @@
 import { Avatar ,Image,Button } from "@nextui-org/react";
 import {HeartIcon} from "../assets/HeartIcon"
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "../customHooks/Axios";
 
 const profileInfo ={
     name: "Abderraouf Derardja",
@@ -26,7 +26,7 @@ const Counter = (props) => {
 
 
 export default function ProfileCard(props) {
-    const user =props.user||""; 
+    const user =props.user||''; //maybe i willadd some logic ot render only the user 
     
     const counter=[
         {value:user.goals||JSON.parse(atob(localStorage.getItem("auth"))).credentials.plans.length||0,label:"Goals"},//change it to goals
@@ -34,6 +34,26 @@ export default function ProfileCard(props) {
         {value:user.rank||JSON.parse(atob(localStorage.getItem("auth"))).credentials.rank||0,label:"Rank"},
     ]
     const [liked, setLiked] = useState(false);
+
+
+    useEffect(()=>{
+        const fetchSetFav = async (isFav) => {     
+            try {
+            const response = await axios.patch(`/api/user/${isFav}fav/${user._id}`, {}, {
+                withCredentials: true
+            });
+            console.log(response)
+            } catch (error) {
+            console.log(error)
+            }
+        }
+        if (liked){
+            fetchSetFav('');
+        }else{
+            fetchSetFav('un')
+        }
+        
+    },[liked,user?.username])
 
     return (
         <div className=" flex justify-center px-4  "
@@ -43,7 +63,10 @@ export default function ProfileCard(props) {
             <div className="flex  flex-col items-center">
                 <Image  src={profileInfo.bgmage} className="  max-h-[133px]  z-0 w-[968px]" aria-label="" />
                 <Avatar showFallback size="lg" src={user?.image||JSON.parse(atob(localStorage.getItem("auth"))).credentials.image}  className="  border-[5px]  border-white w-[95px] h-[95px]  -mt-12"  />
-                <Button
+            {
+            
+            user?.username ?(
+              <Button
                 className={`text-default-900/80 dark:text-white  ${liked ? "bg-gradient-to-r from-danger to-primary text-white " :"bg-slate-200"}  dark:bg-carddm   absolute right-6 top-5`}
                 radius="lg"
                 variant="light"
@@ -56,6 +79,9 @@ export default function ProfileCard(props) {
                   fill={liked ? "red" : "none"}
                 />
               </Button>
+              ):null
+            }
+              
             </div>
             <div>   
                 <h3 className="text-black text-2xl font-bold dark:text-white">

@@ -67,7 +67,6 @@ export default function Tasks() {
     const [selected, setSelected] = useState([]);
   
     const selectAll = (e, list) => {
-        
         if (e.target.checked) {
             setSelected(list.map((item) => item._id));
         } else {
@@ -85,13 +84,13 @@ export default function Tasks() {
 
     const todayTasks = goals.reduce((acc, goal) => {
         const todayTasks = goal.tasks.filter(task =>task.date === formattedDate);// give an exemple of it 
-        return [...acc, ...todayTasks];
+        return [...acc, ...todayTasks.map(task => ({ ...task, goal_id: goal._id }))];
     }, []);
     setTasks(todayTasks);
         }   
     }, [goals]);
 
-    useEffect(() => {
+     useEffect(() => {
        
             setTasks((prevTasks) =>
                 prevTasks.map((task) => {
@@ -103,8 +102,7 @@ export default function Tasks() {
                 })
             );
       
-      
-    }, [selected]);
+    }, [selected]); 
 
 //linking with the backend
     return (

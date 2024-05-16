@@ -54,16 +54,20 @@ useEffect(() => {
 
 
 const [isVisible, setIsVisible] = useState(true);
-const [values, setValues] = React.useState(new Set([]));
+const [values, setValues] = React.useState(new Set([])||new Set(value));
 
 const handleSelectionChange = (e) => {
-    console.log(values)
-  setValues(new Set(e.target.value.split(",")));
-  formikfield.value = Array.from(values);
   
+  setValues(new Set(e.target.value.split(",")));
+
 };
 // iw ill modify this to be more dynamic the above function to get rid of the useEffect
+useEffect(() => {
+    if (label === "Languages") {
 
+      formik.setFieldValue(label.toLowerCase().replace(/\s/g, ''), Array.from(values));
+    }
+    }, [values]);
 
 
 
@@ -120,11 +124,11 @@ const handleSelectionChange = (e) => {
           <Select
             id={id || label}
             name={name || label}
+            placeholder={value||"Select languages"}
             aria-label="Select languages"
             classNames={classNames}
             variant="bordered"
             selectionMode="multiple"
-            placeholder="Select languages"
             selectedKeys={values}
             className="max-w-[350px] bg-transparent   dark:bg-indigo-100/5 rounded-xl"
             listboxProps={{
@@ -163,7 +167,7 @@ const handleSelectionChange = (e) => {
             name={name}
             type={type}
             variant="bordered"
-            className="bg-transparent "
+            className="bg-transparent"
             classNames={classNames}
             {...formikfield}
             aria-label="Genral Input"

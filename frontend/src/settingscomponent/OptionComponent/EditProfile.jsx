@@ -78,8 +78,8 @@ export default function EditProfile() {
           //formik={formik}
         /> */}
         <EditInput
-          label="DateofBirth"
-          value={user.credentials.dateOfBirth}
+          label="Date  of Birth"
+          value={user.credentials.dateOfBirth||""}
           type="date"
           formik={formik}
           id="dateOfBirth"
@@ -87,20 +87,21 @@ export default function EditProfile() {
         />
         <EditInput
           label="Education"
-          value="Higher School of Computer Science & Technology"
-         // formik={formik}
+          value={user.credentials.education||" Enter your education"}
+          formik={formik}
           id="education"
           name="education"
         />
         <EditInput
           label="Speciality"
-          value="Artificial Intelligence , Computer Vision "
+          value={user.credentials.speciality||"Enter your speciality"}
           id="speciality"
           name="speciality"
+          formik={formik}
         />  
         <EditInput
           label="Languages"
-          value={user.credentials.languages}
+          value={user.credentials.Languages}
           type="option"
           formik={formik}
           id="languages"
@@ -116,14 +117,14 @@ export default function EditProfile() {
 
         <EditInput
           label="Organisation"
-          value={user.credentials.organisation}
+          value={user.credentials.organisation||"Enter your organisation"}
           formik={formik}
           id="organisation"
           name="organisation"
         />
         <EditInput
           label="Phone Number"
-          value={user.credentials.phonenumber}
+          value={user.credentials.phonenumber||"Entre your number"}
           formik={formik}
           id="phoneNumber"
           name="phoneNumber"

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "../customHooks/Axios";
 import { PageContext } from "./PagesContainer";
 import { useContext } from "react";
+import Pie from "../dashboardcomponent/Pie";
 
 export default function Profile() {
 
@@ -38,8 +39,12 @@ useEffect(() => {
       <div className="flex flex-row justify-center items-end">
         <ProfileCard user={user} />
       </div>
-      <div className="grid grid-cols-[37%,44%] gap-4 px-4 pr-7  justify-center  ">
-        <GoalsCard />
+      <div className="grid grid-cols-[35%,46%]  px-4 pr-7  justify-center  ">
+       
+       <div className="max-h-fit   items-center flex ">
+        
+        <Pie  user={user}/>
+        </div> 
         <GeneralInfoCard user={user} />
       </div>    
     </div>

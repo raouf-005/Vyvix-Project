@@ -8,7 +8,9 @@ import { GoalsContext } from '../pages/PagesContainer';
 
 
 
-export default function Pie (){
+export default function Pie (props){
+    const user =props.user
+    // i need to fetch the user 
     const [identifier, setIdentifier] = useState(null);
     const [id, setId] = useState(undefined);
     const [selectedOption, setSelectedOption] = useState(new Set(["monthly"]));
@@ -28,9 +30,9 @@ export default function Pie (){
 
 /// i will test the deisgn in the end to test the colour 
     const items = [
-        {id: 'id_A', value: JSON.parse(atob(localStorage.getItem('auth'))).credentials.Success||20, label: 'Success' ,color:localStorage.getItem('darkMode') ==='true'?'#FE4768':'#4B2CFA' },
-        { id: 'id_B', value: JSON.parse(atob(localStorage.getItem('auth'))).credentials.Failure||0, label: 'Failure',color:localStorage.getItem('darkMode') ==='true'?'#FE6C86':'#9380FC' },
-        { id: 'id_C', value: countTasks||0, label: 'Active' ,color:localStorage.getItem('darkMode') ==='true'?'white':'#DBD5FE'},
+        {id: 'id_A', value: user?.Success||JSON.parse(atob(localStorage.getItem('auth'))).credentials.Success||0, label: 'Success' ,color:localStorage.getItem('darkMode') ==='true'?'#FE4768':'#4B2CFA' },
+        { id: 'id_B', value:user?.Failure|| JSON.parse(atob(localStorage.getItem('auth'))).credentials.Failure||0, label: 'Failure',color:localStorage.getItem('darkMode') ==='true'?'#FE6C86':'#9380FC' },
+        { id: 'id_C', value: user?.Success? 0 :countTasks||0, label: 'Active' ,color:localStorage.getItem('darkMode') ==='true'?'white':'#DBD5FE'},
       ];
       
     const handleClick = (itemIdentifier, item) => {
@@ -105,24 +107,24 @@ export default function Pie (){
                     }}
                     />
                 <div className='mt-3 '>
-                    <div className=' flex rounded-3xl max-w-64 divide-x-2 h-[75px]  sm:w-[350px]   items-center dark:bg-bgdm  dark:shadow-sm shadow-lg  dark:shadow-slate-100 '>
+                    <div className=' flex rounded-3xl max-w-64 divide-x-2 h-[75px]  sm:w-[350px]   items-center dark:bg-bgdm  dark:shadow-sm shadow-lg  dark:shadow-slate-100/50 '>
                         <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-l-3xl h-full     bg-transparent flex-col'>
                         <span className=' dark:text-slate-200 text-slate-500  text-sm flex flex-row  items-center gap-2 '>
-                            <div className='h-2 w-2 dark:bg-black bg-[#4B2CFA] rounded-full'></div>  
+                            <div className='h-2 w-2 dark:bg-[#FE4768] bg-[#4B2CFA] rounded-full'></div>  
 
                             {items[0].label}
                             </span> 
                             <span className=' font-bold '>
-                            {countTasks ?(items[0].value/countTasks).toFixed(2):0}%
+                            {countTasks ?(items[0].value/countTasks).toFixed(2)*100 +'%':items[0].value}
                             </span>
                         </Button>
                         <Button  radius="none" size='lg' className='flex-1 flex gap-0 rounded-r-3xl    h-full  bg-transparent flex-col'>
                             <span className=' dark:text-slate-200 text-slate-500  text-sm flex flex-row  items-center gap-2 '>
-                            <div className='h-2 w-2 dark:bg-black bg-[#9380FC] rounded-full'></div>  
+                            <div className='h-2 w-2 dark:bg-[#FE6C86] bg-[#9380FC] rounded-full'></div>  
                             {items[1].label}
                             </span> 
                             <span className=' font-bold '>
-                            {countTasks ?(items[1].value/countTasks).toFixed(2):0}%
+                            {countTasks ?(items[1].value/countTasks).toFixed(2)*100 +'%':items[1].value}
                             </span>
                         </Button>
                     </div>

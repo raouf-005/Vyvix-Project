@@ -40,14 +40,13 @@ export default function useFormLogin() {
                 console.log(response)
                 console.log(data);
                     if (response.status === 200) {
-                        alert(data.msg);
+                       /*  alert(data.msg); */
                         formik.resetForm();
                         if (!data.msg) {
                             return;
                         }
                         localStorage.setItem('auth', btoa(JSON.stringify({ user: username ,credentials:data.requestuser })));
                     }
-             
                 const from = location.state?.from?.pathname || !data.requestuser.company ? '/dashboard' : '/favorites';
                 navigate(from, { replace: true });
                 return;

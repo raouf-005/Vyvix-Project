@@ -17,15 +17,16 @@ const LitlleCard = ({title, value}) => {
 export default function GeneralInfoCard(props) {
 
     const user =atob(localStorage.getItem('auth'));
-    
+    const user2 =props.user||''
+    console.log('props',props)
 
     const data = {
-      education: props.education || user?.credentials?.education || "Bsc. Computer Science",
-      languages: props.languages || user?.credentials?.languages || "English",
-      speciality: props.speciality || user?.credentials?.speciality || "23",
-      workHistory: props.workHistory || user?.credentials?.workHistory || "Lagos",
-      organization: props.organization || user?.credentials?.organization || "Singing",
-      dateofbirth: props.dateofbirth || user?.credentials?.dateofbirth || "Coding"  
+      education: user2.education || user?.credentials?.education || "Empty",
+      languages: user2.languages || user?.credentials?.languages || "Empty",
+      speciality: user2.speciality || user?.credentials?.speciality || "Empty",
+      workHistory: user2.workHistory || user?.credentials?.workHistory || "Empty",
+      organization: user2.organization || user?.credentials?.organization || "Empty",
+      dateofbirth: user2.dateofbirth || user?.credentials?.dateofbirth || "Empty"  
     }
 
 

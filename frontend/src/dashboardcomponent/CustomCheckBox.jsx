@@ -1,11 +1,47 @@
 import { Checkbox, Image, cn } from "@nextui-org/react";
 import threepoints from "../assets/threepoints.svg";
 import CheckMark from "../assets/CheckMark.jsx";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "../customHooks/Axios.jsx";
 
 export default function CustomCheckbox({ children, ...props }) {
-  let { id, status, date, task ,value } = props;
+  let { goal_id, status, date, task, value } = props;
 
-  console.log("task", value);
+  useEffect(() => {
+    if (status === true) {
+      const fetchTaskDone = async () => {
+        try {
+          const response = await axios.patch(
+            `/api/plan/${goal_id}/taskdone/${value}`,
+            {
+              withCredentials: true,
+            }
+          );
+          const data = await response.json();
+          console.log("data", data);
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+
+      fetchTaskDone();
+    } else {
+      const fetchTaskUnDone = async () => {
+        try {
+          const response = await axios.patch(
+            `/api/plan/${goal_id}/taskundone/${value}` /* i will ch  ange to one function  */
+          );
+          const data = await response.json();
+          console.log("data", data);
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+      fetchTaskUnDone();
+    }
+  }, [status]);
+
   return (
     <Checkbox
       aria-label=""
@@ -22,10 +58,9 @@ export default function CustomCheckbox({ children, ...props }) {
       radius="md"
       color="danger"
       {...props}
-      id={id}
+      id={value}
       isSelected={status}
       //  lineThrough={status}
-      
     >
       <div className="flex justify-between items-center ">
         <span>{children}</span>

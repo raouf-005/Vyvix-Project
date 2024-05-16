@@ -5,16 +5,14 @@ import useFormLogin from "../customHooks/useformlogin";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const formik = useFormLogin();
   const [isLoading, setIsLoading] = useState(false);
+  const formik = useFormLogin();
 
 
   const handleClick = () => {
     setIsLoading(true);
     formik.handleSubmit();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
+
     
   }
   return (

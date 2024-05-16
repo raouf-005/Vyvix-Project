@@ -19,13 +19,13 @@ export default function InputLogin ({type ,placeholder,name,formik }){
         <div className="flex flex-col max-w-screen ">
             <label htmlFor={name} className="labelInputLogin mb-2   ">{name==='Useremail'?'Username :':name+' :'}</label>
             <div className=" relative">
-                <input type={type==='password'? isVisible? 'password':'text':type} id={name} name={name} placeholder={placeholder} className="inputLogin mobile:min-w-[360px] sm:min-w-[450px] relative" {...formikfield} />
+                <input type={type==='password'? isVisible? 'password':'text':type} id={name} name={name} placeholder={placeholder} autoComplete="bg-green" className="inputLogin mobile:min-w-[360px] sm:min-w-[450px] relative" {...formikfield} />
                 {
                     type === 'password' ?(
                         <Button 
                         isIconOnly
                         aria-label="Toggle password visibility"
-                     
+                        
                         onClick={() =>{ 
                             setIsVisible(!isVisible);
                             

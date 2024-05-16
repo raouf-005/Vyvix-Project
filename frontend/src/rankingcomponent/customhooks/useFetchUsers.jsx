@@ -24,7 +24,7 @@ export default function useFetchUsers(){
              return {
                 key: user._id,
                name: user.username,
-               points: user.points,
+               points: user.points||0,
                status: user.progresse,
                email: user.email||"no email",
                phone: user.phonenumber||"no phone",

@@ -16,7 +16,8 @@ export default function useformupdate() {
       organisation: "",
       password: "",
       education: "",
-      dateofbirth: "",
+      dateofbirth: "", // Set the initial value as a date object
+      speciality:"",
     },
     validationSchema: Yup.object({
       username: Yup.string(),
@@ -25,7 +26,8 @@ export default function useformupdate() {
       image: Yup.string(),
       organisation: Yup.string(),
       education: Yup.string(),
-      date: Yup.date(),
+      dateofbirth: Yup.date(), // Set the validation type as date
+      speciality:Yup.string(),
     }),
     onSubmit: async (values) => {
       try {
@@ -42,7 +44,7 @@ export default function useformupdate() {
         if (!updatedValues.username) delete updatedValues.username;
         if (!updatedValues.email) delete updatedValues.email;
         if (!updatedValues.password) delete updatedValues.password;
-        if (!updatedValues.languages) delete updatedValues.languages;
+        if (!updatedValues.languages) delete updatedValues.languages;// if it caused a problem i will change it
       
         
         const response = await axios.patch(

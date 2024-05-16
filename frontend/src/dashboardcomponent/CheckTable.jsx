@@ -87,7 +87,7 @@ useEffect(() => {
           <TableHeader columns={columns}>
             {(column) => <TableColumn  key={column._id}>{column.label}</TableColumn>}
           </TableHeader>
-        {goals ? (
+        {goals && goals.length>0? (
           <TableBody
            items={updatedGoals(goals)}
            isLoading={!arrived}
