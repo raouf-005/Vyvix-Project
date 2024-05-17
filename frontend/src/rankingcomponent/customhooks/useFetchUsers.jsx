@@ -23,7 +23,7 @@ export default function useFetchUsers(){
            const usersrank = data.map((user) => {
              return {
                 key: user._id,
-               name: user.username,
+               name: user?.username||'',
                points: user.points||0,
                status: user.progresse,
                email: user.email||"no email",

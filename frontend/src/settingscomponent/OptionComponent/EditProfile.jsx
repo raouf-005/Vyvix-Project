@@ -15,8 +15,8 @@ const data = {
 export default function EditProfile() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const formik = useformupdate();
- const user = JSON.parse(atob(localStorage.getItem("auth")));
-/*   useEffect(() => {
+  const user = JSON.parse(atob(localStorage.getItem("auth")));
+  /*   useEffect(() => {
     formik.setValues({
       fullName: user.credentials.fullName,
       username: user.credentials.username,
@@ -29,7 +29,7 @@ export default function EditProfile() {
       organisation: user.credentials.organisation,
       phoneNumber: user.credentials.phoneNumber,
     });
-  }, []); */ 
+  }, []); */
   return (
     <form
       className="flex flex-row  mt-8 relative  bg-transparent"
@@ -51,21 +51,21 @@ export default function EditProfile() {
       <div className="grid grid-cols-2   gap-y-4 gap-x-8 flex-1 mr-4">
         <EditInput
           label="Full Name"
-          value={user.credentials.fullname}
+          value={user.credentials.fullname || "Enter your Full name "}
           id="fullName"
           name="fullName"
-         formik={formik}
+          formik={formik}
         />
         <EditInput
           label="Username"
-          value={user.credentials.username}
+          value={user.credentials.username || "Enter a username"}
           formik={formik}
           id="username"
           name="username"
         />
         <EditInput
           label="Email"
-          value={user.credentials.email}
+          value={user.credentials.email || "Enter an email"}
           type="email"
           formik={formik}
           id="email"
@@ -79,7 +79,7 @@ export default function EditProfile() {
         /> */}
         <EditInput
           label="Date of Birth"
-          value={user.credentials.dateofbirth||""}
+          value={user.credentials.dateofbirth || ""}
           type="date"
           formik={formik}
           id="dateOfBirth"
@@ -87,21 +87,21 @@ export default function EditProfile() {
         />
         <EditInput
           label="Education"
-          value={user.credentials.education||" Enter your education"}
+          value={user.credentials.education || " Enter your education"}
           formik={formik}
           id="education"
           name="education"
         />
         <EditInput
           label="Speciality"
-          value={user.credentials.speciality||"Enter your speciality"}
+          value={user.credentials.speciality || "Enter your speciality"}
           id="speciality"
           name="speciality"
           formik={formik}
-        />  
+        />
         <EditInput
           label="Languages"
-          value={user.credentials.languages||"Select your languages"}
+          value={user.credentials.languages || "Select your languages"}
           type="option"
           formik={formik}
           id="languages"
@@ -109,7 +109,7 @@ export default function EditProfile() {
         />
         <EditInput
           label="Work History"
-          value={user.credentials.workhistory||"Entre your work history"}
+          value={user.credentials.workhistory || "Entre your work history"}
           id="workHistory"
           type="text"
           formik={formik}
@@ -118,14 +118,14 @@ export default function EditProfile() {
 
         <EditInput
           label="Organisation"
-          value={user.credentials.organisation||"Enter your organisation"}
+          value={user.credentials.organisation || "Enter your organisation"}
           formik={formik}
           id="organisation"
           name="organisation"
         />
         <EditInput
           label="Phone Number"
-          value={user.credentials.phonenumber||"Entre your number"}
+          value={user.credentials.phonenumber || "Entre your number"}
           formik={formik}
           id="phoneNumber"
           name="phoneNumber"
