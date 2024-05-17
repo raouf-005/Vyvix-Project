@@ -70,6 +70,7 @@ export default function PassInput({
           variant="bordered"
           type={isVisible ? "password" : "text"}
           {...formikfield}
+
         />
         <Button
           isIconOnly

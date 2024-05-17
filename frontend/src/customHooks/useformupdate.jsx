@@ -13,7 +13,7 @@ export default function useformupdate() {
       phonenumber: "",
       image: "",
       languages: [],
-      organisation: "",
+      organization: "",
       password: "",
       education: "",
       dateofbirth: "", // Set the initial value as a date object
@@ -25,7 +25,7 @@ export default function useformupdate() {
       email: Yup.string(),
       phonenumber:Yup.number(),
       image: Yup.string(),
-      organisation: Yup.string(),
+      organization: Yup.string(),
       education: Yup.string(),
       dateofbirth: Yup.date(), // Set the validation type as date
       speciality:Yup.string(),
@@ -38,16 +38,18 @@ export default function useformupdate() {
         const updatedValues = { ...values };
         if (!updatedValues.phonenumber) delete updatedValues.phonenumber;
         if (!updatedValues.image) delete updatedValues.image;
-        if (!updatedValues.organisation) delete updatedValues.organisation;
+        if (!updatedValues.organization) delete updatedValues.organization;
         if (!updatedValues.education) delete updatedValues.education;
         if (!updatedValues.dateofbirth) delete updatedValues.dateofbirth;
         if (!updatedValues.username) delete updatedValues.username;
         if (!updatedValues.email) delete updatedValues.email;
         if (!updatedValues.password) delete updatedValues.password;
-        if (!updatedValues.languages) delete updatedValues.languages;// if it caused a problem i will change it
+        if (!updatedValues.languages||updatedValues.languages.length===0) delete updatedValues.languages;// if it caused a problem i will change it
         if (!updatedValues.speciality) delete updatedValues.speciality;
         if (!updatedValues.fullname) delete updatedValues.fullname;
-        
+        if (updatedValues.languages===JSON.parse(atob(localStorage.getItem('auth'))).credentials.languages) delete updatedValues.languages;
+       
+        if (Object.keys(updatedValues).length > 0) { 
         const response = await axios.patch(
           "/api/user",
           updatedValues ,
@@ -57,7 +59,7 @@ export default function useformupdate() {
         );
 
         if (response.status === 200) {
-          alert("User created successfully");
+          alert("User updated successfully");
           console.log(response.data);
         }
 
@@ -70,12 +72,16 @@ export default function useformupdate() {
           )
         );
         formik.resetForm();
+      }else{
+        alert("you have to update at least one field")
+      }
         // Handle the successful submission
       } catch (error) {
         // Handle the error
         console.log(error);
       }
     },
+
   });
 
   return formik;

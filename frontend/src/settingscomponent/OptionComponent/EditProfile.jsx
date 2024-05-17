@@ -117,8 +117,8 @@ export default function EditProfile() {
         />
 
         <EditInput
-          label="Organisation"
-          value={user.credentials.organisation || "Enter your organisation"}
+          label="Organization"
+          value={user.credentials.organization || "Enter your organisation"}
           formik={formik}
           id="organisation"
           name="organisation"
