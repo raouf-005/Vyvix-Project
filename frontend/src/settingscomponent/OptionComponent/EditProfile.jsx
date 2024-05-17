@@ -48,7 +48,7 @@ export default function EditProfile() {
           onClick={onOpen}
         />
       </div>
-      <div className="grid grid-cols-2   gap-y-6 gap-x-8 flex-1 mr-4">
+      <div className="grid grid-cols-2   gap-y-4 gap-x-8 flex-1 mr-4">
         <EditInput
           label="Full Name"
           value={user.credentials.fullname}

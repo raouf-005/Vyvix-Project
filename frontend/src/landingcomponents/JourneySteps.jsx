@@ -41,7 +41,7 @@ export default function JourneySteps (){
                     ))}
                 </div>
                 <div className="sm:flex mobile:hidden">
-                    <img src={temp} alt="" />
+                    <img src={temp} loading="lazy" alt="" />
                 </div>
             </div>
         </div>

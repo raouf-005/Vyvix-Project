@@ -106,7 +106,7 @@ export default function Pie(props) {
               No Data to Display
             </h3>
             <p className="text-sm dark:text-gray-400 text-gray-500">
-                Add some goals to see the Pie chart
+                No goals to see the Pie chart
             </p>
             </div>
         ) : (

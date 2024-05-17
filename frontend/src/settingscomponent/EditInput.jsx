@@ -177,6 +177,7 @@ export default function EditInput({
         {label}
       </label>
       {renderInput()}
+
     </div>
   );
 }

@@ -34,7 +34,6 @@ export default function useformupdate() {
       try {
         // Add your form submission logic here
         // For example, you can make an API call using axios
-        console.log("gey",values);
         // Exclude the 'phonenumber' field if it is empty
         const updatedValues = { ...values };
         if (!updatedValues.phonenumber) delete updatedValues.phonenumber;
@@ -46,8 +45,9 @@ export default function useformupdate() {
         if (!updatedValues.email) delete updatedValues.email;
         if (!updatedValues.password) delete updatedValues.password;
         if (!updatedValues.languages) delete updatedValues.languages;// if it caused a problem i will change it
-      
-        console.log("updated",updatedValues)
+        if (!updatedValues.speciality) delete updatedValues.speciality;
+        if (!updatedValues.fullname) delete updatedValues.fullname;
+        
         const response = await axios.patch(
           "/api/user",
           updatedValues ,

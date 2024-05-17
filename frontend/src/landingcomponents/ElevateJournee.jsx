@@ -25,7 +25,7 @@ export default function ElevateJournee (){
                 </Button>
             </div>
             <div className="">
-                <img src={ElevateImg} alt="" />
+                <img src={ElevateImg} loading="lazy" alt="ElevateImg" />
             </div>
         </div>
     );

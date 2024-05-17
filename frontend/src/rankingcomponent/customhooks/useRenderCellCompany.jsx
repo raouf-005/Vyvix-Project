@@ -7,7 +7,6 @@ export default function useRenderCellCompany(){
 const renderCell=useCallback((user ,columnKey)=>{
     const cellValue =user[columnKey]
    // console.log('user',user.key)
-    const link= `/profile/${user.key}`
    
     switch(columnKey){
         case 'status':

@@ -4,7 +4,7 @@ export default function Download() {
   return (
     <div className="flex flex-row relative  sm:justify-around mobile:mb-10  sm:-mt-32 mobile:mt-0   sm:mb-0">
       <div className=" flex mobile:absolute sm:relative mobile:-bottom-[155px] -z-10 mobile:-right-10 ">
-        <img src={Img} alt="" className="" />
+        <img src={Img} loading="lazy" alt="DownloadImg"  />
       </div>
 
       <div

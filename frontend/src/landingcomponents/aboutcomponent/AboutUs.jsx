@@ -21,8 +21,8 @@ return(
 
         <div className='flex flex-row sm:gap-11 mobile:gap-2 px-3     justify-center'>
 
-            <Image src={aboutus1} alt=""  />
-            <Image src={aboutus2} alt="" />
+            <Image src={aboutus1} alt="AboutusImg1"  />
+            <Image src={aboutus2} alt="AboutusImg2" />
         </div>
 
     </div>

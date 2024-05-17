@@ -137,7 +137,7 @@ export default function Tasks() {
             >
                 {tasks&& tasks.length>0?tasks.map((item) => (
                     item.task ?(//to handle the case where the task is empty caused by the api 
-                    <CustomCheckbox key={item._id} value={item._id} {...item}>
+                    <CustomCheckbox  key={item._id} value={item._id} {...item}>
                         {item.task}
                     </CustomCheckbox>
                     ):null

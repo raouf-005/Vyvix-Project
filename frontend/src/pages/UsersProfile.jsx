@@ -39,9 +39,9 @@ useEffect(() => {
       <div className="flex flex-row justify-center items-end">
         <ProfileCard user={user} />
       </div>
-      <div className="grid grid-cols-[35%,46%]  px-4 pr-7  justify-center  ">
+      <div className="grid grid-cols-[33%,47%]  px-4 pr-7  justify-center  ">
        
-       <div className="max-h-fit   items-center flex ">
+       <div className="max-h-fit  justify-start flex  items-center  ">
         
         <Pie  user={user}/>
         </div> 

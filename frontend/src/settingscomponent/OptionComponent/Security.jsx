@@ -3,6 +3,8 @@ import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
 import EditInput from "../EditInput";
+import useFormPassword from "../../customHooks/useformpassword";
+import PassInput from "../PassInput";
 
 
 
@@ -37,6 +39,9 @@ const classNames={
 
 
 export default function Security() {
+
+  const formik =useFormPassword()
+
   return (
     <div className="flex flex-col gap-4 pt-4 px-6">
       <div className="flex flex-col     ">
@@ -52,39 +57,48 @@ export default function Security() {
       </div>
      
       
-          <div className="flex flex-col max-w-80 gap-4">
+          <div className="flex flex-col max-w-80 gap-2">
             <h3 className="text-lg font-semibold text-[#303867] dark:text-white">
               Change password
             </h3>
-            <div>
-              <label className="text-black dark:text-white" htmlFor="OldPass">
-                Current password
-              </label>
-              <EditInput
+           
+              <PassInput
+              label={"Current password"}
                 type="password"
                 value="Enter old password"
                 classNames={classNames}
                 variant="bordered"
                 id="OldPass"
                 name="OldPass"
+                 formik={formik}
               />
-            </div>
-            <div>
-              <label htmlFor="NewPass" className="text-black dark:text-white">
-                New password
-              </label>
-              <EditInput
+          
+             
+              <PassInput
+                label={"New password"}
                 type="password"
                 value="Enter new password"
                 classNames={classNames}
                 id="NewPass"
                 name="NewPass"
+                formik={formik}
               />
-            </div>
+
+              <PassInput
+                label={"Confirm password"}
+                type="password"
+                value="Confirm new password"
+                classNames={classNames}
+                id="ConfirmPass"
+                name="ConfirmPass"
+                formik={formik}
+              />
         </div>
 
         <div className=" flex justify-end  col-span-2">
-            <Button className="bg-gradient-to-r  sm:text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 ">
+            <Button 
+              onClick={formik.handleSubmit}
+            className="bg-gradient-to-r  sm:text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 ">
                 Save
             </Button>
         </div>

@@ -36,7 +36,6 @@ export default function GeneralInfoCard(props) {
     const user =JSON.parse(atob(localStorage.getItem('auth')));
     const user2 =props.user||''
   //  console.log('props',props)
-  console.log('user',user)
 
     const data = {
       education: user2.education || user?.credentials?.education || "Empty",

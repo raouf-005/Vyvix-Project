@@ -13,16 +13,16 @@ export default function Sponsor() {
 
         <ul className="flex flex-row justify-around  items-center sm:px-20  mt-4 sm:mx-0 mobile:mx-7 ">
             <li >
-                <img src={First} alt="sponsor1" className='sm:w-[89%]  mobile:size-4/5'/>
+                <img src={First} loading="lazy" alt="sponsor1" className='sm:w-[89%]  mobile:size-4/5'/>
             </li>
             <li>
-                <img src={Second} alt="sponsor2" className='sm:w-[89%]  mobile:size-4/5' />
+                <img src={Second} loading="lazy" alt="sponsor2" className='sm:w-[89%]  mobile:size-4/5' />
             </li>
             <li>
-                <img src={Third} alt="sponsor3" className='sm:w-[89%]  mobile:size-4/5'/>
+                <img src={Third} loading="lazy" alt="sponsor3" className='sm:w-[89%]  mobile:size-4/5'/>
             </li>
             <li>
-                <img src={Fourth} alt="sponsor4" className='sm:w-[89%]  mobile:size-4/5' />
+                <img src={Fourth} loading="lazy" alt="sponsor4" className='sm:w-[89%]  mobile:size-4/5' />
             </li>
         </ul>
     )
