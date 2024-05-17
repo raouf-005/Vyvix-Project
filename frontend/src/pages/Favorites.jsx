@@ -30,8 +30,8 @@ export default function Favorites() {
         {favorites  && favorites.length>0 ?  favorites.map((favorite) => (
             <FavoriteCard key={favorite._id} favorite={favorite} />
         )):isloading?
-        <Spinner label="Loading ..." size="lg" className="  col-span-3 text-3xl p-20 dark:text-slate-200  text-carddm my-9"/>
-        : <h1 className="text-center col-span-3 text-3xl p-20 dark:text-slate-200 text-carddm my-9">No favorites yet</h1>
+        <Spinner label="Loading ..." size="lg" className="  col-span-3 text-3xl p-[82px] dark:text-slate-200  text-carddm my-9 "/>
+        : <h1 className="text-center col-span-3 text-3xl p-24 dark:text-slate-200 text-carddm my-9 mb-12">No favorites yet</h1>
         
         }
     </div>
