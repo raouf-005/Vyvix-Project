@@ -17,10 +17,10 @@ export default function RegisterForm() {
 
   const handleClick = () => {
     setIsLoading(true);
+    formik.handleSubmit();
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-    formik.handleSubmit();
   }
 
 

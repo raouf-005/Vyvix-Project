@@ -98,7 +98,8 @@ export default function Tasks() {
        
             setTasks((prevTasks) =>
                 prevTasks.map((task) => {
-                    if (selected.includes(task._id)) {
+                    console.log("task",task);
+                    if (selected.includes(task._id)||task.status===true) {
                         return { ...task, status: true };
                     } else {
                         return { ...task, status: false };

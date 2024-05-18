@@ -162,7 +162,7 @@ export default function Pie(props) {
               </span>
               <span className=" font-bold ">
                 {countTasks
-                  ? (items[1].value / countTasks).toFixed(2) * 100 + "%"
+                  ? ((items[1].value / countTasks) * 100).toFixed(2) + "%"
                   : items[1].value}
               </span>
             </Button>

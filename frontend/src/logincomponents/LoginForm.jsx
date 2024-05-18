@@ -11,10 +11,11 @@ export default function LoginForm() {
 
   const handleClick = () => {
     setIsLoading(true);
+    formik.handleSubmit();
     setTimeout(() => {
       setIsLoading(false);
     }, 4000);
-    formik.handleSubmit();
+    
 
     
   }
