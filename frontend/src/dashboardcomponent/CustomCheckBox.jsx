@@ -6,8 +6,9 @@ import { useState } from "react";
 import axios from "../customHooks/Axios.jsx";
 
 export default function CustomCheckbox({ children, ...props }) {
-  let { goal_id, status, date, task, value } = props;
-    
+  let { goal_id, status, value,all,none,checked } = props;
+ 
+  const [selected, setSelected] = useState(status==='true'?true:false);    
 
   useEffect(() => {
 
@@ -21,23 +22,31 @@ export default function CustomCheckbox({ children, ...props }) {
           }
         );
         const data = await response.data;
+        console.log(data)
       } catch (error) {
         console.log("error", error);
       }
     };
 if(goal_id && value){
-    if (status === true) {
+    if (selected === true  && status === 'false' ) {
+    
       fetchTaskDone('');
-    } else {
+    } else  if (selected === false && status === 'true') {    
       fetchTaskDone('un');
         }
-      }    
+      }
+      if(none==='true' && selected === true){        
+      fetchTaskDone('un');
+     
+      }
+      if(all==='true' && selected === false){
+        fetchTaskDone('');
+      }
     
-  }, [status]);
+  }, [selected,none,all]);
 
   return (
     <Checkbox
-      aria-label=""
       classNames={{
         base: cn(
           "inline-flex max-w-sm   bg-content1 dark:bg-carddm m-0",
@@ -52,12 +61,14 @@ if(goal_id && value){
       color="danger"
       {...props}
       id={value}
-      isSelected={status}
+      isSelected={selected}
+      aria-labelledby={value}
+      onValueChange={setSelected}
       //  lineThrough={status}
     >
       <div className="flex justify-between items-center ">
         <span>{children}</span>
-        <Image src={threepoints} className="min-w-6" />
+        <Image src={threepoints} className="min-w-6" alt="image" aria-label=""/>
       </div>
     </Checkbox>
   );

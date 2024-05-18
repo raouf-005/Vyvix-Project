@@ -18,7 +18,8 @@ export default function useformupdate() {
       education: "",
       dateofbirth: "", // Set the initial value as a date object
       speciality:"",
-      fullname:''
+      fullname:"",
+      bio:""
     },
     validationSchema: Yup.object({
       username: Yup.string(),
@@ -29,6 +30,8 @@ export default function useformupdate() {
       education: Yup.string(),
       dateofbirth: Yup.date(), // Set the validation type as date
       speciality:Yup.string(),
+      fullname:Yup.string(),
+      bio:Yup.string()
     }),
     onSubmit: async (values) => {
       try {
@@ -37,6 +40,7 @@ export default function useformupdate() {
         // Exclude the 'phonenumber' field if it is empty
         const updatedValues = { ...values };
         if (!updatedValues.phonenumber) delete updatedValues.phonenumber;
+        if (!updatedValues.bio) delete updatedValues.bio;
         if (!updatedValues.image) delete updatedValues.image;
         if (!updatedValues.organization) delete updatedValues.organization;
         if (!updatedValues.education) delete updatedValues.education;
@@ -59,7 +63,7 @@ export default function useformupdate() {
         );
 
         if (response.status === 200) {
-          alert("User updated successfully");
+          alert("Information updated successfully");
           console.log(response.data);
         }
 

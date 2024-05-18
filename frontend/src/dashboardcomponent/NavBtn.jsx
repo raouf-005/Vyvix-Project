@@ -10,8 +10,11 @@ export default function NavBtn({name, Icon,currentPage, onClick}) {
     const selected = currentPage.toLowerCase() === name.toLowerCase();
     
     return (
-        <button className={`items-center flex  relative gap-3 w-full   pl-3 py-3  rounded-lg `} onClick={onClick}>
-                <Icon selected={selected} />
+        <button className={`items-center flex  relative gap-3 w-full   pl-3 py-3  rounded-lg `} 
+        aria-label='button'
+        onClick={onClick}>
+                <Icon selected={selected} aria-label='selectimg'
+/>
             <span className={` ${selected? 'text-black dark:text-white text-lg font-bold':'text-gray-600 dark:text-white font-medium  opacity-90'}`}>
                 {name}
             </span>

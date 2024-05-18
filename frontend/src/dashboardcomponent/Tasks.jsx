@@ -68,7 +68,7 @@ export default function Tasks() {
   
     const selectAll = (e, list) => {
         if (e.target.checked) {
-            setSelected(list.map((item) => item._id));
+            setSelected(list.map((item) => item?._id));
         } else {
             setSelected([]); 
         }
@@ -83,37 +83,36 @@ export default function Tasks() {
       if (goals && goals.length > 0) {
 
     const todayTasks = goals.reduce((acc, goal) => {
-        const todayTasks = goal.tasks.filter(task =>task.date === formattedDate);// give an exemple of it 
+        const todayTasks = goal.tasks.filter(task =>task?.date === formattedDate);// give an exemple of it 
         return [...acc, ...todayTasks.map(task => ({ ...task, goal_id: goal._id }))];
     }, []);
     setTasks(todayTasks);
-    todayTasks.length > 0 ? setSelected(todayTasks.filter((task) => task.status===true).map((task) => task._id)) : setSelected([]);
+    todayTasks.length > 0 ? setSelected(todayTasks.filter((task) => task?.status===true).map((task) => task?._id)) : setSelected([]);
         }  
-        
 
 
     }, [goals]);
 
-     useEffect(() => {
+/*      useEffect(() => {
        
-            setTasks((prevTasks) =>
+             setTasks((prevTasks) =>
                 prevTasks.map((task) => {
-                    console.log("task",task);
-                    if (selected.includes(task._id)||task.status===true) {
+                  //  console.log("task",task);
+                    if (task.status===true) {
                         return { ...task, status: true };
                     } else {
                         return { ...task, status: false };
                     }
-                })
-            );
+                })  
+            );  
       
-    }, [selected]); 
+    }, [selected])  */
 
 //linking with the backend
     return (
         <div className='flex flex-col bg-white relative   rounded-3xl dark:bg-carddm dark:text-white p-4'>
             <Checkbox
-                aria-label=''
+                aria-label='check'
                 className='py-3 pl-3 mb-1 text-3xl  min-w-28 font-bold cursor-pointer  dark:bg-carddm dark:text-white'
                 classNames={{
                     base: cn('text-3xl', 'cursor-pointer flex justify-around items-center'),
@@ -133,13 +132,13 @@ export default function Tasks() {
                 }}
                 value={selected}
                 onValueChange={setSelected}
-                
+                aria-label='checkboxgroup'
                 className='overflow-y-scroll h-80 scrollbar-hide'
             >
                 {tasks&& tasks.length>0?tasks.map((item) => (
-                    item.task ?(//to handle the case where the task is empty caused by the api 
-                    <CustomCheckbox  key={item._id} value={item._id} {...item}>
-                        {item.task}
+                    item?.task ?(//to handle the case where the task is empty caused by the api 
+                    <CustomCheckbox  key={item._id} value={item?._id} {...item} status={item?.status===true?'true':'false'} checked={item?.status} all={tasks.length===selected.length?'true':'false'} none={selected.length===0?'true':undefined}>
+                        {item?.task}
                     </CustomCheckbox>
                     ):null
                 )):<p className='text-center mt-12 text-black dark:text-white  text-xl '>No tasks for today</p>

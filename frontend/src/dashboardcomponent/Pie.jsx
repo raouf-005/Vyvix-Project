@@ -31,12 +31,13 @@ export default function Pie(props) {
   }, [goals]);
 
   /// i will test the deisgn in the end to test the colour
+
   const items = [
     {
       id: "id_A",
       value:
-        user?.Success ||
-        JSON.parse(atob(localStorage.getItem("auth"))).credentials.Success ||
+        user?.Sucess ||
+        JSON.parse(atob(localStorage.getItem("auth"))).credentials.Sucess ||
         0,
       label: "Success",
       color:
@@ -52,9 +53,9 @@ export default function Pie(props) {
       color:
         localStorage.getItem("darkMode") === "true" ? "#FE6C86" : "#9380FC",
     },
-    {
+    { 
       id: "id_C",
-      value: user?.Success ? 0 : countTasks || 0,
+      value: user?.Sucess ? 0 : countTasks || 0,
       label: "Active",
       color: localStorage.getItem("darkMode") === "true" ? "white" : "#DBD5FE",
     },
@@ -78,7 +79,10 @@ export default function Pie(props) {
 
         <Dropdown placement="bottom-end" aria-label="Select Option">
           <DropdownTrigger>
-            <Button className=" bg-transparent -ml-6">
+            <Button
+              className=" bg-transparent -ml-6"
+              aria-label="button"
+            >
               {labelsMap[selectedOptionValue]}
               <Image src={arrowdown} aria-label="Arrow Down" />
             </Button>
@@ -100,18 +104,18 @@ export default function Pie(props) {
       <div className=" flex flex-col justify-center items-center">
         {items[0].value === 0 &&
         items[1].value === 0 &&
-        items[2].value === 0  ? (
+        items[2].value === 0 ? (
           <div className="flex flex-col items-center justify-center mb-[42px] py-12 gap-6">
             <h3 className="text-lg font-bold dark:text-white text-black">
               No Data to Display
             </h3>
             <p className="text-sm dark:text-gray-400 text-gray-500">
-                No goals to see the Pie chart
+              No goals to see the Pie chart
             </p>
-            </div>
+          </div>
         ) : (
           <PieChart
-            aria-label=""
+            aria-label="piechart"
             series={[
               {
                 data: items,
@@ -138,6 +142,7 @@ export default function Pie(props) {
             <Button
               radius="none"
               size="lg"
+              aria-label="button"
               className="flex-1 flex gap-0 rounded-l-3xl h-full     bg-transparent flex-col"
             >
               <span className=" dark:text-slate-200 text-slate-500  text-sm flex flex-row  items-center gap-2 ">
@@ -155,6 +160,7 @@ export default function Pie(props) {
               radius="none"
               size="lg"
               className="flex-1 flex gap-0 rounded-r-3xl    h-full  bg-transparent flex-col"
+              aria-label="button"
             >
               <span className=" dark:text-slate-200 text-slate-500  text-sm flex flex-row  items-center gap-2 ">
                 <div className="h-2 w-2 dark:bg-[#FE6C86] bg-[#9380FC] rounded-full"></div>

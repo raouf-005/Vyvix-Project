@@ -28,7 +28,7 @@ export default function Header() {
         <div className="">
           <Breadcrumbs
             separator="/"
-            aria-label=""
+            aria-label="Breadcrumbs"
             itemClasses={{
               separator: "pr-1",
             }}
@@ -46,7 +46,7 @@ export default function Header() {
           <Input
             size="sm"
             radius="full"
-            aria-label=""
+            aria-label="input "
             placeholder="Search..."
             classNames={{
               inputWrapper: ["bg-slate-100", "dark:bg-bgdm"],
@@ -56,17 +56,22 @@ export default function Header() {
             startContent={<SearchIcon alt="Search Icon" dark={darkMode} />}
           />
 
-          <Button isIconOnly className="rounded-full bg-transparent">
+          <Button isIconOnly className="rounded-full bg-transparent"
+          aria-label="button"
+          >
             <NotificationIcon alt="Notification Icon" dark={darkMode} />
           </Button>
           <Button
             isIconOnly
             className="rounded-full bg-transparent"
             onClick={() => toggleDarkMode()}
+            aria-label="button"
           >
             <MoonIcon alt="Moon Icon" dark={darkMode} />
           </Button>
-          <Button isIconOnly className="rounded-full bg-transparent">
+          <Button isIconOnly className="rounded-full bg-transparent"
+          aria-label="button"
+          >
             <SupportIcon alt="Support Icon" dark={darkMode} />
           </Button>
           <DropdownProfile />

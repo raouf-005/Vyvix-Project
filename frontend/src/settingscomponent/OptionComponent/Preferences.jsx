@@ -1,23 +1,20 @@
-import React, { useContext, useEffect ,useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import PreferencesCard from "../PrefrencesCard";
 import { Select, SelectItem, Switch, Textarea } from "@nextui-org/react";
 import { SunIcon } from "../../assets/SunIcon";
 import { MoonIcon } from "../../assets/MoonIcon";
 import { PageContext } from "../../pages/PagesContainer";
+import useformupdate from "../../customHooks/useformupdate";
 
-const classNames={
-    
+const classNames = {
   input: [
     "bg-transparent",
     "text-black/90 dark:text-white/90",
     "placeholder:text-slate-400 dark:placeholder:text-white/60",
   ],
   innerWrapper: "bg-transparent",
-  label: [
-    "text-black dark:text-white  text-lg font-medium",
-    "dark:text-white",
-  ],
+  label: ["text-black dark:text-white  text-lg font-medium", "dark:text-white"],
   inputWrapper: [
     "dark:bg-default/60",
     "backdrop-blur-xl",
@@ -28,28 +25,25 @@ const classNames={
     "dark:group-data-[focused=true]:bg-default/60",
     "!cursor-text",
   ],
-}
-
+};
 
 const languages = [
-    { label: "French", value: "French" },
-    { label: "English", value: "English" },
-    { label: "Arabic", value: "Arabic" },
-    { label: "Kabyle", value: "Kabyle" },
-    { label: "Espanish", value: "Espanish" },
-    { label: "Italien", value: "Italien" },
-    { label: "German", value: "German" },
-    { label: "Spanish", value: "Spanish" },
-    { label: "Chinese", value: "Chinese" },
-    ];
+  { label: "French", value: "French" },
+  { label: "English", value: "English" },
+  { label: "Arabic", value: "Arabic" },
+  { label: "Kabyle", value: "Kabyle" },
+  { label: "Espanish", value: "Espanish" },
+  { label: "Italien", value: "Italien" },
+  { label: "German", value: "German" },
+  { label: "Spanish", value: "Spanish" },
+  { label: "Chinese", value: "Chinese" },
+];
 
 export default function Preferences() {
+  const { darkMode, setDarkMode } = useContext(PageContext);
 
-    const { darkMode, setDarkMode } = useContext(PageContext);
-  
   const [value, setValue] = React.useState(new Set([]));
-
-
+  const formik =useformupdate()
   const toggleDarkMode = () => {
     setDarkMode((prevdark) => {
       const newDarkMode = !prevdark;
@@ -64,7 +58,17 @@ export default function Preferences() {
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-2 gap-12 mx-4 max-w-[1400px]  ">
-        <Textarea aria-label="bio" label="Edit bio" placeholder="Update your Bio" variant="bordered" classNames={classNames} labelPlacement="outside" className="max-w-xs " />
+        <Textarea
+          aria-label="bio"
+          label="Edit bio"
+          placeholder="Update your Bio"
+          variant="bordered"
+          classNames={classNames}
+          labelPlacement="outside"
+          className="max-w-xs "
+/*           {...formik.getFieldProps("bio")}
+ */
+        />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
@@ -84,7 +88,7 @@ export default function Preferences() {
             onChange={handleSelectionChange}
             listboxProps={{
               itemClasses: {
-                  // if i have time i will add dark mode 
+                // if i have time i will add dark mode
                 base: [
                   "rounded-md",
                   "text-slate-600",
@@ -99,19 +103,14 @@ export default function Preferences() {
                 ],
               },
             }}
-     
-
           >
-         
-           {languages.map((item, index) => {
-            return (
-              <SelectItem key={index} value={item.value} sle>
-                {item.label}
-              
-              </SelectItem>
-            );
-           }
-           )}
+            {languages.map((item, index) => {
+              return (
+                <SelectItem key={index} value={item.value} sle>
+                  {item.label}
+                </SelectItem>
+              );
+            })}
           </Select>
         </div>
         <div className="flex flex-col gap-2">
