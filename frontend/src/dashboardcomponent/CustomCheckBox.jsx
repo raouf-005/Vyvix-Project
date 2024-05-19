@@ -64,7 +64,6 @@ if(goal_id && value){
       isSelected={selected}
       aria-labelledby={value}
       onValueChange={setSelected}
-      //  lineThrough={status}
     >
       <div className="flex justify-between items-center ">
         <span>{children}</span>
