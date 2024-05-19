@@ -28,11 +28,9 @@ const Counter = (props) => {
 
 
 export default function FavoriteCard({favorite}) {
-    console.log('favorite',favorite)
 /*     const id =favorite._id;
  */     const navigate=useNavigate()
     const [liked ,setLiked] =useState(true)
-    const [user,setUser] =useState(null)
     
 /* 
         const fetchProfile = async () => {
@@ -78,14 +76,13 @@ export default function FavoriteCard({favorite}) {
                 
               }
             }
-        })
-    
+        },[])
     
     
     const counter=[
-        {value:favorite?.goals||user?.goals||0,label:"Goals"},//change it to goals
-        {value:favorite?.goals||user?.points||0,label:"Points"},
-        {value:favorite?.goals||user?.rank||0,label:"Rank"},
+        {value:favorite?.plans.length||0,label:"Goals"},//change it to goals
+        {value:favorite?.points||0,label:"Points"},
+        {value:favorite?.rank||0,label:"Rank"},
     ]
 
     return (
@@ -95,7 +92,7 @@ export default function FavoriteCard({favorite}) {
         <div className="flex gap-5 flex-col items-center text-center min-h-[290px]   bg-white dark:bg-carddm px-5 pt-4 pb-5 rounded-3xl">
             <div className="flex  flex-col relative items-center">
                 <Image  src={profileInfo.bgmage} className="  max-h-[100px] w-[400px] z-0" aria-label="" />
-                <Avatar size="lg" src={favorite?.image||user?.image||profileInfo.avatar}  className="  border-[5px]  border-white w-[75px] h-[75px]  -mt-10"  />
+                <Avatar size="lg" src={favorite?.image||profileInfo.avatar}  className="  border-[5px]  border-white w-[75px] h-[75px]  -mt-10"  />
                 <Button
                 className={`text-default-900/80 dark:text-white  ${liked ? "bg-gradient-to-r from-purple-800     to-pink-700 text-white " :"bg-slate-200"}  dark:bg-carddm  absolute right-1 top-1`}
                 radius="lg"
@@ -118,10 +115,10 @@ export default function FavoriteCard({favorite}) {
                   }}
             >   
                 <h3 className="text-black text-xl font-bold dark:text-white">
-                    {favorite?.username||user?.username||profileInfo.name} 
+                    {favorite?.username||profileInfo.name} 
                 </h3>
                 <p className='text-slate-400 text-sm '>
-                    {favorite?.speciality||user?.speciality||profileInfo.role}
+                    {favorite?.speciality||profileInfo.role}
                 </p>
             </Button>
             </Tooltip>
