@@ -41,6 +41,7 @@ export default function EditProfile() {
           className="w-36 h-36 mt-2  cursor-pointer "
           src={user.credentials.image || ""}
           onClick={onOpen}
+          aria-label="Avatar "
         />
         <img
           src={EditImg}
@@ -134,6 +135,7 @@ export default function EditProfile() {
         <div className=" flex justify-end  col-span-2">
           <Button
             type="submit"
+            aria-label="button"
             className="bg-gradient-to-r  mt-3 text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 "
           >
             Save
@@ -145,6 +147,7 @@ export default function EditProfile() {
         onOpenChange={onOpenChange}
         data={data}
         formik={formik}
+        aria-label="Upload Photo"
       />
     </form>
   );

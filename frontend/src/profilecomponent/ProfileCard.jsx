@@ -18,7 +18,6 @@ const Counter = (props) => {
 
 export default function ProfileCard(props) {
   const user = props.user || ""; //maybe i willadd some logic ot render only the user
-  console.log(user)
   const counter = [
     {
       value:
@@ -47,7 +46,6 @@ export default function ProfileCard(props) {
 
   useEffect(() => {
     const fetchSetFav = async (isFav) => {
-        console.log(`/api/user/${isFav}fav/${user._id}`)
       try {
         const response = await axios.patch(
           `/api/user/${isFav}fav/${user._id}`,{},
@@ -55,7 +53,6 @@ export default function ProfileCard(props) {
             withCredentials: true,
           }
         );
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

@@ -54,6 +54,7 @@ export default function Header() {
             }}
             className="max-w-[55%] mr-3"
             startContent={<SearchIcon alt="Search Icon" dark={darkMode} />}
+            autoComplete="off"
           />
 
           <Button isIconOnly className="rounded-full bg-transparent"

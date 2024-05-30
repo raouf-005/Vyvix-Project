@@ -7,7 +7,7 @@ export default function ProgressBar({value}) {
 
         <div className='flex flex-row gap-2  items-center '>
 
-            <div className='font-semibold'>
+            <div className='font-semibold w-4 mr-1'>
                 {`${value}%`}
             </div>
             <Progress

@@ -3,21 +3,23 @@ import InputLogin from "./InputLogin";
 import { Button, Checkbox } from "@nextui-org/react";
 import useFormLogin from "../customHooks/useformlogin";
 import { useState } from "react";
+import { createContext } from "react";
+import useAuth from "../authcomponent/useAuth";
+
 
 export default function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const formik = useFormLogin();
+/*   const [isLoading, setIsLoading] = useState(false);
+ */ 
+const {isLoading, setIsLoading} = useAuth();
+const formik = useFormLogin();
 
 
   const handleClick = () => {
     setIsLoading(true);
     formik.handleSubmit();
-    setTimeout(() => {
+   /*  setTimeout(() => {
       setIsLoading(false);
-    }, 4000);
-    
-
-    
+    }, 8000); */
   }
   return (
     <form
@@ -64,3 +66,4 @@ export default function LoginForm() {
     </form>
   );
 }
+

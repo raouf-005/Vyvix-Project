@@ -10,7 +10,7 @@ export default function useRenderCell() {
         return <ProgressBar value={cellValue} />;
       case "name":
         return (
-          <div className="flex  flex-row gap-3 items-center text-center">
+          <div className="flex  flex-row gap-3 items-center text-center max-w-[500px]">
             <Avatar src={user.image} size="md" />
             <div className="">{cellValue}</div>
           </div>

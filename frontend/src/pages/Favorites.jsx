@@ -14,7 +14,6 @@ export default function Favorites() {
         const res = await axios.get("/api/usercompany/favorites",{
             withCredentials:true
         });
-        console.log(res.data);
         setFavorites(res.data);
         setIsLoading(false)
       } catch (error) {

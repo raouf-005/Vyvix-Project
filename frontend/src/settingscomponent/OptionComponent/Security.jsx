@@ -1,8 +1,6 @@
 import React from "react";
-import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
-import EditInput from "../EditInput";
 import useFormPassword from "../../customHooks/useformpassword";
 import PassInput from "../PassInput";
 
@@ -49,7 +47,7 @@ export default function Security() {
           Two-factor authentication
         </h3>
         <div className="flex gap-2">
-          <Switch  />
+          <Switch aria-label="switch" />
           <p className="text-[#303867] font-medium dark:text-gray-400">
             Enable two-factor authentication
           </p>
@@ -98,6 +96,7 @@ export default function Security() {
         <div className=" flex justify-end  col-span-2">
             <Button 
               onClick={formik.handleSubmit}
+              aria-label="button"
             className="bg-gradient-to-r  sm:text-lg from-rose-500 to-purple-700 max-w-40 rounded-full text-white font-semibold px-20 py-6 ">
                 Save
             </Button>

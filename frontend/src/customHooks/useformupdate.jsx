@@ -3,8 +3,16 @@ import * as Yup from "yup";
 import axios from "./Axios";
 import React from "react";
 import { image } from "@nextui-org/react";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 export default function useformupdate() {
+  const arraysEqual = (arr1, arr2) => {
+    if (arr1?.length !== arr2?.length) {
+      return false; // Different lengths means arrays are not equal
+    }
+    return arr1.every((value, index) => value === arr2[index]);
+  };
   const formik = useFormik({
     //i will add more when the backend is ready
     initialValues: {
@@ -23,8 +31,8 @@ export default function useformupdate() {
     },
     validationSchema: Yup.object({
       username: Yup.string(),
-      email: Yup.string(),
-      phonenumber:Yup.number(),
+      email: Yup.string().email("Invalid email address"),
+      phonenumber:Yup.number().typeError("Phone number must be a number"),
       image: Yup.string(),
       organization: Yup.string(),
       education: Yup.string(),
@@ -32,6 +40,7 @@ export default function useformupdate() {
       speciality:Yup.string(),
       fullname:Yup.string(),
       bio:Yup.string()
+      .max(500, "Description must be 500 characters or less"),
     }),
     onSubmit: async (values) => {
       try {
@@ -48,11 +57,12 @@ export default function useformupdate() {
         if (!updatedValues.username) delete updatedValues.username;
         if (!updatedValues.email) delete updatedValues.email;
         if (!updatedValues.password) delete updatedValues.password;
-        if (!updatedValues.languages||updatedValues.languages.length===0) delete updatedValues.languages;// if it caused a problem i will change it
+        if (!updatedValues.languages||updatedValues.languages?.length===0) delete updatedValues.languages;// if it caused a problem i will change it
         if (!updatedValues.speciality) delete updatedValues.speciality;
         if (!updatedValues.fullname) delete updatedValues.fullname;
-        if (updatedValues.languages===JSON.parse(atob(localStorage.getItem('auth'))).credentials.languages) delete updatedValues.languages;
-       
+
+        if (arraysEqual(updatedValues.languages,JSON.parse(atob(localStorage.getItem('auth'))).credentials.languages)) delete updatedValues.languages;
+    
         if (Object.keys(updatedValues).length > 0) { 
         const response = await axios.patch(
           "/api/user",
@@ -63,8 +73,16 @@ export default function useformupdate() {
         );
 
         if (response.status === 200) {
-          alert("Information updated successfully");
-          console.log(response.data);
+          toast.success('Information updated successfully  ', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "light",
+            transition: Bounce,
+          });
         }
 
         localStorage.setItem(
@@ -77,7 +95,17 @@ export default function useformupdate() {
         );
         formik.resetForm();
       }else{
-        alert("you have to update at least one field")
+        toast.error('You have to update at least one field  ', {
+          position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+          });
+        
       }
         // Handle the successful submission
       } catch (error) {

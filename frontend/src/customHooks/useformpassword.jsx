@@ -40,7 +40,6 @@ export default function useFormPassword() {
                     }
                 );
                 const data = await response.data;
-                console.log(response)
                 if (response.status === 200) {
                     alert(data)
                     formik.resetForm();

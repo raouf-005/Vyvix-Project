@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import PreferencesCard from "../PrefrencesCard";
-import { Select, SelectItem, Switch, Textarea } from "@nextui-org/react";
+import { Button, Select, SelectItem, Switch, Textarea } from "@nextui-org/react";
 import { SunIcon } from "../../assets/SunIcon";
 import { MoonIcon } from "../../assets/MoonIcon";
 import { PageContext } from "../../pages/PagesContainer";
 import useformupdate from "../../customHooks/useformupdate";
-
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 const classNames = {
   input: [
     "bg-transparent",
@@ -42,7 +43,7 @@ const languages = [
 export default function Preferences() {
   const { darkMode, setDarkMode } = useContext(PageContext);
 
-  const [value, setValue] = React.useState(new Set([]));
+  const [value, setValue] = useState(new Set([]));
   const formik =useformupdate()
   const toggleDarkMode = () => {
     setDarkMode((prevdark) => {
@@ -55,9 +56,12 @@ export default function Preferences() {
     setValue(e.target.value);
   };
 
+
+
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-2 gap-12 mx-4 max-w-[1400px]  ">
+        <div className="  ">
         <Textarea
           aria-label="bio"
           label="Edit bio"
@@ -65,10 +69,21 @@ export default function Preferences() {
           variant="bordered"
           classNames={classNames}
           labelPlacement="outside"
-          className="max-w-xs "
-/*           {...formik.getFieldProps("bio")}
- */
+          className="max-w-[360px]  "
+          minRows={4}
+          onBlur={(e)=>{
+            formik.setFieldValue("bio",e.target.value)
+          }}
         />
+        <Button className="mt-3 bg-gradient-to-r   from-rose-500 to-purple-700 text-white shadow-sm "
+        aria-label="button"
+          onClick={formik.handleSubmit}
+        >
+          Save
+        </Button>
+          
+        </div>
+
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
@@ -106,7 +121,7 @@ export default function Preferences() {
           >
             {languages.map((item, index) => {
               return (
-                <SelectItem key={index} value={item.value} sle>
+                <SelectItem key={index} value={item.value} aria-label="select-item">
                   {item.label}
                 </SelectItem>
               );

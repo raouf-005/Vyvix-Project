@@ -70,7 +70,6 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
       const auth = atob(localStorage.getItem("auth"));
 
       localStorage.setItem("auth",btoa(JSON.stringify({ ...JSON.parse(auth), credentials: { ...JSON.parse(auth).credentials, image: response.data.secure_url}}))); 
-      //window.location.reload();
       setisSubmited(true);
       setDisplay(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "");
       setImageUrl(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "")
@@ -94,29 +93,30 @@ const UploadPhoto = ({ data, isOpen, onOpenChange }) => {
         withCredentials: true,
       });
       console.log("Image updated successfully");
-      console.log(res); 
+      window.location.reload();
+
     } catch (error) {
       console.error("Image update error:", error);
     }
   }
 }
     if (issubmited) {
-      handleUpload();
+       handleUpload();
       setisSubmited(false);
       setDisplay(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "");
       setImageUrl(localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "")
     }
     }, [issubmited]);
 
-
-    useEffect(() => {
+//i will add it later
+  /*   useEffect(() => {
       formik.setValues({
         image: localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : "",
 
       });
      
     }, [issubmited]);
-
+ */
   return (
     <Modal
       isOpen={isOpen}

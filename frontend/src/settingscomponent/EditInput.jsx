@@ -1,28 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Input } from "@nextui-org/react";
+import { Input, Tooltip } from "@nextui-org/react";
 import { EyeFilledIcon } from "../assets/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../assets/EyeSlashFilledIcon";
 import { Button } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 
-const classNames = {
-  input: [
-    "bg-transparent",
-    "text-black/90 dark:text-white/90",
-    "placeholder:text-slate-400 dark:placeholder:text-white/60",
-  ],
-  innerWrapper: "bg-transparent",
-  inputWrapper: [
-    "dark:bg-default/60",
-    "backdrop-blur-xl",
-    "backdrop-saturate-200",
-    "hover:bg-slate-100/70 dark:hover:bg-default/70",
-    "dark:hover:bg-default/70",
-    "group-data-[focused=true]:bg-default-200/50",
-    "dark:group-data-[focused=true]:bg-default/60",
-    "!cursor-text",
-  ],
-};
 
 const languages = [
   { label: "french", value: "French" },
@@ -44,20 +26,20 @@ export default function EditInput({
   name,
 }) {
   const formikfield = formik
-    ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, ""))
-    : null;
-
+  ? formik.getFieldProps(label.toLowerCase().replace(/\s/g, ""))
+  : null;
+  
   useEffect(() => {
     if (formikfield && value && label !== "Languages") {
       formikfield.value = value;
     }
   }, [value]);
-
+  
   const [isVisible, setIsVisible] = useState(true);
   const [values, setValues] = React.useState(
     new Set(label === "Languages" ? value : [])
   );
-
+  
   const handleSelectionChange = (e) => {
     setValues(new Set(e.target.value.split(",")));
   };
@@ -70,7 +52,26 @@ export default function EditInput({
       );
     }
   }, [values]);
-
+  
+  const classNames = {
+    input: [
+      "bg-transparent",
+      "text-black/90 dark:text-white/90",
+      "placeholder:text-slate-400 dark:placeholder:text-white/60",
+    ],
+    innerWrapper: "bg-transparent",
+    inputWrapper: [
+      "dark:bg-default/60",
+      "backdrop-blur-xl",
+      "backdrop-saturate-200",
+      "hover:bg-slate-100/70 dark:hover:bg-default/70",
+      "dark:hover:bg-default/70",
+      "group-data-[focused=true]:bg-default-200/50",
+      "dark:group-data-[focused=true]:bg-default/60",
+      "!cursor-text",
+      `${formik && formik.errors[label.toLowerCase().replace(/\s/g, "")] ? "border-red-500" : ""}`
+    ],
+  };
   const renderInput = () => {
     switch (type) {
       case "password":
@@ -85,14 +86,14 @@ export default function EditInput({
               variant="bordered"
               type={isVisible ? "password" : "text"}
               {...formikfield}
-            />
+              />
             <Button
               isIconOnly
               aria-label="Toggle password visibility"
               onClick={() => {
                 setIsVisible(!isVisible);
               }}
-              className="absolute right-4 top-[7.7px] bg-transparent"
+              className="absolute right-4 top-[7.7px] bg-transparent "
             >
               {isVisible ? (
                 <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
@@ -162,7 +163,7 @@ export default function EditInput({
             name={name}
             type={type}
             variant="bordered"
-            className="bg-transparent"
+            className={`bg-transparent ${formik && formik.errors[label.toLowerCase().replace(/\s/g, "")] ? "border-red-500" : ""}`} 
             classNames={classNames}
             {...formikfield}
             aria-label="Genral Input"
@@ -173,11 +174,19 @@ export default function EditInput({
 
   return (
     <div className="relative flex flex-col gap-2">
-      <label htmlFor={label} className=" dark:text-white text-black">
+      <label htmlFor={label} className="dark:text-white text-black">
         {label}
       </label>
-      {renderInput()}
-
+      {formik && formik.errors[label.toLowerCase().replace(/\s/g, "")] ? (
+        <Tooltip content={"Enter a valid " + label}
+          className="text-bgdm"
+          placement="top-end"
+        >
+          {renderInput()}
+        </Tooltip>
+      ) : (
+        renderInput()
+      )}
     </div>
   );
 }

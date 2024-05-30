@@ -4,12 +4,13 @@ import * as Yup from 'yup';
 import axios from './Axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../authcomponent/useAuth';
+import { toast } from 'react-toastify';
 
 export default function useFormLogin() {
-    const { setIsAuth } = useAuth();
+    const { setIsLoading } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-
+    
     const formik = useFormik({
         initialValues: {
             useremail: '',
@@ -36,18 +37,28 @@ export default function useFormLogin() {
                     }
                 );
                 const data = await response.data;
-                console.log(response)
                     if (response.status === 200) {
-                         alert(data?.msg||"Login successful")
-                        formik.resetForm();
+/*                          alert(data?.msg||"Login successful")
+ */                        formik.resetForm();
                         localStorage.setItem('auth', btoa(JSON.stringify({credentials:data.requestuser })));
+                        
                     }          
                     const from =!data.requestuser.company ? '/dashboard' : '/favorites'|| location.state?.from?.pathname ;
                     navigate(from, { replace: true });
             } catch (err) {
                 console.log(err);
-                alert('Invalid login');
+                toast.error(' Invalid Credentials', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    theme: "light",
+                    });
+                    setIsLoading(false);
             }
+            setIsLoading(false);
             return;
         },
     });

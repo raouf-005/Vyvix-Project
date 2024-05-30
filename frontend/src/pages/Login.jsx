@@ -12,6 +12,26 @@ export default function Login({ Page }) {
   const [formselected, setFormSelected] = useState(
     desiredPage === "register" ? true : false
   );
+
+  useEffect(()=>{
+
+    if( Page === "login") {
+      const auth =localStorage.getItem('auth')? JSON.parse(atob(localStorage.getItem("auth"))).credentials:null;
+      if (auth) {
+        if (auth?.company === false) {
+          navigate("/dashboard");
+        }
+        if (auth?.company === true) {
+          navigate("/favorites");
+        }
+      }
+
+    }
+  },[])
+
+
+
+
   const navigate = useNavigate();
   useEffect(() => {
     const btnSlide = document.getElementById("btnSlider");
@@ -96,7 +116,9 @@ export default function Login({ Page }) {
             : "Welcome to our Registration page on Vyvix! Sign up here to create your account and join our community."}
         </p>
         {formselected ? <RegisterForm /> : <LoginForm />}
+        
       </div>
+      
     </div>
   );
 }

@@ -13,11 +13,14 @@ import RequireAuth from "./authcomponent/RequireAuth";
 import Favorites from "./pages/Favorites";
 import Settings from "./pages/Settings";
 import Unauthorized from "./pages/Unauthorized";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function App() {
   //const  [isAuth, setIsAuth] = useState(false);
 
   return (
+
     <Routes>
       {/*public routes are routes that are accessible to everyone, whether they are logged in or not.*/}
       <Route
@@ -85,5 +88,6 @@ export default function App() {
 
       <Route path="*" element={<Error />} />
     </Routes>
+  
   );
 }

@@ -63,7 +63,6 @@ export default function FavoriteCard({favorite}) {
                     withCredentials: true,
                   }
                 );
-                console.log(response);
               } catch (error) {
                 console.log(error);
               }

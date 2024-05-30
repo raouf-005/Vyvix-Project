@@ -43,7 +43,8 @@ export default function GeneralInfoCard(props) {
       speciality: user2.speciality || user?.credentials?.speciality || "Empty",
       workHistory: user2.workHistory || user?.credentials?.workHistory || "Empty",
       organization: user2.organization || user?.credentials?.organization || "Empty",
-      dateofbirth: user2.dateofbirth || user?.credentials?.dateofbirth || "Empty"  
+      dateofbirth: user2.dateofbirth || user?.credentials?.dateofbirth || "Empty ",
+      bio: user2.bio || user?.credentials?.bio || "Empty Go to Settings to upadte your bio",
     }
 
 
@@ -53,14 +54,11 @@ export default function GeneralInfoCard(props) {
                 <h3 className="text-black font-bold text-2xl dark:text-white">
                     General Information
                 </h3>
-                <p className="text-sm">
-                    As we live, our hearts turn colder.
-                    Cause pain is what we go through as we become older.
-                    We get insulted by others, lose trust for those others. We get back stabbed by friends.
-                    It becomes harder for us to give others a hand. We get our heart broken by people we love, even that we give them all...
-                </p>
+                <p className="text-sm min-h-[105px] max-w-[600px] break-words ">
+                {data.bio}    
+            </p>
             </div>
-            <div className="grid grid-cols-2 grid-rows-3 gap-4 mt-6">
+            <div className="grid grid-cols-2 grid-rows-3 gap-4 ">
                 <LitlleCard title="Education" value={data.education} />
                 <LitlleCard title="Languages" value={data.languages} />
                 <LitlleCard title="Speciality" value={data.speciality} />

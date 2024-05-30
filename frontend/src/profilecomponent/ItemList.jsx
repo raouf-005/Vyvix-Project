@@ -26,7 +26,6 @@ export default function ItemList(props) {
       const response = await axios.delete(`/api/plan/${id}`, {
         withCredentials: true,
       });
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +35,6 @@ export default function ItemList(props) {
   };
 
   const changeNameGoal = async (id, name) => {
-    console.log(`/api/plan/${id}/rename`);
     try {
       const response = await axios.patch(
         `/api/plan/${id}/rename`,
@@ -45,7 +43,6 @@ export default function ItemList(props) {
           withCredentials: true,
         }
       );
-      console.log(response);
     } catch (error) {
       console.error("rename", error);
     }

@@ -22,7 +22,6 @@ export default function CustomCheckbox({ children, ...props }) {
           }
         );
         const data = await response.data;
-        console.log(data)
       } catch (error) {
         console.log("error", error);
       }
