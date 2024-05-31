@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-disableReactDevTools()
+//disableReactDevTools()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

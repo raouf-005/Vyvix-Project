@@ -72,6 +72,13 @@ export default function App() {
           element={<PagesContainer page={<Settings />} name="Settings" />}
           errorElement={<Error />}
         />
+{/* for errors in the setting s path  */}
+
+        <Route
+          path="/settings/:id"
+          element={<PagesContainer page={<Settings />} name="Settings" />}
+          errorElement={<Error />}
+        />
 
         <Route
           path="/ranking"

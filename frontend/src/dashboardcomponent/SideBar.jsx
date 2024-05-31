@@ -29,6 +29,7 @@ export default function SideBar({ darkMode }) {
     if (currentPage !== "UsersProfile") {
       navigate(`/${currentPage.toLowerCase()}`);
     }
+  
   }, [currentPage]);
 
   const Logout = async () => {

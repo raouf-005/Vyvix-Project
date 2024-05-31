@@ -1,4 +1,10 @@
-import { BreadcrumbItem, Breadcrumbs, Input, Button } from "@nextui-org/react";
+import {
+  BreadcrumbItem,
+  Breadcrumbs,
+  Input,
+  Button,
+  Tooltip,
+} from "@nextui-org/react";
 import DropdownProfile from "./DropdownProfile";
 import { useContext } from "react";
 import { PageContext } from "../pages/PagesContainer";
@@ -8,7 +14,6 @@ import {
   SupportIcon,
   SearchIcon,
 } from "../assets/HeaderIcons";
-import UploadPhoto from "../settingscomponent/UploadPhoto";
 
 export default function Header() {
   const { currentPage, setCurrentPage, darkMode, setDarkMode } =
@@ -57,11 +62,24 @@ export default function Header() {
             autoComplete="off"
           />
 
-          <Button isIconOnly className="rounded-full bg-transparent"
-          aria-label="button"
+          <Tooltip
+          className={`  text-[11px]  ${darkMode ?'bg-carddm text-white' :'text-black' }  `}
+          content="Notifications" placement="bottom"
+          offset={-3}
           >
-            <NotificationIcon alt="Notification Icon" dark={darkMode} />
-          </Button>
+            <Button
+              isIconOnly
+              className="rounded-full bg-transparent"
+              aria-label="button"
+            >
+              <NotificationIcon alt="Notification Icon" dark={darkMode} />
+            </Button>
+          </Tooltip>
+          <Tooltip
+          className={`  text-[11px]  ${darkMode ?'bg-carddm text-white' :'text-black' }  `}
+          content="Dark Mode" placement="bottom"
+          offset={-3}
+          >
           <Button
             isIconOnly
             className="rounded-full bg-transparent"
@@ -70,11 +88,21 @@ export default function Header() {
           >
             <MoonIcon alt="Moon Icon" dark={darkMode} />
           </Button>
-          <Button isIconOnly className="rounded-full bg-transparent"
-          aria-label="button"
+          </Tooltip>
+          <Tooltip
+          className={`  text-[11px]  ${darkMode ?'bg-carddm text-white' :'text-black' }  `}
+          content="Support" placement="bottom"
+          offset={-3}
+          >
+          <Button
+            isIconOnly
+            className="rounded-full bg-transparent"
+            aria-label="button"
           >
             <SupportIcon alt="Support Icon" dark={darkMode} />
           </Button>
+          </Tooltip>
+        
           <DropdownProfile />
         </div>
       </div>

@@ -1,9 +1,11 @@
+import React from 'react'
+import { useParams } from 'react-router-dom';
 
 
 
-export default function HeadBtn({name,currentOpt, onClick}) {
-
-    const selected = currentOpt.toLowerCase() === name.toLowerCase();
+export default function HeadBtn({name, onClick,currentid}) {
+    const {id}= useParams();
+    const selected = id ===currentid;
     return (
         <button className="items-center flex  relative gap-3    pb-2 pl-8 pr-14  rounded-lg "  onClick={onClick}>  
           <span className={` ${selected? 'bg-gradient-to-r from-danger to-purple-800 bg-clip-text text-transparent font-semibold  text-lg ':'text-gray-600 dark:text-white   opacity-90'}`}>

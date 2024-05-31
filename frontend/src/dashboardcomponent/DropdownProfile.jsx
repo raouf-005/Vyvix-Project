@@ -55,7 +55,7 @@ export default function DropdownProfile() {
              src={localStorage.getItem("auth") ?JSON.parse(atob(localStorage.getItem("auth"))).credentials.image : ""}
             
             aria-label=" Profile Picture"
-            className="w-12 h-12 ml-4"/>
+            className="w-12 h-12 ml-4 cursor-pointer"/>
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Custom item styles"
