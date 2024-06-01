@@ -70,12 +70,13 @@ export default function FavoriteCard({favorite}) {
             if (favorite?.username) {
               if (liked) {
                 fetchSetFav("");
+
               } else {
                 fetchSetFav("un");
                 
               }
             }
-        },[])
+        },[liked])
     
     
     const counter=[

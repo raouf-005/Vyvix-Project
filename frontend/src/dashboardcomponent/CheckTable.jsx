@@ -55,7 +55,7 @@ export default function App() {
       const newDisabledKeys = new Set();
 
       goals.forEach((goal, index) => {
-        if (goal.progress === 22) {
+        if (goal.progress === 100) {
           newSelectedKeys.add(goal._id);
         } else {
           newDisabledKeys.add(goal._id);

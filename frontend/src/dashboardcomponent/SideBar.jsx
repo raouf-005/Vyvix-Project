@@ -13,6 +13,8 @@ import {
 } from "../assets/SideBarIcons";
 import LogoutImg from "../assets/Logout.svg";
 import axios from "../customHooks/Axios";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 //i will move it to different directory
 
 export default function SideBar({ darkMode }) {
@@ -43,12 +45,35 @@ export default function SideBar({ darkMode }) {
         }
       );
       if (response.status === 200) {
-        alert("User Logged Out");
-        navigate("/login");
+/*         alert("User Logged Out");
+  */         toast.success('User Logged Out', {
+        position: "top-center",
+        autoClose: 100,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+         navigate("/login");
         setCurrentPage("Login");
       }
     } catch (error) {
       console.error("Logout failed:", error);
+
+      toast.error('Logout failed', {
+        position: "top-center",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
     }
   };
 

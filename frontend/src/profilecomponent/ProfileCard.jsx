@@ -18,6 +18,7 @@ const Counter = (props) => {
 
 export default function ProfileCard(props) {
   const user = props.user || ""; //maybe i willadd some logic ot render only the user
+  console.log(user);
   const counter = [
     {
       value:

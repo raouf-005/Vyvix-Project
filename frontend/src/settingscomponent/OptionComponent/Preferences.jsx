@@ -49,14 +49,18 @@ export default function Preferences() {
 
   
   const toggleDarkMode = () => {
-    setDarkMode((prevdark) => {
-      const newDarkMode = !prevdark;
-      localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
-      return newDarkMode;
-    });
+    if(PageContext){
+      setDarkMode((prevdark) => {
+        const newDarkMode = !prevdark;
+        localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+        return newDarkMode;
+      });
+
+    }
+  
   };
   const handleSelectionChange = (e) => {
-    setValue(e.target.value);
+    setValue(e?.target?.value);
   };
 
 

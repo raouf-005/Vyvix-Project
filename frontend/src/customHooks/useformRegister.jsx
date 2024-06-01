@@ -3,8 +3,11 @@ import * as Yup from 'yup';
 import axios from './Axios'
 import { useNavigate } from 'react-router-dom'; 
 import useAuth from '../authcomponent/useAuth';
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+
 export default function useFormRegister() {
-    const { setIsLoading } = useAuth();
+   const { setIsLoading } = useAuth();
     const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
@@ -32,36 +35,42 @@ export default function useFormRegister() {
         onSubmit:async  (values) => {
             try {
                 const response = await axios.post('/api/userregister', values);
-                toast.success(' User registered successfully', {
-                    position: "top-center",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: false,
-                    theme: "light",
-                    });
-                navigate('/login')
-                formik.resetForm();
-
-            } catch (err) {
-                if (err.response && err.response.data) {
-                    console.log(err.response.data);
-                } else {
-                    console.log(err);
-                    toast.success('Already ', {
+                    toast.success(' User registered successfully', {
                         position: "top-center",
                         autoClose: 1000,
                         hideProgressBar: false,
                         closeOnClick: true,
-                        pauseOnHover: true,
+                        pauseOnHover: false,
                         draggable: false,
+                        progress: undefined,
                         theme: "light",
+                        transition: Bounce,
                         });
+                navigate('/login')
+                formik.resetForm();
+                setIsLoading(false);
+
+            } catch (err) {
+                if (err.response && err.response.data) {
+                    toast.error(' Credentials already exists', {
+                        position: "top-center",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                        });
+                } else {
+                    console.log(err);
+                        
                 }
+                setIsLoading(false);
             }
         },
     });
-    setIsLoading(false);
+    
     return formik;
 }

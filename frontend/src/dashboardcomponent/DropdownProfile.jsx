@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { PageContext } from "../pages/PagesContainer";
 import axios from "../customHooks/Axios";
 import { useNavigate } from "react-router-dom";
-
-
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 
 export default function DropdownProfile() {
@@ -27,13 +27,35 @@ export default function DropdownProfile() {
                 }
             );
             if (response.status === 200) {
-               alert("User Logged Out");
+/*                alert("User Logged Out");
+ */                 toast.success('User Logged Out', {
+        position: "top-center",
+        autoClose: 100,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
                 Navigate("/login")
                 setCurrentPage("Login")
             }
         
         } catch (error) {
             console.error("Logout failed:", error);
+            toast.error('Logout failed', {
+              position: "top-center",
+              autoClose: 500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
         }
     };
     

@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Checkbox, Button } from "@nextui-org/react";
 import InputLogin from "./InputLogin";
 import useFormRegister from "../customHooks/useformRegister.jsx";
 import useAuth from "../authcomponent/useAuth";
 
 
-
+const loadingContext= createContext()
 
 export default function RegisterForm() {
-/*   const [isLoading, setIsLoading] = useState(false);
- */  
+  // const [isLoading, setIsLoading] = useState(false);
+  
   const {isLoading, setIsLoading} = useAuth();
   const formik = useFormRegister();
   const [EmailPassValue, setEmailPassValue] = useState(
@@ -20,9 +20,9 @@ export default function RegisterForm() {
   const handleClick = () => {
     setIsLoading(true);
     formik.handleSubmit();
-   /*  setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); */
+   /*   setTimeout(() => {
+       setIsLoading(false);
+    }, 5000);  */
   }
 
 

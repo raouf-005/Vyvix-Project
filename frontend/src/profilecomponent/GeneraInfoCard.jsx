@@ -34,17 +34,18 @@ const LitlleCard = ({title, value}) => {
 export default function GeneralInfoCard(props) {
 
     const user =JSON.parse(atob(localStorage.getItem('auth')));
-    const user2 =props.user||''
+    const user2 =props.user ?props.user :user.credentials;
+
   //  console.log('props',props)
 
     const data = {
-      education: user2.education || user?.credentials?.education || "Empty",
-      languages: user2.languages || user?.credentials?.languages || "Empty",
-      speciality: user2.speciality || user?.credentials?.speciality || "Empty",
-      workHistory: user2.workHistory || user?.credentials?.workHistory || "Empty",
-      organization: user2.organization || user?.credentials?.organization || "Empty",
-      dateofbirth: user2.dateofbirth || user?.credentials?.dateofbirth || "Empty ",
-      bio: user2.bio || user?.credentials?.bio || "Empty Go to Settings to upadte your bio",
+      education: user2.education  || "Empty",
+      languages: user2.languages || "Empty",
+      speciality: user2.speciality  || "Empty",
+      workHistory: user2.workHistory  || "Empty",
+      organization: user2.organization || "Empty",
+      dateofbirth: user2.dateofbirth || "Empty ",
+      bio: user2.bio  || "Empty bio",
     }
 
 

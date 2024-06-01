@@ -8,8 +8,9 @@ import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import { Bounce } from "react-toastify";
 
-disableReactDevTools()
+//disableReactDevTools()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,20 +21,19 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/*" element={<App />} />
           </Routes>
           <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            limit={1}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable
-            pauseOnHover={false}
-            theme="light"
-            transition={"Bounce"}
-            className={"min-w-fit"}
-          />
+position="top-center"
+autoClose={1000}
+limit={1}
+hideProgressBar={false}
+newestOnTop
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable={false}
+pauseOnHover={false}
+theme="light"
+transition={Bounce}
+/>
         </AuthProvider>
       </BrowserRouter>
     </NextUIProvider>

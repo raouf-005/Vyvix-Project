@@ -5,6 +5,7 @@ import axios from './Axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../authcomponent/useAuth';
 import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
 
 export default function useFormLogin() {
     const { setIsLoading } = useAuth();
@@ -47,15 +48,18 @@ export default function useFormLogin() {
                     navigate(from, { replace: true });
             } catch (err) {
                 console.log(err);
-                toast.error(' Invalid Credentials', {
+                toast.error('Invalid Credentials', {
                     position: "top-center",
-                    autoClose: 1000,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
-                    pauseOnHover: true,
+                    pauseOnHover: false,
                     draggable: false,
+                    progress: undefined,
                     theme: "light",
+                    transition: Bounce,
                     });
+                    
                     setIsLoading(false);
             }
             setIsLoading(false);
