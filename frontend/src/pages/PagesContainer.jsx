@@ -38,11 +38,11 @@ export default function PagesContainer({ page, name }) {
 // i will add when to fetch goals
 // if it didn't work i wull add it to the useEffect of the dashboard
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
-      <div className="flex  flex-row bg-slate-100  dark:bg-indigo-950 ">
         <PageContext.Provider
           value={{ currentPage, setCurrentPage, darkMode, setDarkMode }}
         >
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <div className="flex  flex-row bg-slate-100  dark:bg-indigo-950 ">
           <GoalsContext.Provider value={{ goals, setGoals }}>
             <SideBar darkMode={darkMode} />
 
@@ -52,8 +52,8 @@ export default function PagesContainer({ page, name }) {
               <FooterPages />
             </div>
           </GoalsContext.Provider>
-        </PageContext.Provider>
       </div>
     </div>
+        </PageContext.Provider>
   );
 }

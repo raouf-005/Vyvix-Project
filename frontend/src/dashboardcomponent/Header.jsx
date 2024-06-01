@@ -51,7 +51,7 @@ export default function Header() {
           <Input
             size="sm"
             radius="full"
-            aria-label="input "
+            aria-label="inputsearch "
             placeholder="Search..."
             classNames={{
               inputWrapper: ["bg-slate-100", "dark:bg-bgdm"],

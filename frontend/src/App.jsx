@@ -13,7 +13,6 @@ import RequireAuth from "./authcomponent/RequireAuth";
 import Favorites from "./pages/Favorites";
 import Settings from "./pages/Settings";
 import Unauthorized from "./pages/Unauthorized";
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function App() {
