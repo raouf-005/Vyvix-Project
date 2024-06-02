@@ -48,7 +48,7 @@ function formatDate(date) {
 
     // Format month and day to have leading zeros if necessary
     //const  formattedMonth = month < 10 ? "0" + month : month;
-    const formattedMonth = month;
+    const formattedMonth = '0'+month;
     const  formattedDay = day < 10 ? "0" + day : day;
     
     // Construct the date string in the desired format
@@ -79,14 +79,18 @@ export default function Tasks() {
         let currentDate = new Date();
         
         let formattedDate = formatDate(currentDate);
-       // console.log("current date",formattedDate); 
+        console.log("current date",formattedDate); 
       if (goals && goals.length > 0) {
 
     const todayTasks = goals.reduce((acc, goal) => {
-        const todayTasks = goal.tasks.filter(task =>task?.date === formattedDate);// give an exemple of it 
+        const todayTasks = goal.tasks.filter(task =>{
+            console.log("check",task.date,formattedDate);
+            return task?.date.split('/')?.every((attribute, index) => parseInt(attribute) === parseInt(formattedDate.split('/')[index]));
+        });
         return [...acc, ...todayTasks.map(task => ({ ...task, goal_id: goal._id }))];
     }, []);
     setTasks(todayTasks);
+    console.log("todayTasks",todayTasks);
     todayTasks.length > 0 ? setSelected(todayTasks.filter((task) => task?.status===true).map((task) => task?._id)) : setSelected([]);
         }  
 

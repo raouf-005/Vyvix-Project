@@ -78,7 +78,7 @@ export default function SideBar({ darkMode }) {
   };
 
   return (
-    <nav className="min-w-60 bg-white relative min-h-screen dark:bg-carddm ">
+    <nav className="min-w-60 bg-white  min-h-screen dark:bg-carddm   mobile:sticky mobile:hidden sm:relative sm:flex sm:flex-col  ">
       <div className="flex justify-center flex-col items-center pb-2 pt-7  ">
         <VyvixLogo darkMode={darkMode} />
         <hr  className=" h-px  bg-gray-200 border-0 dark:bg-gray-700 w-full my-3 "/>
