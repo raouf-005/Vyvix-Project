@@ -98,6 +98,11 @@ export default function Header() {
             isIconOnly
             className="rounded-full bg-transparent"
             aria-label="button"
+            onClick={
+              () => {
+                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=a_derardja@gmail.com&su=Support%20and%20Report", "_blank");
+            }
+            }
           >
             <SupportIcon alt="Support Icon" dark={darkMode} />
           </Button>
