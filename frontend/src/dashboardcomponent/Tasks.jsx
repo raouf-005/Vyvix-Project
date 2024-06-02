@@ -84,7 +84,6 @@ export default function Tasks() {
 
     const todayTasks = goals.reduce((acc, goal) => {
         const todayTasks = goal.tasks.filter(task =>{
-            console.log("check",task.date,formattedDate);
             return task?.date.split('/')?.every((attribute, index) => parseInt(attribute) === parseInt(formattedDate.split('/')[index]));
         });
         return [...acc, ...todayTasks.map(task => ({ ...task, goal_id: goal._id }))];
