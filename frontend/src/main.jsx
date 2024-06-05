@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import { Bounce } from "react-toastify";
 
-//disableReactDevTools()
+disableReactDevTools()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

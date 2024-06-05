@@ -90,8 +90,8 @@ export default function Login({ Page }) {
      {/*  <div className="  max-h-screen mobile:hidden sm:flex   items-center  justify-center ">
         <img src={LoginImg} alt="LoginImg" className="loginPhoto "  />
       </div> */}
-      <div className=" sm:grid max-h-screen mobile:hidden   flex-1   justify-end      ">
-      <Image  src={LoginImg} alt="LoginImg"  className="  h-[91%]  pt-2  "/>
+      <div className=" sm:grid  h-full mobile:hidden    flex-1   justify-end      ">
+      <Image  src={LoginImg} alt="LoginImg"  className="  h-screen  py-2  "/>
       </div>
       <div className="  flex  flex-col pt-3  flex-1 justify-center items-center  ">
         <img src={VyvixLogo} alt="VyvixLogo" className="mb-2  w-12  " />
