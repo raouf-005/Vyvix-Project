@@ -1,5 +1,8 @@
 import { GooglePlayButton, AppStoreButton } from "react-mobile-app-button";
 import Img from "./../assets/Container2Img.svg";
+import React from "react";
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
 export default function Download() {
   return (
     <div className="flex flex-row relative  sm:justify-around mobile:mb-10  sm:-mt-32 mobile:mt-0   sm:mb-0">
@@ -20,18 +23,37 @@ export default function Download() {
           and experience holistic growth at your fingertips. Your path to a
           thriving life begins with a simple click – join the journey today.
         </p>
-        <button className=" w-36 py-4  bg-gradient-to-r mobile:hidden sm:block   from-red-600 to-red-500 font-semibold bg-clip-text text-transparent">
+        <button className=" w-36 py-4  bg-gradient-to-r mobile:hidden sm:block   from-red-600 to-red-500 font-semibold bg-clip-text text-transparent"
+        onClick={()=>{window.open("https://mediafire.com/file/4i2x58lbetew6z2/app-release.apk/file")}}
+        >
           Download Now &#8594;
         </button>
         <div className="flex justify-center gap-4 sm:mt-5  mobile:flex-col sm:flex-row mobile:pt-8 sm:pt-0">
           <GooglePlayButton
-            url="https://play.google.com/store/apps/details?id=com.vyvix"
+            url="https://mediafire.com/file/4i2x58lbetew6z2/app-release.apk/file"
             theme="dark"
           />
+          <div className=""
+            onClick={()=>{toast.error('App  will be available soon for IOS', {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
+            }
+          }>
           <AppStoreButton
-            url="https://apps.apple.com/us/app/vyvix/id1580070475"
+            //url="https://mediafire.com/file/4i2x58lbetew6z2/app-release.apk/file"
+          
             theme="dark"
           />
+
+          </div>
         </div>
       </div>
     </div>
