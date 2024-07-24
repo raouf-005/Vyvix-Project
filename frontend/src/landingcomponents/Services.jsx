@@ -93,7 +93,7 @@ export default function Services() {
                             x: dragX,
                         }}
                         animate={{
-                            translateX: `-${cardIndex * 50}%`,
+                            translateX: `-${cardIndex * 55}%`,
                         }}
                         transition={SPRING_OPTIONS}
                         onDragEnd={onDragEnd}
